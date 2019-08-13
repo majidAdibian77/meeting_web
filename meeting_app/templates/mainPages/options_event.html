@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% extends 'mainPages/base.html' %}
+{% block body_block %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- container -->
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+            <li class="active">رویداد جدید</li>
+        </ol>
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">موارد پیشنهادی</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3 class="thin text-center">گزینه های رویداد</h3>
+                            <hr>
+
+                            <p>موارد پیشنهادی خود را وارد کنید:</p>
+                            <input type="text" class="form-control" id="option">
+                            <button onclick="add_option({{ event.pk }});" id="add-case-btn">اضافه کن</button>
+                            <div id="options">
+                                <ul>
+                                    {% for option in options %}
+                                        <lo class="col-md-6" id="case-added">{{ option.name }}
+                                            <button onclick="remove_option({{ option.pk }});" id="case-remove-button"
+                                                    class="col-md-1">X
+                                            </button>
+                                        </lo>
+
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <hr>
+                            <a>
+                                <button onclick="send_email({{ event.pk }}, {{ user.pk }})" class="btn btn-primary">ثبت
+                                    رویداد
+                                </button>
+                                <a href="{% url 'event_type' pk=event.pk %}" class="btn btn-primary">بازگشت
+                                </a>
+
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </article>
+            <!-- /Article -->
+        </div>
+    </div>    <!-- /container -->
+{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+{% extends 'mainPages/base.html' %}
+
+{% block body_block %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    {% load my_filters %}
+    <!-- container -->
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+            <li class="active">داشبورد</li>
+        </ol>
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">رویدادهای من</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {% for event in events.all %}
+                                <h2>{{ event.title }}</h2>
+                                <h4>{{ event.note }}</h4>
+                                <h4>مکان: {{ event.location }}</h4>
+                                <hr>
+                                <table id="table">
+                                    <thead>
+                                    <tr>
+                                        <td>گزینه ها</td>
+                                        {% if event.type == 'time' %}
+                                            {% for time in event.timespan.all %}
+                                                <td>
+                                                    <div id='cases-header'>
+                                                        {{ time.start|date:'Y/n/j G:i:s' }}<p>تا</p>
+                                                        {{ time.end|date:'Y/n/j G:i:s' }}
+                                                    </div>
+                                                </td>
+                                            {% endfor %}
+                                        {% else %}
+                                            {% for option in event.option.all %}
+                                                <td>
+                                                    <div id='cases-header'>
+                                                        {{ option.name }}
+                                                    </div>
+                                                </td>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </tr>
+                                    </thead>
+
+                                    <tr>
+                                        <td>
+                                            <div id='table-users'>
+                                                <p>سازنده رویداد:</p>
+                                                {{ event.user.username }}
+                                            </div>
+                                        </td>
+                                        {% if event.type == 'time' %}
+                                            {% for time in event.timespan.all %}
+                                                <td>
+                                                    {% if time|is_in_time_span:event.user.users_TimeSpan.all %}
+                                                        <button class="table-button-voted"
+                                                                name="table-button-voted"
+                                                                onclick="add_vote({{ time.pk }}, {{ event.user.pk }}, 'time');"
+                                                                id='user-vote-{{ time.pk }}-{{ event.user.pk }}'></button>
+                                                    {% else %}
+                                                        <button class="table-button button-variant"
+                                                                onclick="add_vote({{ time.pk }}, {{ event.user.pk }}, 'time');"
+                                                                id='user-vote-{{ time.pk }}-{{ event.user.pk }}'></button>
+                                                    {% endif %}
+                                                </td>
+                                            {% endfor %}
+                                        {% else %}
+                                            {% for option in event.option.all %}
+                                                <td>
+                                                    {% if option|is_in_option:event.user.users_options.all %}
+                                                        <button class="table-button-voted"
+                                                                name="table-button-voted"
+                                                                onclick="add_vote({{ option.pk }}, {{ event.user.pk }}, 'option');"
+                                                                id='user-vote-{{ option.pk }}-{{ user.pk }}'></button>
+                                                    {% else %}
+                                                        <button class="table-button button-variant"
+                                                                onclick="add_vote({{ option.pk }}, {{ event.user.pk }}, 'option');"
+                                                                id='user-vote-{{ option.pk }}-{{ event.user.pk }}'></button>
+                                                    {% endif %}
+                                                </td>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </tr>
+                                    {% if event.user_event.count > 0 %}
+                                        {% for user in event.user_event.all %}
+                                            <tr>
+                                                <td>
+                                                    <div id='table-users'>
+                                                        {% if user.user.first_name %}
+                                                            {{ user.user.first_name }}
+                                                        {% else %}
+                                                        {{ user.user.username }}
+                                                        {% endif %}
+                                                    </div>
+                                                </td>
+                                                {% if event.type == 'time' %}
+                                                    {% for time in event.timespan.all %}
+                                                        <td>
+                                                            {% if time|is_in_time_span:user.user.users_TimeSpan.all %}
+                                                                <button class="table-button-voted"
+                                                                        name="table-button-voted"
+                                                                        onclick="add_vote({{ time.pk }}, {{ user.user.pk }}, 'time');"
+                                                                        id='user-vote-{{ time.pk }}-{{ user.user.pk }}'></button>
+                                                            {% else %}
+                                                                <button class="table-button button-variant"
+                                                                        onclick="add_vote({{ time.pk }}, {{ user.user.pk }}, 'time');"
+                                                                        id='user-vote-{{ time.pk }}-{{ user.user.pk }}'></button>
+                                                            {% endif %}
+                                                        </td>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {% for option in event.option.all %}
+                                                        <td>
+                                                            {% if option|is_in_option:user.user.users_options.all %}
+                                                                <button class="table-button-voted"
+                                                                        name="table-button-voted"
+                                                                        onclick="add_vote({{ option.pk }}, {{ user.user.pk }}, 'option');"
+                                                                        id='user-vote-{{ option.pk }}-{{ user.user.pk }}'></button>
+                                                            {% else %}
+                                                                <button class="table-button button-variant"
+                                                                        onclick="add_vote({{ option.pk }}, {{ user.user.pk }}, 'option');"
+                                                                        id='user-vote-{{ option.pk }}-{{ user.user.pk }}'></button>
+                                                            {% endif %}
+                                                        </td>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                                <hr>
+                                {% if event.type == 'time' %}
+                                    <h4>بهترین مورد: {{ event|best_case:event.user_event.all }}</h4>
+                                {% else %}
+                                    <h4>بهترین مورد: {{ event|best_case:event.user_event.all }}</h4>
+                                {% endif %}
+                                <hr style="border: 1px inset black;">
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+            <!-- /Article -->
+
+        </div>
+    </div>    <!-- /container -->
+
+{% endblock %}

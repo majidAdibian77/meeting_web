@@ -1,0 +1,1 @@
+default_app_config = 'meeting_app.apps.MeetingAppConfig'

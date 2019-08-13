@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends 'mainPages/base.html' %}
+{% block body_block %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <!-- container -->
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+            <li class="active">رویداد جدید</li>
+        </ol>
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">رویداد جدید</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3 class="thin text-center">اطلاعات رویداد</h3>
+                            <hr>
+                            <p>ایمیل دوستان خود را وارد کنید:</p>
+                            <input class="form-control" type="email" id="email" placeholder="example@gmail.com">
+                            <button onclick="add_email({{ event_pk }});" id="add-case-btn">اضافه کن</button>
+                            <div id="emails">
+                                <ul>
+                                    {% for email in emails %}
+                                        <lo class="col-md-6" id="case-added">{{ email.email }}
+                                            <button onclick="remove_email({{ email.pk }});" id="case-remove-button"
+                                                    class="col-md-2">X
+                                            </button>
+                                        </lo>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <p></p>
+                            <form enctype="multipart/form-data" method="POST">
+                                {% csrf_token %}
+                                <p>نوع رویداد را انتخاب کنید:</p>
+                                <input type="radio" name="type_event" value="options"> گزینه ای
+                                <input type="radio" name="type_event" value="time" checked> زمانی
+                                <hr>
+                                <input type="submit" class="btn btn-primary" value="ادامه">
+                                <a href="{% url 'new_event' %}" class="btn btn-primary">برگشت</a>
+                            </form>
+
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <!-- /Article -->
+
+        </div>
+    </div>    <!-- /container -->
+{% endblock %}

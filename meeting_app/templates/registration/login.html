@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% extends 'mainPages/base.html' %}
+{% block body_block %}
+
+
+    <!-- container -->
+    <div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+            <li class="active">ورود</li>
+        </ol>
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">ورود / عضویت</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3 class="thin text-center">ورود به اکانت شخصی</h3>
+                            <hr>
+                            <form action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+                                {{ form.non_field_errors }}
+                                <div class="top-margin">
+                                <label for="{{ form.username.id_for_label }}">نام کاربری:<span
+                                            class="text-danger">*</span></label>
+                                    <input class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" type="text"/>
+                                    {{ form.username.errors }}
+                                </div>
+                                <div class="top-margin">
+                                <label for="{{ form.password.id_for_label }}">رمز عبور:<span
+                                            class="text-danger">*</span></label>
+                                    <input class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" type="password"/>
+{#                                <div class="top-margin">#}
+{#                                    {{ form.username.errors }}#}
+{#                                    <label for="{{ form.username.id_for_label }}">نام کاربری:<span#}
+{#                                            class="text-danger">*</span></label>#}
+{#                                    {{ form.username }}#}
+{#                                </div>#}
+{#                                <div class="top-margin form-control">#}
+{#                                    {{ form.password.errors }}#}
+{#                                    <label for="{{ form.password.id_for_label }}">رمز عبور:<span#}
+{#                                            class="text-danger">*</span></label>#}
+{#                                    {{ form.password }}#}
+{#                                </div>#}
+                                <p></p>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <b><a href="">رمز عبور خود را فراموش کرده ام!</a></b>
+                                    </div>
+                                    <div class="col-lg-4 text-right">
+                                        <input type="submit" class=" btn btn-action " value="ورود">
+                                    </div>
+                                </div>
+                            </form>
+                            <p></p>
+                            <a class="btn btn-action" href="{% url 'social:begin' 'google-oauth2' %}"
+                               style="width: 100%">Google account ورود با</a>
+                            <hr>
+                            <p>هنوز عضو نشده اید:</p>
+                            <a href="{% url 'register' %}" class="btn btn-action"
+                               style="width: 100%; background: green">
+                                عضویت
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </article>
+            <!-- /Article -->
+
+        </div>
+    </div>    <!-- /container -->
+{% endblock %}
