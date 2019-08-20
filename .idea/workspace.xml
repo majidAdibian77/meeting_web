@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="Database changed for new description of cases of event...">
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" afterDir="false" />
-    </list>
+    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="Database changed for new description of cases of event..." />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +35,7 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -105,7 +103,7 @@
       <workItem from="1566149337519" duration="9248000" />
       <workItem from="1566206617625" duration="13499000" />
       <workItem from="1566282018658" duration="2195000" />
-      <workItem from="1566284508122" duration="561000" />
+      <workItem from="1566284508122" duration="968000" />
     </task>
     <task id="LOCAL-00001" summary="second commit...">
       <created>1563049152840</created>
@@ -191,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566284804911</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Database changed for new description of cases of event...">
+      <created>1566285146903</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1566285146903</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
