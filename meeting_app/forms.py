@@ -25,12 +25,25 @@ class EventForm(forms.ModelForm):
                                required=True)
     note = forms.CharField(label="یادداشت", widget=forms.TextInput(attrs={'class': 'form-control'}),
                                 required=True)
-    location = forms.CharField(label="مکان", widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'location'}),
-                                required=True)
 
     class Meta:
         model = Event
-        fields = ('title', 'note', 'location')
+        fields = ('title', 'note')
+
+
+class EventCasesForm(forms.ModelForm):
+    name = forms.CharField(label="نام مورد", widget=forms.TextInput(attrs={'class': 'form-control'}),
+                           required=True)
+    start_time = forms.TimeField(label='زمان شروع', widget=forms.TextInput(attrs={'class': 'form-control'}),
+                                 required=False)
+    end_time = forms.TimeField(label='زمان پایان', widget=forms.TextInput(attrs={'class': 'form-control'}),
+                               required=False)
+    location = forms.CharField(label='مکان', widget=forms.TextInput(attrs={'class': 'form-control'}),
+                               required=False)
+
+    class Meta:
+        model = Event
+        fields = ('title', 'note', 'start_time', 'end_time', 'location')
 
 
 class ContactUsForm(forms.ModelForm):

@@ -1,11 +1,9 @@
 from django.contrib import admin
-from meeting_app.models import Event, Email, Timespan, Option, UsersTimeSpan, UsersOptions, UserEvent
+from meeting_app.models import Event, Email, UserEvent, EventCases, ContactUs
 
 # Register your models here.
 admin.site.register(Event)
 admin.site.register(Email)
-admin.site.register(Timespan)
-admin.site.register(Option)
-admin.site.register(UsersTimeSpan)
-admin.site.register(UsersOptions)
 admin.site.register(UserEvent)
+admin.site.register(EventCases)
+admin.site.register(ContactUs)

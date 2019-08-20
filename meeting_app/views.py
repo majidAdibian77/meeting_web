@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from meeting_app.forms import UserForm, EventForm, ContactUsForm
 
 # Create your views here.
-from meeting_app.models import Event, Email, Timespan, Option, UserEvent, UsersOptions, UsersTimeSpan
+from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases
 
 """
 This method renders home page
@@ -18,14 +18,14 @@ This method renders home page
 
 def home(request):
     # remove non complete events
-    options = Option.objects.all()
-    for op in options:
-        if op.event.type != 'options':
-            op.delete()
-    times = Timespan.objects.all()
-    for time in times:
-        if time.event.type != 'time':
-            time.delete()
+    # options = EventCases.objects.all()
+    # for op in options:
+    #     if op.event.type != 'options':
+    #         op.delete()
+    # times = Timespan.objects.all()
+    # for time in times:
+    #     if time.event.type != 'time':
+    #         time.delete()
 
     return render(request, "mainPages/home.html")
 
@@ -90,71 +90,70 @@ def new_event(request):
     if request.method == 'POST':
         event_form = EventForm(data=request.POST)
         if event_form.is_valid():
-            title = event_form.cleaned_data['title']
-            location = event_form.cleaned_data['location']
             note = event_form.cleaned_data['note']
-            event = Event(title=title, location=location, note=note, user=request.user)
+            title = event_form.cleaned_data['title']
+            event = Event(title=title, note=note, user=request.user)
             event.save()
-            return redirect('event_type', pk=event.pk)
+            return redirect('event_cases', pk=event.pk)
     else:
         event_form = EventForm()
 
     return render(request, 'mainPages/new_event.html', {'event_form': event_form})
 
 
-def event_type(request, pk):
+"""
+    In this function cases of event and emails of event is created
+"""
+def event_cases(request, pk):
     event = Event.objects.get(pk=pk)
-    if request.method == 'POST':
-        type_event = request.POST.get('type_event')
-        event.type = type_event
-        event.save()
-        return redirect('options_times', pk=event.pk)
     emails = Email.objects.filter(event=event)
-    return render(request, 'mainPages/event_type.html', {'event_pk': pk, 'emails': emails})
+    cases = EventCases.objects.filter(event=event)
+    return render(request, 'mainPages/event_cases.html', {'event_pk': pk, 'cases': cases, 'emails': emails})
 
 
-def options_times(request, pk):
-    event = Event.objects.get(pk=pk)
-    type_event = event.type
-    page = 'mainPages/times_event.html'
-    if type_event == 'time':
-        all_time_span = Timespan.objects.filter(event=event)
-        context = {
-            "all_timespan": all_time_span,
-            "event": event,
-        }
+def add_case(request):
+    start_time = request.GET.get("start_time", None)
+    end_time = request.GET.get("end_time", None)
+    case_name = request.GET.get("case_name", None)
+    location = request.GET.get("location", None)
+    event_pk = request.GET.get("event_pk", None)
+    event = Event.objects.get(pk=event_pk)
+
+    error = ''
+    if case_name:
+        event_case = EventCases(case_name=case_name, start_time=start_time, end_time=end_time, location=location, event=event)
+        event_case.save()
     else:
-        all_options = Option.objects.filter(event=event)
-        context = {
-            "options": all_options,
-            "event": event,
-        }
-        page = 'mainPages/options_event.html'
-    return render(request, page, context)
+        error = 'case_name'
+    data = {
+        'error': error,
+    }
+    return JsonResponse(data)
 
 
 def dashboard(request, pk):
     user = User.objects.get(pk=pk)
     events1 = Event.objects.filter(user=user).all()
     event_user = UserEvent.objects.filter(user=user).all()
+
+    # remove events that have no case to vote
+    all_events = Event.objects.all()
+    for event in all_events:
+        if event.event_cases.count() == 0:
+            event.delete()
+
     id_list = []
+    # This 'for' is for events that this user is creator
     if events1:
         for e in events1:
             id_list.append(e.pk)
+
+    # This 'for' is for events that this user is invited
     if event_user:
         for e in event_user:
             id_list.append(e.event.pk)
     events = Event.objects.filter(id__in=id_list).all()
 
-    # remove non complete events
-    all_events = Event.objects.all()
-    for event in all_events:
-        if event.type == 'time':
-            if event.timespan.count() == 0:
-                event.delete()
-        else:
-            if event.option.count() == 0:
-                event.delete()
     return render(request, 'mainPages/dashboard_page.html', {'user': user, 'events': events})
 
 
@@ -207,35 +206,35 @@ def add_email(request):
     return JsonResponse(data)
 
 
-def remove_time(request):
-    time_id = request.GET.get("id", None)
-    time = Timespan.objects.get(pk=time_id)
-    time.delete()
-    data = []
-    return JsonResponse(data)
+# def remove_time(request):
+#     time_id = request.GET.get("id", None)
+#     time = Timespan.objects.get(pk=time_id)
+#     time.delete()
+#     data = []
+#     return JsonResponse(data)
 
 
-def add_time(request):
-    start = request.GET.get("start", None)
-    end = request.GET.get("end", None)
-    event_pk = request.GET.get("event_pk", None)
-    event = Event.objects.get(pk=event_pk)
-    time = Timespan(start=start, end=end, event=event)
-    time.save()
-    data = {}
-    return JsonResponse(data)
+# def add_time(request):
+#     start = request.GET.get("start", None)
+#     end = request.GET.get("end", None)
+#     event_pk = request.GET.get("event_pk", None)
+#     event = Event.objects.get(pk=event_pk)
+#     time = Timespan(start=start, end=end, event=event)
+#     time.save()
+#     data = {}
+#     return JsonResponse(data)
 
 
-def update_time(request):
-    start = request.GET.get("start", None)
-    end = request.GET.get("end", None)
-    id = request.GET.get("id", None)
-    time = Timespan.objects.get(id=id)
-    time.start = start
-    time.end = end
-    time.save()
-    data = {}
-    return JsonResponse(data)
+# def update_time(request):
+#     start = request.GET.get("start", None)
+#     end = request.GET.get("end", None)
+#     id = request.GET.get("id", None)
+#     time = Timespan.objects.get(id=id)
+#     time.start = start
+#     time.end = end
+#     time.save()
+#     data = {}
+#     return JsonResponse(data)
 
 
 """
@@ -243,13 +242,13 @@ This method is called from js file to to remove email of event
 """
 
 
-def remove_option(request):
-    option_pk = request.GET.get('option_pk', None)
-    option = Option.objects.get(pk=option_pk)
-    option.delete()
-    data = {
-    }
-    return JsonResponse(data)
+# def remove_option(request):
+#     option_pk = request.GET.get('option_pk', None)
+#     option = Option.objects.get(pk=option_pk)
+#     option.delete()
+#     data = {
+#     }
+#     return JsonResponse(data)
 
 
 """
@@ -257,25 +256,25 @@ This method is called from js file to to approve comments
 """
 
 
-def add_option(request):
-    option = request.GET.get('option', None)
-    event_pk = request.GET.get('event_pk', None)
-    event = Event.objects.get(pk=event_pk)
-    event_options = Option.objects.filter(event=event)
-
-    non_repetitious = True
-    for op in event_options:
-        if str(op.name) == str(option):
-            non_repetitious = False
-
-    if non_repetitious:
-        option = Option(name=str(option), event=event)
-        option.save()
-
-    data = {
-        'non_repetitious': non_repetitious,
-    }
-    return JsonResponse(data)
+# def add_option(request):
+#     option = request.GET.get('option', None)
+#     event_pk = request.GET.get('event_pk', None)
+#     event = Event.objects.get(pk=event_pk)
+#     event_options = Option.objects.filter(event=event)
+#
+#     non_repetitious = True
+#     for op in event_options:
+#         if str(op.name) == str(option):
+#             non_repetitious = False
+#
+#     if non_repetitious:
+#         option = Option(name=str(option), event=event)
+#         option.save()
+#
+#     data = {
+#         'non_repetitious': non_repetitious,
+#     }
+#     return JsonResponse(data)
 
 
 """
@@ -288,12 +287,8 @@ def send_email(request):
     event = Event.objects.get(pk=event_pk)
     test_send_email = True
     check_cases = True
-    if event.type == 'time':
-        if event.timespan.count() == 0:
-            check_cases = False
-    else:
-        if event.option.count() == 0:
-            check_cases = False
+    if event.event_cases.count() == 0:
+        check_cases = False
     if check_cases:
         emails = Email.objects.filter(event=event)
         user_registered_emails = []
@@ -357,30 +352,20 @@ def add_vote(request):
     user_pk = request.GET.get('user_pk', None)
     user = User.objects.get(pk=user_pk)
     voted = False
+    # This 'if' is for checking this user that click on button is user in that row of table or not
     if user == request.user:
         test = True
-        str = request.GET.get('str', None)
         case_pk = request.GET.get('case_pk', None)
-        if str == 'time':
-            case = Timespan.objects.get(pk=case_pk)
-            # user_time = UsersTimeSpan(user=user, time_span=case)
-            if UsersTimeSpan.objects.filter(user=user, time_span=case).exists():
-                voted = True
-                user_time = UsersTimeSpan.objects.get(user=user, time_span=case)
-                user_time.delete()
-            else:
-                user_time = UsersTimeSpan(user=user, time_span=case)
-                user_time.save()
+        case = EventCases.objects.get(pk=case_pk)
+        str = request.GET.get('str', None)
+        if str == 'voted':
+            voted = True
+            user_time = UsersEventCases.objects.get(user=user, time_span=case)
+            user_time.delete()
         else:
-            case = Option.objects.get(pk=case_pk)
-            # user_option = UsersOptions(user=user, option=case)
-            if UsersOptions.objects.filter(user=user, option=case).exists():
-                voted = True
-                user_option = UsersOptions.objects.get(user=user, option=case)
-                user_option.delete()
-            else:
-                user_option = UsersOptions(user=user, option=case)
-                user_option.save()
+            user_time = UsersEventCases(user=user, time_span=case)
+            user_time.save()
+
     else:
         test = False
 

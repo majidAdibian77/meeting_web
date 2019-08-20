@@ -15,6 +15,7 @@ function remove_email(email_pk) {
     });
 }
 
+
 function add_email(event_pk) {
     $.ajax({
         type: "GET",
@@ -59,21 +60,24 @@ function remove_option(option_pk) {
     });
 }
 
-function add_option(event_pk) {
+function add_case(event_pk) {
     $.ajax({
         type: "GET",
-        url: '/add_option',
+        url: '/add_case',
         data: {
-            "option": $('#option').val(),
+            "case_name": $('#name-case').val(),
+            "start_time": $('#start-time').val(),
+            "end_time": $('#end-time').val(),
+            "location": $('#location').val(),
             "event_pk": event_pk,
         },
         dataType: "json",
         success: function (data) {
-            if (!data['non_repetitious']) {
-                alert('option is repetitious!');
+            if (data['error'] !== '') {
+                alert('Name of case is empty!');
             }
             else {
-                $("#options").load(location.href + " #options");
+                $("#cases").load(location.href + " #cases");
             }
         },
         failure: function () {
@@ -94,7 +98,7 @@ function send_email(event_pk, user_pk) {
             if (data['check_cases']) {
                 if (data['test']) {
                     alert('emails are sent!');
-                    // document.location.href = 'dashboard' + "/" + user_pk;
+                    document.location.href = 'dashboard' + "/" + user_pk;
                 }
                 else {
                     alert('There is a problem in sending emails!')
@@ -126,19 +130,11 @@ function add_vote(case_pk, user_pk, str) {
             if (data['test']) {
                 alert("your vote is added");
                 btn = $("#user-vote-" + case_pk + "-" + user_pk);
-
-                // btn.class.remove();
-                // btn.name.remove();
                 if (!data['voted']) {
                     btn.css('background', '#3de815');
-                    // btn.class.add("table-button button-variant");
-                    // $("#table").load(location.href + " #table");
                 }
                 else {
                     btn.css('background', '#b8b8b8');
-                    // btn.class.add("table-button-voted");
-                    // btn.names.add("table-button-voted");
-                    // $("#table").load(location.href + " #table");
                 }
             }
             else {

@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="" />
+    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="solving some problems and bugs...">
+      <change afterPath="$PROJECT_DIR$/meeting_app/static/css/popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/migrations/0002_auto_20190719_1146.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_type.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/times_event.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/times_event.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templatetags/my_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templatetags/my_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/views.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,31 +35,12 @@
         <option value="Setup Script" />
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>image</find>
-      <find>html</find>
-      <find>nav</find>
-      <find>btn</find>
-      <find>calendar</find>
-      <find>FontAwesome</find>
-      <find>add_email</find>
-      <find>font-family</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>BYekan</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="950" />
-    <option name="width" value="980" />
-    <option name="height" value="1040" />
   </component>
   <component name="ProjectId" id="1PGXMJkxOMXsvjGYMIKAiMbbKK4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -50,7 +48,8 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Bot Project/first bot.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Bot Project" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -110,6 +109,17 @@
       <updated>1562582550753</updated>
       <workItem from="1565501364211" duration="3200000" />
       <workItem from="1565691065909" duration="2213000" />
+      <workItem from="1565716198401" duration="894000" />
+      <workItem from="1565856465880" duration="755000" />
+      <workItem from="1565859267479" duration="3264000" />
+      <workItem from="1565871461075" duration="1307000" />
+      <workItem from="1565893372615" duration="59000" />
+      <workItem from="1565982398898" duration="1344000" />
+      <workItem from="1566036080690" duration="658000" />
+      <workItem from="1566112481871" duration="6214000" />
+      <workItem from="1566149337519" duration="9248000" />
+      <workItem from="1566206617625" duration="13499000" />
+      <workItem from="1566282018658" duration="1626000" />
     </task>
     <task id="LOCAL-00001" summary="second commit...">
       <created>1563049152840</created>
@@ -160,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563523777101</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="solving some problems and bugs...">
+      <created>1565716680393</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1565716680393</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

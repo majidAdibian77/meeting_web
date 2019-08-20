@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% extends 'mainPages/base.html' %}
+{% block body_block %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            {# following codes are for popup fullcalendar #}
+            $(".btn-show-calendar").click(function () {
+                $('.hover_bkgr_fricc').show();
+            });
+            $('.popupCloseButton').click(function () {
+                $('.hover_bkgr_fricc').hide();
+            });
+
+            {# Following codes are for select time in full callendar #}
+            var calendar = $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                events: [
+                    {% for time in all_timespan %}
+                        {
+                            title: '{{ event.title }}',
+                            start: '{{ time.start|date:"Y-m-d"}}',
+                            end: '{{ time.end|date:"Y-m-d" }}',
+                            id: '{{ time.id }}',
+                        },
+                    {% endfor %}
+                ],
+                selectable: true,
+                selectHelper: true,
+                editable: true,
+                eventLimit: true,
+                select: function (start, end, allDay) {
+                    var title = '{{ event.title }}';
+                    if (title) {
+                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+
+                        $("#start-time").val(start);
+                        $("#start-time").load(location.href + " #start-time");
+                        $("#end-time").val(end);
+                        $("#end-time").load(location.href + " #end-time");
+                    }
+                },
+            });
+        });
+    </script>
+
+    <!-- container -->
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+            <li class="active">رویداد جدید</li>
+        </ol>
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">رویداد جدید</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3 class="thin text-center">اطلاعات رویداد</h3>
+                            <hr>
+                            <p>ایمیل دوستان خود را وارد کنید:</p>
+                            <input class="form-control" type="email" id="email" placeholder="example@gmail.com">
+                            <button onclick="add_email({{ event_pk }});" id="add-case-btn">اضافه کن</button>
+                            <div id="emails">
+                                <ul>
+                                    {% for email in emails %}
+                                        <lo class="col-md-12" id="case-added"
+                                            style="text-align: left;">{{ email.email }}
+                                            <button onclick="remove_email({{ email.pk }});" id="case-remove-button">X
+                                            </button>
+                                        </lo>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <hr>
+                            <div>
+                                <p></p>
+                                <h3>جزئیات گزینه ها:</h3>
+                                <label for="name-case">نام مورد</label>
+                                <input type="text" id="name-case" class="form-control">
+                                <label for="location">مکان</label>
+                                <input type="text" id="location" class="form-control">
+                                <label for="start-time">زمان شروع</label>
+                                <button class="btn-show-calendar">(تقویم)</button>
+                                <input type="datetime-local" id="start-time" class="form-control">
+                                <label for="end-time">زمان پایان</label>
+                                <button class="btn-show-calendar">(تقویم)</button>
+                                <input type="datetime-local" id="end-time" class="form-control">
+
+
+                                <p></p>
+                                <button onclick="add_case({{ event_pk }});" id="add-case-btn">اضافه کردن مورد</button>
+                            </div>
+                            <hr>
+
+                            <div id="cases">
+                                <ul>
+                                    {% for case in cases %}
+                                        <lo class="col-md-12" id="case-added">
+                                            <p>نام مورد: {{ case.case_name }}</p>
+                                            <p>مکان: {{ case.location }}</p>
+                                            <p>زمان شروع: {{ case.start_time }}</p>
+                                            <p>زمان پایان: {{ case.end_time }}</p>
+
+                                            <button onclick="remove_case({{ option.pk }});" id="case-remove-button"
+                                                    class="col-md-1">X
+                                            </button>
+                                        </lo>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <a>
+                                <button onclick="send_email({{ event_pk }}, {{ user.pk }})" class="btn btn-primary">ثبت
+                                    رویداد
+                                </button>
+                                <a href="{% url 'new_event' %}" class="btn btn-primary">بازگشت
+                                </a>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <!-- /Article -->
+
+        </div>
+    </div>    <!-- /container -->
+
+    {# This 'div' is for popup for calendar #}
+    <div class="hover_bkgr_fricc">
+        <span class="helper"></span>
+        <div>
+            <h3>زمان این گزینه را انتخاب کنید:</h3>
+            <div id="calendar"></div>
+            <div class="popupCloseButton"><b>&#10004;</b></div>
+{#            <div class="popupCloseButton">&#9989;</div>#}
+        </div>
+    </div>
+
+{% endblock %}
