@@ -43,16 +43,16 @@ function add_email(event_pk) {
 }
 
 
-function remove_option(option_pk) {
+function remove_case(case_pk) {
     $.ajax({
         type: "GET",
-        url: '/remove_option',
+        url: '/remove_case',
         data: {
-            "option_pk": option_pk,
+            "case_pk": case_pk,
         },
         dataType: "json",
         success: function (data) {
-            $("#options").load(location.href + " #options");
+            $("#cases").load(location.href + " #cases");
         },
         failure: function () {
             alert('There is a problem!!!');
@@ -98,7 +98,7 @@ function send_email(event_pk, user_pk) {
             if (data['check_cases']) {
                 if (data['test']) {
                     alert('emails are sent!');
-                    document.location.href = 'dashboard' + "/" + user_pk;
+                    // document.location.href = 'dashboard' + "/" + user_pk;
                 }
                 else {
                     alert('There is a problem in sending emails!')

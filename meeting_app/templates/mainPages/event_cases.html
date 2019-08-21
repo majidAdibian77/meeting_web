@@ -41,16 +41,10 @@
                 editable: true,
                 eventLimit: true,
                 select: function (start, end, allDay) {
-                    var title = '{{ event.title }}';
-                    if (title) {
-                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-
-                        $("#start-time").val("start");
-                        $("#start-time").load(location.href + " #start-time");
-                        $("#end-time").val(end);
-                        $("#end-time").load(location.href + " #end-time");
-                    }
+                    var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm").replace(' ', 'T');
+                    var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm").replace(' ', 'T');
+                    $("#start-time").val(start);
+                    $("#end-time").val(end);
                 },
             });
         });
@@ -99,11 +93,11 @@
                                 <label for="location">مکان</label>
                                 <input type="text" id="location" class="form-control">
                                 <label for="start-time">زمان شروع</label>
-                                <button class="btn-show-calendar">(تقویم)</button>
-                                <input type="datetime-local" id="start-time" class="form-control">
+                                <button class="btn-show-calendar" >(تقویم)</button>
+                                <input type="datetime-local" id="start-time" class="form-control" value="2018-06-12T19:30">
                                 <label for="end-time">زمان پایان</label>
                                 <button class="btn-show-calendar">(تقویم)</button>
-                                <input type="datetime-local" id="end-time" class="form-control">
+                                <input type="datetime-local" id="end-time" class="form-control" value="2018-07-12T19:30">
 
 
                                 <p></p>
@@ -120,7 +114,7 @@
                                             <p>زمان شروع: {{ case.start_time }}</p>
                                             <p>زمان پایان: {{ case.end_time }}</p>
 
-                                            <button onclick="remove_case({{ option.pk }});" id="case-remove-button"
+                                            <button onclick="remove_case({{ case.pk }});" id="case-remove-button"
                                                     class="col-md-1">X
                                             </button>
                                         </lo>
@@ -150,7 +144,6 @@
             <h3>زمان این گزینه را انتخاب کنید:</h3>
             <div id="calendar"></div>
             <div class="popupCloseButton"><b>&#10004;</b></div>
-{#            <div class="popupCloseButton">&#9989;</div>#}
         </div>
     </div>
 

@@ -131,6 +131,20 @@ def add_case(request):
     return JsonResponse(data)
 
 
+"""
+This method is called from js file to to remove email of event 
+"""
+
+
+def remove_case(request):
+    case_pk = request.GET.get('case_pk', None)
+    case = EventCases.objects.get(pk=case_pk)
+    case.delete()
+    data = {
+    }
+    return JsonResponse(data)
+
+
 def dashboard(request, pk):
     user = User.objects.get(pk=pk)
     events1 = Event.objects.filter(user=user).all()
@@ -242,7 +256,7 @@ This method is called from js file to to remove email of event
 """
 
 
-# def remove_option(request):
+# def remove_case(request):
 #     option_pk = request.GET.get('option_pk', None)
 #     option = Option.objects.get(pk=option_pk)
 #     option.delete()
@@ -357,14 +371,14 @@ def add_vote(request):
         test = True
         case_pk = request.GET.get('case_pk', None)
         case = EventCases.objects.get(pk=case_pk)
-        str = request.GET.get('str', None)
-        if str == 'voted':
+        s = request.GET.get('str', None)
+        if s == 'voted':
             voted = True
-            user_time = UsersEventCases.objects.get(user=user, time_span=case)
-            user_time.delete()
+            user_case = UsersEventCases.objects.get(user=user, event_cases=case)
+            user_case.delete()
         else:
-            user_time = UsersEventCases(user=user, time_span=case)
-            user_time.save()
+            user_case = UsersEventCases(user=user, event_cases=case)
+            user_case.save()
 
     else:
         test = False
