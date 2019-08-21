@@ -27,19 +27,18 @@
                     right: 'month,agendaWeek,agendaDay'
                 },
                 events: [
-                    {% for time in all_timespan %}
+                    {% for event in google_events_list %}
                         {
                             title: '{{ event.title }}',
-                            start: '{{ time.start|date:"Y-m-d"}}',
-                            end: '{{ time.end|date:"Y-m-d" }}',
-                            id: '{{ time.id }}',
+                            start: '{{ event.start|slice:"0:19"}}',
+                            end: '{{ event.end|slice:"0:19"}}',
                         },
                     {% endfor %}
                 ],
                 selectable: true,
                 selectHelper: true,
-                editable: true,
-                eventLimit: true,
+                editable: false,
+                eventLimit: false,
                 select: function (start, end, allDay) {
                     var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm").replace(' ', 'T');
                     var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm").replace(' ', 'T');
@@ -93,11 +92,13 @@
                                 <label for="location">مکان</label>
                                 <input type="text" id="location" class="form-control">
                                 <label for="start-time">زمان شروع</label>
-                                <button class="btn-show-calendar" >(تقویم)</button>
-                                <input type="datetime-local" id="start-time" class="form-control" value="2018-06-12T19:30">
+                                <button class="btn-show-calendar">(تقویم)</button>
+                                <input type="datetime-local" id="start-time" class="form-control"
+                                       value="2018-06-12T19:30">
                                 <label for="end-time">زمان پایان</label>
                                 <button class="btn-show-calendar">(تقویم)</button>
-                                <input type="datetime-local" id="end-time" class="form-control" value="2018-07-12T19:30">
+                                <input type="datetime-local" id="end-time" class="form-control"
+                                       value="2018-07-12T19:30">
 
 
                                 <p></p>

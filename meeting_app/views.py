@@ -1,5 +1,4 @@
 import re
-
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
@@ -7,9 +6,9 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from meeting_app.forms import UserForm, EventForm, ContactUsForm
-
-# Create your views here.
 from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases
+
+from meeting_app.google_calendar.get_events import get_events_google_calendar
 
 """
 This method renders home page
@@ -27,7 +26,12 @@ def home(request):
     #     if time.event.type != 'time':
     #         time.delete()
 
-    return render(request, "mainPages/home.html")
+    google_calendar_events = get_events_google_calendar()
+    google_events_list = []
+    for event in google_calendar_events:
+        event = {'title': event['summary'], 'start': event['start'], 'end': event['end']}
+        google_events_list.append(event)
+    return render(request, "mainPages/home.html", {'events': google_events_list})
 
 
 """ 
@@ -104,11 +108,22 @@ def new_event(request):
 """
     In this function cases of event and emails of event is created
 """
+
+
 def event_cases(request, pk):
     event = Event.objects.get(pk=pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
-    return render(request, 'mainPages/event_cases.html', {'event_pk': pk, 'cases': cases, 'emails': emails})
+
+    # Following line is for getting google calendar events of user to show him
+    google_calendar_events = get_events_google_calendar()
+    google_events_list = []
+    for event in google_calendar_events:
+        event = {'title': event['summary'], 'start': event['start']['dateTime'], 'end': event['end']['dateTime']}
+        google_events_list.append(event)
+
+    return render(request, 'mainPages/event_cases.html',
+                  {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events_list': google_events_list})
 
 
 def add_case(request):
@@ -121,7 +136,8 @@ def add_case(request):
 
     error = ''
     if case_name:
-        event_case = EventCases(case_name=case_name, start_time=start_time, end_time=end_time, location=location, event=event)
+        event_case = EventCases(case_name=case_name, start_time=start_time, end_time=end_time, location=location,
+                                event=event)
         event_case.save()
     else:
         error = 'case_name'
@@ -167,8 +183,7 @@ def dashboard(request, pk):
         for e in event_user:
             id_list.append(e.event.pk)
     events = Event.objects.filter(id__in=id_list).all()
-
-    return render(request, 'mainPages/dashboard_page.html', {'user': user, 'events': events})
+    return render(request, 'mainPages/dashboard_page.html', {'user': user, 'events': events, })
 
 
 """
@@ -255,7 +270,6 @@ def add_email(request):
 This method is called from js file to to remove email of event 
 """
 
-
 # def remove_case(request):
 #     option_pk = request.GET.get('option_pk', None)
 #     option = Option.objects.get(pk=option_pk)
@@ -268,7 +282,6 @@ This method is called from js file to to remove email of event
 """
 This method is called from js file to to approve comments 
 """
-
 
 # def add_option(request):
 #     option = request.GET.get('option', None)

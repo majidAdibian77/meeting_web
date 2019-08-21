@@ -57,7 +57,7 @@
                                                     <button class="table-button-voted"
                                                             name="table-button-voted"
                                                             onclick="add_vote({{ case.pk }}, {{ event.user.pk }}, 'voted');"
-                                                            id='user-vote-{{ time.pk }}-{{ event.user.pk }}'></button>
+                                                            id='user-vote-{{ time.pk }}-{{ event.user.pk }}'>&#10004;</button>
                                                 {% else %}
                                                     <button class="table-button button-variant"
                                                             onclick="add_vote({{ case.pk }}, {{ event.user.pk }}, 'not_voted');"
@@ -84,7 +84,7 @@
                                                             <button class="table-button-voted"
                                                                     name="table-button-voted"
                                                                     onclick="add_vote({{ case.pk }}, {{ user_event.user.pk }}, 'voted');"
-                                                                    id='user-vote-{{ case.pk }}-{{ user_event.user.pk }}'></button>
+                                                                    id='user-vote-{{ case.pk }}-{{ user_event.user.pk }}'>&#10004;</button>
                                                         {% else %}
                                                             <button class="table-button button-variant"
                                                                     onclick="add_vote({{ case.pk }}, {{ user_event.user.pk }}, 'not_voted');"

@@ -131,10 +131,10 @@ function add_vote(case_pk, user_pk, str) {
                 alert("your vote is added");
                 btn = $("#user-vote-" + case_pk + "-" + user_pk);
                 if (!data['voted']) {
-                    btn.css('background', '#3de815');
+                    btn.css('text', '&#10004;');
                 }
                 else {
-                    btn.css('background', '#b8b8b8');
+                    btn.css('text', '');
                 }
             }
             else {
