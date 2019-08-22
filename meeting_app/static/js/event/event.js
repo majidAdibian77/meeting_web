@@ -117,6 +117,7 @@ function send_email(event_pk, user_pk) {
 
 
 function add_vote(case_pk, user_pk, str) {
+    alert(case_pk + "  " + user_pk + "  " + str);
     $.ajax({
         type: "GET",
         url: '/add_vote',
@@ -129,12 +130,13 @@ function add_vote(case_pk, user_pk, str) {
         success: function (data) {
             if (data['test']) {
                 alert("your vote is added");
-                btn = $("#user-vote-" + case_pk + "-" + user_pk);
+                id = "#user-vote-" + case_pk + "-" + user_pk;
+                btn = $(id);
                 if (!data['voted']) {
-                    btn.css('text', '&#10004;');
+                    btn.html('&#10004;');
                 }
                 else {
-                    btn.css('text', '');
+                    btn.html(' ');
                 }
             }
             else {

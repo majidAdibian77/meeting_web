@@ -26,12 +26,7 @@ def home(request):
     #     if time.event.type != 'time':
     #         time.delete()
 
-    google_calendar_events = get_events_google_calendar()
-    google_events_list = []
-    for event in google_calendar_events:
-        event = {'title': event['summary'], 'start': event['start'], 'end': event['end']}
-        google_events_list.append(event)
-    return render(request, "mainPages/home.html", {'events': google_events_list})
+    return render(request, "mainPages/home.html")
 
 
 """ 
@@ -384,8 +379,8 @@ def add_vote(request):
         test = True
         case_pk = request.GET.get('case_pk', None)
         case = EventCases.objects.get(pk=case_pk)
-        s = request.GET.get('str', None)
-        if s == 'voted':
+        # s = request.GET.get('str', None)
+        if UsersEventCases.objects.filter(user=user, event_cases=case).exists():
             voted = True
             user_case = UsersEventCases.objects.get(user=user, event_cases=case)
             user_case.delete()

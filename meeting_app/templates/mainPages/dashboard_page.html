@@ -57,11 +57,11 @@
                                                     <button class="table-button-voted"
                                                             name="table-button-voted"
                                                             onclick="add_vote({{ case.pk }}, {{ event.user.pk }}, 'voted');"
-                                                            id='user-vote-{{ time.pk }}-{{ event.user.pk }}'>&#10004;</button>
+                                                            id='user-vote-{{ case.pk }}-{{ event.user.pk }}'>&#10004;</button>
                                                 {% else %}
                                                     <button class="table-button button-variant"
                                                             onclick="add_vote({{ case.pk }}, {{ event.user.pk }}, 'not_voted');"
-                                                            id='user-vote-{{ time.pk }}-{{ event.user.pk }}'></button>
+                                                            id='user-vote-{{ case.pk }}-{{ event.user.pk }}'></button>
                                                 {% endif %}
                                             </td>
                                         {% endfor %}

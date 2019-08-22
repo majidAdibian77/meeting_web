@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="change date field by full calendar...">
-      <change afterPath="$PROJECT_DIR$/meeting_app/google_calendar/get_events.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/google_calendar/google_calendar.json" afterDir="false" />
+    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="Adding google calendar events...">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/meeting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meeting.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -120,7 +120,8 @@
       <workItem from="1566282018658" duration="2195000" />
       <workItem from="1566284508122" duration="5220000" />
       <workItem from="1566299751654" duration="5153000" />
-      <workItem from="1566368349218" duration="16270000" />
+      <workItem from="1566368349218" duration="16756000" />
+      <workItem from="1566451994629" duration="4640000" />
     </task>
     <task id="LOCAL-00001" summary="second commit...">
       <created>1563049152840</created>
@@ -234,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566379444278</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Adding google calendar events...">
+      <created>1566416900254</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1566416900254</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +271,7 @@
     <MESSAGE value="solving some problems and bugs..." />
     <MESSAGE value="Database changed for new description of cases of event..." />
     <MESSAGE value="change date field by full calendar..." />
-    <option name="LAST_COMMIT_MESSAGE" value="change date field by full calendar..." />
+    <MESSAGE value="Adding google calendar events..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding google calendar events..." />
   </component>
 </project>
