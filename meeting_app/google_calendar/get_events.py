@@ -1,25 +1,20 @@
 from __future__ import print_function
 import datetime
-import json
 import pickle
 import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
+from meeting import settings
+
+
 def get_events_google_calendar():
-    # with open('./meeting_app/google_calendar/client_secret.json', 'r') as json_file:
-    #     client_config = json.load(json_file)
-    #     return client_config
-
-
-
     """Shows basic usage of the Google Calendar API.
     Prints the start and name of the next 10 events on the user's calendar.
     """
     # If modifying these scopes, delete the file token.pickle.
     SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
-
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
