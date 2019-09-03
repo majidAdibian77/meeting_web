@@ -1,14 +1,48 @@
+import json
 import re
+import httplib2
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render, redirect
-
+from django.views import View
+from googleapiclient.discovery import build
+from oauth2client import client
+from oauth2client.client import OAuth2WebServerFlow
+from meeting import settings
 from meeting_app.forms import UserForm, EventForm, ContactUsForm
-from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases
+from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases, UserToken
 
-from meeting_app.google_calendar.get_events import get_events_google_calendar
+"""
+    This class is called when user want to add new event for first time and
+     we want to get him permission to have access to user google calendar
+"""
+
+
+class OAuth2CallBack(View):
+    def get(self, request, *args, **kwargs):
+        code = request.GET.get('code', False)
+        if not code:
+            return JsonResponse({'status': 'error, no access key received from Google or User declined permission!'})
+
+        flow = OAuth2WebServerFlow(settings.CLIENT_ID_CALENDAR, settings.CLIENT_SECRET_CALENDAR,
+                                   scope='https://www.googleapis.com/auth/calendar',
+                                   redirect_uri=settings.REDIRECT_URI_CALENDAR)
+        credentials = flow.step2_exchange(code)
+
+        http = httplib2.Http()
+        http = credentials.authorize(http)
+        credentials_js = json.loads(credentials.to_json())
+        access_token = credentials_js['access_token']
+        # Store the access token in case we need it again!
+        user_token = UserToken(user=request.user, token=access_token)
+        user_token.save()
+        return redirect('new_event')
+
+    def post(self, request, *args, **kwargs):
+        return HttpResponseNotAllowed('Only GET requests!')
+
 
 """
 This method renders home page
@@ -80,6 +114,19 @@ def contact_us(request):
                   {'form': form, })
 
 
+def access_to_google_calendar(request):
+    # This 'if' is True when user get access token before
+    if UserToken.objects.filter(user=request.user):
+        return redirect('new_event')
+    else:
+        # Following line is for getting google calendar events of user to show him
+        flow = OAuth2WebServerFlow(settings.CLIENT_ID_CALENDAR, settings.CLIENT_SECRET_CALENDAR,
+                                   scope='https://www.googleapis.com/auth/calendar',
+                                   redirect_uri=settings.REDIRECT_URI_CALENDAR)
+        generated_url = flow.step1_get_authorize_url()
+        return HttpResponseRedirect(generated_url)
+
+
 """
  This method is for create new event
 """
@@ -106,19 +153,30 @@ def new_event(request):
 
 
 def event_cases(request, pk):
+    # Following line is for getting google calendar events of user to show him
+    try:
+        token = request.user.user_token.token
+        credentials = client.AccessTokenCredentials(token, 'USER_AGENT')
+        service = build('calendar', 'v3', credentials=credentials)
+        google_calendar_events = service.events().list(calendarId='primary', singleEvents=True,
+                                                       orderBy='startTime').execute()
+        google_calendar_events = google_calendar_events.get('items', [])
+        google_events_list = []
+        for event in google_calendar_events:
+            try:
+                event = {'title': event['summary'], 'start': event['start']['dateTime'],
+                         'end': event['end']['dateTime']}
+                google_events_list.append(event)
+            except:
+                continue
+    except:
+        google_events_list = []
+
     event = Event.objects.get(pk=pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
-
-    # Following line is for getting google calendar events of user to show him
-    google_calendar_events = get_events_google_calendar()
-    google_events_list = []
-    for event in google_calendar_events:
-        event = {'title': event['summary'], 'start': event['start']['dateTime'], 'end': event['end']['dateTime']}
-        google_events_list.append(event)
-
     return render(request, 'mainPages/event_cases.html',
-                  {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events_list': google_events_list})
+                  {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list})
 
 
 def add_case(request):

@@ -1,8 +1,11 @@
 from django.conf.urls import url
 from meeting_app import views
+from meeting_app.views import OAuth2CallBack
+
 urlpatterns = [
     url(r'^new_event/$', views.new_event, name="new_event"),
     url(r'^event_cases/(?P<pk>\d+)$', views.event_cases, name="event_cases"),
+    url(r'^access_to_google_calendar$', views.access_to_google_calendar, name="access_to_google_calendar"),
     # url(r'^options_times/(?P<pk>\d+)$', views.options_times, name="options_times"),
     # url(r'^options_times/survey_event/(?P<pk>\d+)$', views.survey_event, name="survey_event"),
     # url(r'^add_time$', views.add_time, name="add_time"),
@@ -15,4 +18,7 @@ urlpatterns = [
     url(r'^add_case$', views.add_case, name="add_case"),
     url(r'^send_email$', views.send_email, name="send_email"),
     url(r'^add_vote$', views.add_vote, name="add_vote"),
+
+
+    url(r'^oauth2_callback', OAuth2CallBack.as_view(), name='oauth2_callback'),
     ]

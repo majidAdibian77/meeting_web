@@ -33,7 +33,7 @@
                     right: 'month,agendaWeek,agendaDay'
                 },
                 events: [
-                    {% for event in google_events_list %}
+                    {% for event in google_events %}
                         {
                             title: '{{ event.title }}',
                             start: '{{ event.start|slice:"0:19"}}',
@@ -61,7 +61,6 @@
             <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
             <li class="active">رویداد جدید</li>
         </ol>
-
         <div class="row">
 
             <!-- Article main content -->
@@ -96,7 +95,7 @@
                                 <label for="name-case">نام مورد</label>
                                 <input type="text" id="name-case" class="form-control">
                                 <label for="location">مکان</label>
-{#                                <button class="btn-show-location-map">(نقشه)</button>#}
+                                {#                                <button class="btn-show-location-map">(نقشه)</button>#}
                                 <input type="text" id="location" class="form-control">
                                 <label for="start-time">زمان شروع</label>
                                 <button class="btn-show-calendar">(تقویم)</button>
@@ -156,16 +155,16 @@
     </div>
 
     {# This 'div' is for popup for location #}
-{#    <div class="hover_location_map">#}
-{#        <span class="helper"></span>#}
-{#        <div>#}
-{#            <div>#}
-{#                {% block location_block %}#}
-{#                {% endblock %}#}
-{#            </div>#}
-{#            <div class="popupCloseButton"><b>&#10004;</b></div>#}
-{#        </div>#}
-{#    </div>#}
+    {#    <div class="hover_location_map">#}
+    {#        <span class="helper"></span>#}
+    {#        <div>#}
+    {#            <div>#}
+    {#                {% block location_block %}#}
+    {#                {% endblock %}#}
+    {#            </div>#}
+    {#            <div class="popupCloseButton"><b>&#10004;</b></div>#}
+    {#        </div>#}
+    {#    </div>#}
 
     {# script for autocomplite location #}
     <script>
@@ -175,6 +174,6 @@
         }
     </script>
     <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-i4gthMLAUK90mTuDJm6c5eFAEhIumIo&libraries=places&callback=activatePlacesSearch"></script>
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8Yw2fzEoQigZDsmHDlYsoUODELEJleJA&libraries=places&callback=activatePlacesSearch"></script>
 
 {% endblock %}

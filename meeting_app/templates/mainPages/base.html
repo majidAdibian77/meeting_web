@@ -44,7 +44,7 @@
             <ul class="nav navbar-nav pull-right">
                 <li class="active"><a href="{% url 'home' %}">صفحه اصلی</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'new_event' %}">رویداد جدید</a></li>
+                    <li><a href="{% url 'access_to_google_calendar' %}">رویداد جدید</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">رویداد جدید</a></li>
                 {% endif %}

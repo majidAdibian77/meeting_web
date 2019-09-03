@@ -141,5 +141,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tempM1377@gmail.com'
 EMAIL_HOST_PASSWORD = 'majid1377'
 
-CLIENT_ID_CALENDAR = '1018686187808-u1j5co5n7lr4ueam5dctbn4fllelt9nc.apps.googleusercontent.com'
-CLIENT_SECRET_CALENDAR = 'lXahepvcNJyNuX1b3kVkQhJV'
+CLIENT_ID_CALENDAR = '1018686187808-vcperokvkl2pcuegakc5aupq6vdv2cp8.apps.googleusercontent.com'
+CLIENT_SECRET_CALENDAR = 'Cf1z04fzgNK2mDfkqAvf9plw'
+REDIRECT_URI_CALENDAR = 'http://127.0.0.1:8000/oauth2_callback'

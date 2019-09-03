@@ -117,7 +117,6 @@ function send_email(event_pk, user_pk) {
 
 
 function add_vote(case_pk, user_pk, str) {
-    alert(case_pk + "  " + user_pk + "  " + str);
     $.ajax({
         type: "GET",
         url: '/add_vote',

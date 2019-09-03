@@ -2,7 +2,9 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-
+class UserToken(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_token")
+    token = models.CharField(max_length=100)
 
 class Event(models.Model):
     id = models.AutoField(primary_key=True)
