@@ -28,7 +28,10 @@ class OAuth2CallBack(View):
 
         flow = OAuth2WebServerFlow(settings.CLIENT_ID_CALENDAR, settings.CLIENT_SECRET_CALENDAR,
                                    scope='https://www.googleapis.com/auth/calendar',
-                                   redirect_uri=settings.REDIRECT_URI_CALENDAR)
+                                   redirect_uri=settings.REDIRECT_URI_CALENDAR,
+                                   access_type='offline',  # This is the default
+                                   # approval_prompt='force'
+                                   )
         credentials = flow.step2_exchange(code)
 
         http = httplib2.Http()
@@ -154,6 +157,9 @@ def new_event(request):
 
 def event_cases(request, pk):
     # Following line is for getting google calendar events of user to show him
+
+    test1 = True
+    test2 = True
     try:
         token = request.user.user_token.token
         credentials = client.AccessTokenCredentials(token, 'USER_AGENT')
@@ -168,15 +174,17 @@ def event_cases(request, pk):
                          'end': event['end']['dateTime']}
                 google_events_list.append(event)
             except:
+                test1 = False
                 continue
     except:
+        test2 = False
         google_events_list = []
 
     event = Event.objects.get(pk=pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
     return render(request, 'mainPages/event_cases.html',
-                  {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list})
+                  {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list, 'test1':test1, 'test2':test2})
 
 
 def add_case(request):
@@ -453,4 +461,76 @@ def add_vote(request):
         'test': test,
         'voted': voted,
     }
+    return JsonResponse(data)
+
+
+def add_to_google_calendar(request):
+    event_pk = request.GET.get('event_pk', None)
+    event = Event.objects.get(pk=event_pk)
+    event_users = event.user_event.all()
+
+    user_email = []
+    for u_e in event_users:
+        user_email.append({'email': u_e.user.email})
+
+    # in following code we find best case of event
+    best_case = None
+    temp = {}
+    max = 0
+    cases = event.event_cases.all()
+    for case in cases:
+        temp[case] = 0
+        voteds = event.user.users_event_cases.all()
+        for voted in voteds:
+            if voted.event_cases == case:
+                temp[case] += 1
+        for event_user in event_users:
+            voteds = event_user.user.users_event_cases.all()
+            for voted in voteds:
+                if voted.event_cases == case:
+                    temp[case] += 1
+        for case, num in temp.items():
+            if num >= max:
+                best_case = case
+                max = num
+    co = 0
+    try:
+        token = event.user.user_token.token
+        co += 1
+        credentials = client.AccessTokenCredentials(token, 'USER_AGENT')
+        co += 1
+        service = build('calendar', 'v3', credentials=credentials)
+        co += 1
+        new_event = service.events().insert(calendarId='primary',
+                                            sendNotifications=True, body={
+                'summary': event.title,
+                'description': event.note,
+                'start': {'dateTime': best_case.start_time.isoformat()},
+                'end': {'dateTime': best_case.end_time.isoformat()},
+                'attendees': user_email
+            }).execute()
+        co += 1
+    except:
+        pass
+
+    user_event = event.user_event.all()
+    for u_e in user_event:
+        user = u_e.user
+        try:
+            token = user.user_token.token
+            credentials = client.AccessTokenCredentials(token, 'USER_AGENT')
+            service = build('calendar', 'v3', credentials=credentials)
+            new_event = service.events().insert(calendarId='primary',
+                                                sendNotifications=True, body={
+                    'summary': event.title,
+                    'description': event.note,
+                    'start': {'dateTime': best_case.start_time.isoformat()},
+                    'end': {'dateTime': best_case.end_time.isoformat()},
+                    'attendees': user_email
+                }).execute()
+
+        except:
+            continue
+
+    data = {}
     return JsonResponse(data)

@@ -19,6 +19,6 @@ urlpatterns = [
     url(r'^send_email$', views.send_email, name="send_email"),
     url(r'^add_vote$', views.add_vote, name="add_vote"),
 
-
     url(r'^oauth2_callback', OAuth2CallBack.as_view(), name='oauth2_callback'),
+    url(r'^add_to_google_calendar$', views.add_to_google_calendar, name='add_to_google_calendar '),
     ]

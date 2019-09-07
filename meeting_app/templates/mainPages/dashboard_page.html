@@ -98,6 +98,9 @@
                                 </table>
                                 <hr>
                                 <h4>بهترین مورد: {{ event|best_case:event.user_event.all }}</h4>
+                                {% if user == event.user %}
+                                    <button onclick="add_to_google_calendar({{ event.pk }});">پایان نظرسنجی و افزودن رویداد به تقویم گوگل افراد</button>
+                                {% endif %}
                                 <hr style="border: 1px inset black;">
                             {% endfor %}
                         </div>

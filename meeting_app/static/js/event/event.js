@@ -149,5 +149,22 @@ function add_vote(case_pk, user_pk, str) {
 }
 
 
+function add_to_google_calendar(event_pk) {
+    alert(event_pk);
+    $.ajax({
+        type: "GET",
+        url: '/add_to_google_calendar',
+        data: {
+            "event_pk": event_pk,
+        },
+        dataType: "json",
+        success: function (data) {
+           alert('رویداد به تقویم گوگل افراد اضافه شد.')
+        },
+        failure: function () {
+            alert('There is a problem!!!');
+        }
+    });
+}
 
 

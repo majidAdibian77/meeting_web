@@ -2,9 +2,12 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+
+
 class UserToken(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_token")
     token = models.CharField(max_length=100)
+
 
 class Event(models.Model):
     id = models.AutoField(primary_key=True)
@@ -36,29 +39,6 @@ class EventCases(models.Model):
 
     def __str__(self):
         return str(self.id)
-
-# class Timespan(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     start = models.DateTimeField()
-#     end = models.DateTimeField()
-#     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="timespan")
-#
-#     def __str__(self):
-#         return str(self.id)
-#
-#
-# class Option(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     name = models.CharField(max_length=20)
-#     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="option")
-#
-#     def __str__(self):
-#         return self.name
-
-
-# class UsersOptions(models.Model):
-#     option = models.ForeignKey(Option, on_delete=models.CASCADE, related_name='users_options')
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users_options')
 
 
 class UsersEventCases(models.Model):
