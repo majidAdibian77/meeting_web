@@ -7,6 +7,7 @@ from django.db import models
 class UserToken(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_token")
     token = models.CharField(max_length=100)
+    refresh_token = models.CharField(max_length=100)
 
 
 class Event(models.Model):
@@ -15,6 +16,7 @@ class Event(models.Model):
     note = models.CharField(max_length=50)
     # This user is creator user
     user = models.ForeignKey(User, related_name='event', on_delete=models.CASCADE, unique=False)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

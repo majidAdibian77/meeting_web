@@ -28,34 +28,25 @@
                                 {% csrf_token %}
                                 {{ form.non_field_errors }}
                                 <div class="top-margin">
-                                <label for="{{ form.username.id_for_label }}">نام کاربری:<span
+                                    <label for="{{ form.username.id_for_label }}">نام کاربری:<span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" type="text"/>
+                                    <input class="form-control" id="{{ form.username.id_for_label }}"
+                                           name="{{ form.username.html_name }}" type="text"/>
                                     {{ form.username.errors }}
                                 </div>
                                 <div class="top-margin">
-                                <label for="{{ form.password.id_for_label }}">رمز عبور:<span
+                                    <label for="{{ form.password.id_for_label }}">رمز عبور:<span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" type="password"/>
-{#                                <div class="top-margin">#}
-{#                                    {{ form.username.errors }}#}
-{#                                    <label for="{{ form.username.id_for_label }}">نام کاربری:<span#}
-{#                                            class="text-danger">*</span></label>#}
-{#                                    {{ form.username }}#}
-{#                                </div>#}
-{#                                <div class="top-margin form-control">#}
-{#                                    {{ form.password.errors }}#}
-{#                                    <label for="{{ form.password.id_for_label }}">رمز عبور:<span#}
-{#                                            class="text-danger">*</span></label>#}
-{#                                    {{ form.password }}#}
-{#                                </div>#}
-                                <p></p>
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <b><a href="">رمز عبور خود را فراموش کرده ام!</a></b>
-                                    </div>
-                                    <div class="col-lg-4 text-right">
-                                        <input type="submit" class=" btn btn-action " value="ورود">
+                                    <input class="form-control" id="{{ form.password.id_for_label }}"
+                                           name="{{ form.password.html_name }}" type="password"/>
+                                    <p></p>
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <b><a href="">رمز عبور خود را فراموش کرده ام!</a></b>
+                                        </div>
+                                        <div class="col-lg-4 text-right">
+                                            <input type="submit" class=" btn btn-action " value="ورود">
+                                        </div>
                                     </div>
                                 </div>
                             </form>

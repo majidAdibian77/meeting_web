@@ -57,3 +57,25 @@ class ContactUsForm(forms.ModelForm):
     class Meta:
         model = ContactUs
         fields = ('name', 'text', 'email')
+
+
+class UserInfoForm(UserCreationForm):
+    first_name = forms.EmailField(label="نام", max_length=254, required=False,
+                             widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(label="نام خانوادگی", widget=forms.TextInput(attrs={'class': 'form-control'}),
+                                required=False)
+    password1 = forms.CharField(label="رمز عبور", widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+                                required=True)
+    password2 = forms.CharField(label="تایید رمز عبور", widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+                                required=True)
+    email = forms.EmailField(label="ایمیل", max_length=254, required=True,
+                             widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'password1', 'password2', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].label = 'نام کاربری'

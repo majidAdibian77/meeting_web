@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% extends 'mainPages/base.html' %}
+
+{% block body_block %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    {% load my_filters %}
+    <!-- container -->
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+            <li class="active">داشبورد</li>
+        </ol>
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">رویدادهای من</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="my-events">
+                            {% for event in events.all %}
+                                <h2>{{ event.title }}</h2>
+                                <h4>{{ event.note }}</h4>
+                                <hr>
+                                <table id="table">
+                                    <thead>
+                                    <tr>
+                                        <td>گزینه ها</td>
+                                        {% for case in event.event_cases.all %}
+                                            <td>
+                                                <div id='cases-header'>
+                                                    {{ case.case_name }}<p></p>
+                                                    شروع: {{ case.start_time|date:'Y/n/j G:i:s' }}<p>تا</p>
+                                                    پایان: {{ case.end_time|date:'Y/n/j G:i:s' }}<p></p>
+                                                    مکان: {{ case.location }}
+                                                </div>
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                    </thead>
+
+                                    <tr>
+                                        <td>
+                                            <div id='table-users'>
+                                                <p>سازنده رویداد:</p>
+                                                {{ event.user.username }}
+                                            </div>
+                                        </td>
+                                        {% for case in event.event_cases.all %}
+                                            <td>
+                                                {% if case|is_in_case:event.user.users_event_cases.all %}
+                                                    <button class="table-button-voted"
+                                                            name="table-button-voted"
+                                                            onclick="add_vote({{ case.pk }}, {{ event.user.pk }}, 'voted');"
+                                                            id='user-vote-{{ case.pk }}-{{ event.user.pk }}'>&#10004;
+                                                    </button>
+                                                {% else %}
+                                                    <button class="table-button button-variant"
+                                                            onclick="add_vote({{ case.pk }}, {{ event.user.pk }}, 'not_voted');"
+                                                            id='user-vote-{{ case.pk }}-{{ event.user.pk }}'></button>
+                                                {% endif %}
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% if event.user_event.count > 0 %}
+                                        {% for user_event in event.user_event.all %}
+                                            <tr>
+                                                <td>
+                                                    <div id='table-users'>
+                                                        {% if user_event.user.first_name %}
+                                                            {{ user_event.user.first_name }}
+                                                        {% else %}
+                                                            {{ user_event.user.username }}
+                                                        {% endif %}
+                                                    </div>
+                                                </td>
+                                                {% for case in event.event_cases.all %}
+                                                    <td>
+                                                        {% if case|is_in_case:user_event.user.users_event_cases.all %}
+                                                            <button class="table-button-voted"
+                                                                    name="table-button-voted"
+                                                                    onclick="add_vote({{ case.pk }}, {{ user_event.user.pk }}, 'voted');"
+                                                                    id='user-vote-{{ case.pk }}-{{ user_event.user.pk }}'>
+                                                                &#10004;
+                                                            </button>
+                                                        {% else %}
+                                                            <button class="table-button button-variant"
+                                                                    onclick="add_vote({{ case.pk }}, {{ user_event.user.pk }}, 'not_voted');"
+                                                                    id='user-vote-{{ case.pk }}-{{ user_event.user.pk }}'></button>
+                                                        {% endif %}
+                                                    </td>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                                <hr>
+                                <h4>بهترین مورد: {{ event|best_case:event.user_event.all }}</h4>
+                                {% if event.is_active %}
+                                    {% if user == event.user %}
+                                        <button onclick="add_to_google_calendar({{ event.pk }});">پایان نظرسنجی و افزودن
+                                            رویداد به تقویم گوگل افراد
+                                        </button>
+                                    {% endif %}
+                                {% else %}
+                                    <h2>این رویداد پایان یافته است!</h2>
+                                {% endif %}
+                                <hr style="border: 1px inset black;">
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+            <!-- /Article -->
+
+        </div>
+    </div>    <!-- /container -->
+
+{% endblock %}

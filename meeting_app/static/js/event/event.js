@@ -28,11 +28,9 @@ function add_email(event_pk) {
         success: function (data) {
             if (!data['non_repetitious']) {
                 alert('Email is repetitious!');
-            }
-            else if (!data['valid']) {
+            } else if (!data['valid']) {
                 alert('Email is not valid');
-            }
-            else {
+            } else {
                 $("#emails").load(location.href + " #emails");
             }
         },
@@ -75,8 +73,7 @@ function add_case(event_pk) {
         success: function (data) {
             if (data['error'] !== '') {
                 alert('Name of case is empty!');
-            }
-            else {
+            } else {
                 $("#cases").load(location.href + " #cases");
             }
         },
@@ -99,12 +96,10 @@ function send_email(event_pk, user_pk) {
                 if (data['test']) {
                     alert('emails are sent!');
                     // document.location.href = 'dashboard' + "/" + user_pk;
-                }
-                else {
+                } else {
                     alert('There is a problem in sending emails!')
                 }
-            }
-            else {
+            } else {
                 alert('number of cases is invalid!')
             }
 
@@ -127,20 +122,24 @@ function add_vote(case_pk, user_pk, str) {
         },
         dataType: "json",
         success: function (data) {
-            if (data['test']) {
-                alert("your vote is added");
-                id = "#user-vote-" + case_pk + "-" + user_pk;
-                btn = $(id);
-                if (!data['voted']) {
-                    btn.html('&#10004;');
-                }
-                else {
-                    btn.html(' ');
+            if (data['event_is_active']) {
+                if (data['test_user']) {
+                    alert("your vote is added");
+                    id = "#user-vote-" + case_pk + "-" + user_pk;
+                    btn = $(id);
+                    if (!data['voted']) {
+                        btn.html('&#10004;');
+                    } else {
+                        btn.html(' ');
+                    }
+                } else {
+                    alert("You can't to vote for other users!")
                 }
             }
             else {
-                alert("You can't to vote for other users!")
+                alert('این رویداد به پایان رسیده است!')
             }
+
         },
         failure: function () {
             alert('There is a problem!!!');
@@ -159,7 +158,8 @@ function add_to_google_calendar(event_pk) {
         },
         dataType: "json",
         success: function (data) {
-           alert('رویداد به تقویم گوگل افراد اضافه شد.')
+            alert('رویداد به تقویم گوگل افراد اضافه شد.');
+            $("#my-events").load(location.href + " #my-events");
         },
         failure: function () {
             alert('There is a problem!!!');

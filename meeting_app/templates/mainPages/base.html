@@ -49,7 +49,10 @@
                     <li><a href="{% url 'login' %}">رویداد جدید</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'dashboard' pk=user.pk %}">داشبورد</a></li>
+                    <li><a href="{% url 'user_events' pk=user.pk %}">رویدادهای من</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'dashboard' %}">صفحه شخصی</a></li>
                 {% endif %}
                 <li><a href="{% url 'contact_us' %}">تماس با ما</a></li>
                 {% if user.is_authenticated %}

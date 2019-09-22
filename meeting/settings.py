@@ -129,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "meeting_app/static")
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'google_register_call_back'
 LOGOUT_REDIRECT_URL = 'home'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

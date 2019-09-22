@@ -8,38 +8,40 @@
 
         <ol class="breadcrumb">
             <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
-            <li class="active">تماس با ما</li>
+            <li class="active">ورود</li>
         </ol>
-
 
         <div class="row">
 
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
                 <header class="page-header">
-                    <h1 class="page-title">ورود / عضویت</h1>
+                    <h1 class="page-title">تغییر اطلاعات</h1>
                 </header>
+                {% for e in user.all %}
 
+                {% endfor %}
+                <p>...</p>
+                <h1>{{ user.username }}</h1>
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3 class="thin text-center">ارتباط با ما</h3>
+                            <h3 class="thin text-center">اطلاعات خود را تغییر دهید</h3>
                             <hr>
-                <p>
-                    نظرات خود را برای ما ارسال کنید
-                </p>
-                <br>
-                    <form enctype="multipart/form-data" method="POST">
-                        {% csrf_token %}
-                            {{ form.as_p }}
-                            <input type="submit" class="btn btn-primary" value="ارسال">
-                    </form>
-{#                </div>#}
+                            <form enctype="multipart/form-data" method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="submit" class="btn btn-primary" value="ارسال">
+                            </form>
+                            <p></p>
                         </div>
                     </div>
+
                 </div>
+
             </article>
             <!-- /Article -->
+
         </div>
-    </div>
+    </div>    <!-- /container -->
 {% endblock %}

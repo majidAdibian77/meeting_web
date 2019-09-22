@@ -27,8 +27,10 @@ urlpatterns = [
                   url(r'^login/$', djangoView.LoginView.as_view(), name="login"),
                   url(r'^logout/$', djangoView.LogoutView.as_view(), name="logout"),
                   url(r'^register/$', views.register, name='register'),
+                  url(r'^google_register_call_back/$', views.google_register_call_back, name='google_register_call_back'),
                   url(r'^contact_us/$', views.contact_us, name='contact_us'),
-                  url(r'^options_times/dashboard/(?P<pk>\d+)$', views.dashboard, name='dashboard'),
+                  url(r'^options_times/user_events/(?P<pk>\d+)$', views.user_events, name='user_events'),
+                  url(r'^dashboard/$', views.dashboard, name='dashboard'),
                   # url(r'^contact_us/$', views.contact_us, name='contact_us'),
                   url(r'', include("meeting_app.urls")),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

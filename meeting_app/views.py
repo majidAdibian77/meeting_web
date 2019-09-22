@@ -11,7 +11,7 @@ from googleapiclient.discovery import build
 from oauth2client import client
 from oauth2client.client import OAuth2WebServerFlow
 from meeting import settings
-from meeting_app.forms import UserForm, EventForm, ContactUsForm
+from meeting_app.forms import UserForm, EventForm, ContactUsForm, UserInfoForm
 from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases, UserToken
 
 """
@@ -30,7 +30,7 @@ class OAuth2CallBack(View):
                                    scope='https://www.googleapis.com/auth/calendar',
                                    redirect_uri=settings.REDIRECT_URI_CALENDAR,
                                    access_type='offline',  # This is the default
-                                   # approval_prompt='force'
+                                   prompt='consent',
                                    )
         credentials = flow.step2_exchange(code)
 
@@ -39,12 +39,33 @@ class OAuth2CallBack(View):
         credentials_js = json.loads(credentials.to_json())
         access_token = credentials_js['access_token']
         # Store the access token in case we need it again!
-        user_token = UserToken(user=request.user, token=access_token)
+        user_token = UserToken(user=request.user, token=access_token, refresh_token=credentials.refresh_token)
         user_token.save()
         return redirect('new_event')
 
     def post(self, request, *args, **kwargs):
         return HttpResponseNotAllowed('Only GET requests!')
+
+
+def google_register_call_back(request):
+    # adding event about this user.
+    # This 'if' is for understanding that user is registering or log in
+    # if user is registering he don't have any object in UserEvent model
+    # and if he is registered before, if he is invited to an event there is some object in UserEvent model that is
+    # created in 'send_email' def
+    is_invited_and_registered_before = False
+    if UserEvent.objects.filter(user=request.user).count():
+        is_invited_and_registered_before = True
+
+    if not User.objects.filter(username=request.user.username).count():
+        emails = Email.objects.all()
+        for email in emails:
+            if email.email == request.user.email:
+                if not is_invited_and_registered_before:
+                    user_event = UserEvent(user=request.user, event=email.event)
+                    user_event.save()
+
+    return redirect("home")
 
 
 """
@@ -62,8 +83,56 @@ def home(request):
     # for time in times:
     #     if time.event.type != 'time':
     #         time.delete()
-
     return render(request, "mainPages/home.html")
+
+
+"""
+This method renders dashboard page
+"""
+
+
+def dashboard(request):
+    return render(request, "mainPages/dashboard_page.html", {'user': request.user})
+
+
+"""
+    This method is to change information of user 
+"""
+
+
+def change_user_info(request):
+    if request.method == 'POST':
+        form = UserInfoForm(data=request.POST)
+        form.username = request.user.username
+        if form.is_valid():
+            user = User.objects.get(pk=request.user.id)
+            user.username = form.cleaned_data.get("username")
+            user.set_password = form.cleaned_data.get("password1")
+            user.first_name = form.cleaned_data.get("first_name")
+            user.last_name = form.cleaned_data.get("last_name")
+            user.email = form.cleaned_data.get("email")
+            user.save()
+            return redirect("dashboard")
+    else:
+        form = UserInfoForm()
+
+    return render(request, 'mainPages/change_user_info.html',
+                  {'form': form,})
+
+    # if request.method == 'POST':
+    #     return render(request, 'mainPages/change_user_info.html', {'user': request.POST})
+
+        # username = request.POST['username']
+        # first_name = request.POST['first_name']
+        # last_name = request.POST['last_name']
+        # user = User.objects.get(pk=request.pk)
+        # user.username = username
+        # user.first_name = first_name
+        # user.last_name = last_name
+        # user.save()
+        # return redirect('dashboard')
+    # else:
+    #     return render(request, 'mainPages/change_user_info.html', {'user': request.user, 'form': })
 
 
 """ 
@@ -118,7 +187,7 @@ def contact_us(request):
 
 
 def access_to_google_calendar(request):
-    # This 'if' is True when user get access token before
+    # This 'if' is True when user had get access token before
     if UserToken.objects.filter(user=request.user):
         return redirect('new_event')
     else:
@@ -141,7 +210,7 @@ def new_event(request):
         if event_form.is_valid():
             note = event_form.cleaned_data['note']
             title = event_form.cleaned_data['title']
-            event = Event(title=title, note=note, user=request.user)
+            event = Event(title=title, note=note, user=request.user, is_active=True)
             event.save()
             return redirect('event_cases', pk=event.pk)
     else:
@@ -160,6 +229,8 @@ def event_cases(request, pk):
 
     test1 = True
     test2 = True
+
+    token = ''
     try:
         token = request.user.user_token.token
         credentials = client.AccessTokenCredentials(token, 'USER_AGENT')
@@ -178,13 +249,45 @@ def event_cases(request, pk):
                 continue
     except:
         test2 = False
-        google_events_list = []
+        try:
+            credentials = client.GoogleCredentials(
+                # technically acces token could be an empty string
+                token,
+                settings.CLIENT_ID_CALENDAR,
+                settings.CLIENT_SECRET_CALENDAR,
+                request.user.user_token.refresh_token,
+                None,  # this is token_expiry, we can leave it None
+                settings.REDIRECT_URI_CALENDAR,
+                'USER_AGENT'
+            )
+            credentials.refresh(httplib2.Http())
+            credentials = client.AccessTokenCredentials(credentials.access_token, 'USER_AGENT')
+            service = build('calendar', 'v3', credentials=credentials)
+            google_calendar_events = service.events().list(calendarId='primary', singleEvents=True,
+                                                           orderBy='startTime').execute()
+            google_calendar_events = google_calendar_events.get('items', [])
+            google_events_list = []
+            for event in google_calendar_events:
+                try:
+                    event = {'title': event['summary'], 'start': event['start']['dateTime'],
+                             'end': event['end']['dateTime']}
+                    google_events_list.append(event)
+                except:
+                    test1 = False
+                    continue
+        except:
+            flow = OAuth2WebServerFlow(settings.CLIENT_ID_CALENDAR, settings.CLIENT_SECRET_CALENDAR,
+                                       scope='https://www.googleapis.com/auth/calendar',
+                                       redirect_uri=settings.REDIRECT_URI_CALENDAR)
+            generated_url = flow.step1_get_authorize_url()
+            return HttpResponseRedirect(generated_url)
 
     event = Event.objects.get(pk=pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
     return render(request, 'mainPages/event_cases.html',
-                  {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list, 'test1':test1, 'test2':test2})
+                  {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list,
+                   'test1': test1, 'test2': test2})
 
 
 def add_case(request):
@@ -222,7 +325,7 @@ def remove_case(request):
     return JsonResponse(data)
 
 
-def dashboard(request, pk):
+def user_events(request, pk):
     user = User.objects.get(pk=pk)
     events1 = Event.objects.filter(user=user).all()
     event_user = UserEvent.objects.filter(user=user).all()
@@ -244,7 +347,7 @@ def dashboard(request, pk):
         for e in event_user:
             id_list.append(e.event.pk)
     events = Event.objects.filter(id__in=id_list).all()
-    return render(request, 'mainPages/dashboard_page.html', {'user': user, 'events': events, })
+    return render(request, 'mainPages/user_events.html', {'user': user, 'events': events, })
 
 
 """
@@ -294,75 +397,6 @@ def add_email(request):
         'valid': valid, 'non_repetitious': non_repetitious,
     }
     return JsonResponse(data)
-
-
-# def remove_time(request):
-#     time_id = request.GET.get("id", None)
-#     time = Timespan.objects.get(pk=time_id)
-#     time.delete()
-#     data = []
-#     return JsonResponse(data)
-
-
-# def add_time(request):
-#     start = request.GET.get("start", None)
-#     end = request.GET.get("end", None)
-#     event_pk = request.GET.get("event_pk", None)
-#     event = Event.objects.get(pk=event_pk)
-#     time = Timespan(start=start, end=end, event=event)
-#     time.save()
-#     data = {}
-#     return JsonResponse(data)
-
-
-# def update_time(request):
-#     start = request.GET.get("start", None)
-#     end = request.GET.get("end", None)
-#     id = request.GET.get("id", None)
-#     time = Timespan.objects.get(id=id)
-#     time.start = start
-#     time.end = end
-#     time.save()
-#     data = {}
-#     return JsonResponse(data)
-
-
-"""
-This method is called from js file to to remove email of event 
-"""
-
-# def remove_case(request):
-#     option_pk = request.GET.get('option_pk', None)
-#     option = Option.objects.get(pk=option_pk)
-#     option.delete()
-#     data = {
-#     }
-#     return JsonResponse(data)
-
-
-"""
-This method is called from js file to to approve comments 
-"""
-
-# def add_option(request):
-#     option = request.GET.get('option', None)
-#     event_pk = request.GET.get('event_pk', None)
-#     event = Event.objects.get(pk=event_pk)
-#     event_options = Option.objects.filter(event=event)
-#
-#     non_repetitious = True
-#     for op in event_options:
-#         if str(op.name) == str(option):
-#             non_repetitious = False
-#
-#     if non_repetitious:
-#         option = Option(name=str(option), event=event)
-#         option.save()
-#
-#     data = {
-#         'non_repetitious': non_repetitious,
-#     }
-#     return JsonResponse(data)
 
 
 """
@@ -440,26 +474,30 @@ def add_vote(request):
     user_pk = request.GET.get('user_pk', None)
     user = User.objects.get(pk=user_pk)
     voted = False
+    event_is_active = False
     # This 'if' is for checking this user that click on button is user in that row of table or not
     if user == request.user:
-        test = True
+        test_user = True
         case_pk = request.GET.get('case_pk', None)
         case = EventCases.objects.get(pk=case_pk)
-        # s = request.GET.get('str', None)
-        if UsersEventCases.objects.filter(user=user, event_cases=case).exists():
-            voted = True
-            user_case = UsersEventCases.objects.get(user=user, event_cases=case)
-            user_case.delete()
-        else:
-            user_case = UsersEventCases(user=user, event_cases=case)
-            user_case.save()
+        event = case.event
+        if event.is_active:
+            event_is_active = True
+            if UsersEventCases.objects.filter(user=user, event_cases=case).exists():
+                voted = True
+                user_case = UsersEventCases.objects.get(user=user, event_cases=case)
+                user_case.delete()
+            else:
+                user_case = UsersEventCases(user=user, event_cases=case)
+                user_case.save()
 
     else:
-        test = False
+        test_user = False
 
     data = {
-        'test': test,
+        'test_user': test_user,
         'voted': voted,
+        'event_is_active': event_is_active,
     }
     return JsonResponse(data)
 
@@ -509,6 +547,9 @@ def add_to_google_calendar(request):
                 'end': {'dateTime': best_case.end_time.isoformat()},
                 'attendees': user_email
             }).execute()
+        event.is_active = False
+        event.save()
+
         co += 1
     except:
         pass
