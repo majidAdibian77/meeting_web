@@ -7,7 +7,7 @@
 
         <ol class="breadcrumb">
             <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
-            <li class="active">ثبت نام</li>
+            <li class="active">ادسترسی به تقویم گوگل</li>
         </ol>
 
         <div class="row">
@@ -15,23 +15,24 @@
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
                 <header class="page-header">
-                    <h1 class="page-title">عضویت</h1>
+                    <h1 class="page-title">دسترسی به تقویم گوگل</h1>
                 </header>
 
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3 class="thin text-center">ثبت نام در سایت</h3>
+                            <h3 class="thin text-center">آیا می خواهید وعده های شما به تقویم گوگل شما اضافه شود؟</h3>
                             <hr>
                             <form enctype="multipart/form-data" method="POST">
                                 {% csrf_token %}
-                                {{ user_form.as_p }}
-                                {{ profile_form.as_p }}
-                                <input type="submit" class="btn btn-primary" value="عضویت">
+                                <label>بله
+                                    <input class="access" type="radio">
+                                </label>
+                                <label>خیر
+                                    <input class="access" type="radio">
+                                </label>
+                                <input type="submit" class="btn btn-primary" value="ادامه">
                             </form>
-                            <p></p>
-                            <a class="btn btn-action" href="{% url 'social:begin' 'google-oauth2' %}"
-                               style="width: 100%">Google account عضویت با</a>
                         </div>
                     </div>
 

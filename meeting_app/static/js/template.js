@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+	jQuery(document).ready(function($) {
 
 	$(".headroom").headroom({
 		"tolerance": 20,

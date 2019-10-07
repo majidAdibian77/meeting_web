@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import httplib2
 from django.contrib.auth import authenticate, login
@@ -11,8 +12,8 @@ from googleapiclient.discovery import build
 from oauth2client import client
 from oauth2client.client import OAuth2WebServerFlow
 from meeting import settings
-from meeting_app.forms import UserForm, EventForm, ContactUsForm, UserInfoForm
-from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases, UserToken
+from meeting_app.forms import UserForm, EventForm, ContactUsForm, UserInfoForm, UserProfileInfoForm
+from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases, UserToken, UserProfileInfo
 
 """
     This class is called when user want to add new event for first time and
@@ -92,7 +93,16 @@ This method renders dashboard page
 
 
 def dashboard(request):
-    return render(request, "mainPages/dashboard_page.html", {'user': request.user})
+    if request.method == 'Post':
+        user = request.user
+        profile = UserProfileInfo.objects.get(user=user)
+        if 'profile_pic' in request.FILES:
+            delete_image_profile(user)
+            profile.profile_pic = request.FILES['profile_pic']
+        profile.save()
+        return redirect('dashboard', pk=user.pk)
+    profile_form = UserProfileInfoForm()
+    return render(request, "mainPages/dashboard_page.html", {'user': request.user, 'profile_form': profile_form})
 
 
 """
@@ -101,23 +111,79 @@ def dashboard(request):
 
 
 def change_user_info(request):
-    if request.method == 'POST':
-        form = UserInfoForm(data=request.POST)
-        form.username = request.user.username
-        if form.is_valid():
-            user = User.objects.get(pk=request.user.id)
-            user.username = form.cleaned_data.get("username")
-            user.set_password = form.cleaned_data.get("password1")
-            user.first_name = form.cleaned_data.get("first_name")
-            user.last_name = form.cleaned_data.get("last_name")
-            user.email = form.cleaned_data.get("email")
-            user.save()
-            return redirect("dashboard")
-    else:
-        form = UserInfoForm()
 
-    return render(request, 'mainPages/change_user_info.html',
-                  {'form': form,})
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        user_form.username = request.user.username
+        profile_form = UserProfileInfoForm(data=request.POST)
+
+        # These lines are used when user write old username in changing user info form
+        if request.user.username == request.POST.get("username"):
+            del user_form.errors['username']
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user = User.objects.get(pk=request.user.id)
+            user.username = user_form.cleaned_data.get("username")
+            user.set_password = user_form.cleaned_data.get("password1")
+            user.first_name = user_form.cleaned_data.get("first_name")
+            user.last_name = user_form.cleaned_data.get("last_name")
+            user.save()
+
+            profile = UserProfileInfo.objects.get(user=user)
+            profile.user = user
+
+            if 'profile_pic' in request.FILES:
+                delete_image_profile(user)
+                profile.profile_pic = request.FILES['profile_pic']
+            profile.save()
+            auth_user = authenticate(username=user_form.cleaned_data.get('username'),
+                                     password=user_form.cleaned_data.get('password1'))
+            login(request, auth_user)
+            return redirect('dashboard', pk=user.pk)
+    else:
+        user_form = UserForm()
+        profile_form = UserProfileInfoForm()
+    return render(request, "mainPages/change_user_info.html",
+                  {'user_form': user_form,
+                   'profile_form': profile_form})
+
+
+"""
+This method is for delete image of profile that user remove it from database
+"""
+
+def delete_image_profile(user):
+    img = UserProfileInfo.objects.get(user=user)
+    path = img.profile_pic.url[1:]
+    if os.path.exists(path):
+        os.remove(path)
+    img.delete()
+
+    # user_exist = False
+    # if request.method == 'POST':
+    #     form = UserInfoForm(data=request.POST)
+    #     # username = form.fields['username']
+    #     # if User.objects.filter(username=username).count():
+    #     #     if request.user.username != username:
+    #     #         user_exist = True
+    #
+    #     form.username = request.user.username
+    #     if form.is_valid():
+    #         user = User.objects.get(pk=request.user.id)
+    #         user.username = form.cleaned_data.get("username")
+    #         user.set_password = form.cleaned_data.get("password1")
+    #         user.first_name = form.cleaned_data.get("first_name")
+    #         user.last_name = form.cleaned_data.get("last_name")
+    #         user.email = form.cleaned_data.get("email")
+    #         user.save()
+    #         return redirect("dashboard")
+    # else:
+    #     form = UserInfoForm()
+    # if user_exist:
+    #     form.add_error('username', 'This username is used!')
+
+    # return render(request, 'mainPages/change_user_info.html',
+    #               {'form': form,})
 
     # if request.method == 'POST':
     #     return render(request, 'mainPages/change_user_info.html', {'user': request.POST})
@@ -143,10 +209,16 @@ This method is for user registering
 def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        if user_form.is_valid():
+        profile_form = UserProfileInfoForm(data=request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.save()
 
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            if 'profile_pic' in request.FILES:
+                profile.profile_pic = request.FILES['profile_pic']
+            profile.save()
             auth_user = authenticate(username=user_form.cleaned_data.get('username'),
                                      password=user_form.cleaned_data.get('password1'))
             login(request, auth_user)
@@ -161,9 +233,35 @@ def register(request):
             return redirect("home")
     else:
         user_form = UserForm()
+        profile_form = UserProfileInfoForm()
 
     return render(request, "registration/register.html",
-                  {'user_form': user_form, })
+                  {'user_form': user_form,
+                   'profile_form': profile_form})
+
+    # if request.method == 'POST':
+    #     user_form = UserForm(data=request.POST)
+    #     if user_form.is_valid():
+    #         user = user_form.save()
+    #         user.save()
+    #
+    #         auth_user = authenticate(username=user_form.cleaned_data.get('username'),
+    #                                  password=user_form.cleaned_data.get('password1'))
+    #         login(request, auth_user)
+    #
+    #         # adding event about this user
+    #         emails = Email.objects.all()
+    #         for email in emails:
+    #             if email.email == user.email:
+    #                 user_event = UserEvent(user=user, event=email.event)
+    #                 user_event.save()
+    #
+    #         return redirect("home")
+    # else:
+    #     user_form = UserForm()
+
+    # return render(request, "registration/register.html",
+    #               {'user_form': user_form, })
 
 
 """ 
@@ -251,7 +349,7 @@ def event_cases(request, pk):
         test2 = False
         try:
             credentials = client.GoogleCredentials(
-                # technically acces token could be an empty string
+                # technically access token could be an empty string
                 token,
                 settings.CLIENT_ID_CALENDAR,
                 settings.CLIENT_SECRET_CALENDAR,
@@ -407,6 +505,53 @@ This method is called from js file to to approve comments
 def send_email(request):
     event_pk = request.GET.get('event_pk', None)
     event = Event.objects.get(pk=event_pk)
+    # These lines are for setting type of event
+
+    cases = event.event_cases.all()
+    time = ''
+    case_name = ''
+    location = ''
+    time_test = True
+    case_name_test = True
+    location_test = True
+
+    for case in cases:
+        if not time:
+            time = str(case.start_time) + ' ' + str(case.end_time)
+        if not case_name:
+            case_name = case.case_name
+        if not location:
+            location = case.location
+
+        if str(case.start_time) + ' ' + str(case.end_time) != time:
+            time_test = False
+        if case.case_name != case_name:
+            case_name_test = False
+        if case.location != location:
+            location_test = False
+
+    if time_test:
+        if location_test:
+            type = 'case'
+        else:
+            if case_name_test:
+                type = 'location'
+            else:
+                type = 'case_location'
+    else:
+        if location_test:
+            if case_name_test:
+                type = 'time'
+            else:
+                type = 'case_time'
+        else:
+            if case_name_test:
+                type = 'time_location'
+            else:
+                type = 'case_time_location'
+    event.type = type
+    event.save()
+
     test_send_email = True
     check_cases = True
     if event.event_cases.count() == 0:

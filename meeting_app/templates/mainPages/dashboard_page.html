@@ -23,13 +23,35 @@
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            {% if user.first_name or user.last_namr %}
-                                <h2>نام: {{ user.first_name }} {{ user.last_namr }}</h2>
-                            {% else %}
-                                <h2>نام:--</h2>
-                            {% endif %}
+                            {#                            {% if user.first_name or user.last_namr %}#}
+                            {#                                <h2>نام: {{ user.first_name }} {{ user.last_namr }}</h2>#}
+                            {#                            {% else %}#}
+                            {#                                <h2>نام:--</h2>#}
+                            {#                            {% endif %}#}
+                            {#                            <h2>نام کاربری: {{ user.username }}</h2>#}
+                            <h3>تصویر پروفایل:</h3>
+                            <img src="{{ user.userProfileInfo.profile_pic.url }}" alt="UserImage" style="width:100%">
 
                             <h2>نام کاربری: {{ user.username }}</h2>
+                            <h2>ایمیل: {{ user.email }}</h2>
+                            {% if user.first_name %}
+                                <h2>نام: {{ user.first_name }}</h2>
+                            {% else %}
+                                <h2>نام: --</h2>
+                            {% endif %}
+
+                            {% if user.last_name %}
+                                <h2>نام خانوادگی: {{ user.last_name }}</h2>
+                            {% else %}
+                                <h2>نام خانوادگی: --</h2>
+                            {% endif %}
+                            {#                            <div style="margin: 24px 0;">#}
+                            {#                                {% if user.user == user_info.user.user %}#}
+                            {#                                    <a href="{% url "change_user_info" %}">#}
+                            {#                                        <button id="edit-profile">edit</button>#}
+                            {#                                    </a>#}
+                            {#                                {% endif %}#}
+                            {#                            </div>#}
                             <a href="{% url 'change_user_info' %}">تغییر اطلاعات</a>
                         </div>
                     </div>

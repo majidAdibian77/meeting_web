@@ -26,6 +26,17 @@
                             {% for event in events.all %}
                                 <h2>{{ event.title }}</h2>
                                 <h4>{{ event.note }}</h4>
+                                {% if not 'case' in event.type %}
+                                    <h4>نام گذینه ها:{{ event.event_cases.first.case_name }}</h4>
+                                {% endif %}
+                                {% if not 'time' in event.type %}
+                                    <h4>زمان وعدد: {{ event.cases.first.start_time }}
+                                        تا{{ event.cases.first.end_time }} </h4>
+                                {% endif %}
+                                {% if not 'location' in event.type %}
+                                    <h4>مکان وعدد: {{ event.cases.location }}
+                                        تا{{ event.cases.first.end_time }} </h4>
+                                {% endif %}
                                 <hr>
                                 <table id="table">
                                     <thead>
@@ -34,10 +45,17 @@
                                         {% for case in event.event_cases.all %}
                                             <td>
                                                 <div id='cases-header'>
+                                                    {% if 'case' in event.type %}
                                                     {{ case.case_name }}<p></p>
-                                                    شروع: {{ case.start_time|date:'Y/n/j G:i:s' }}<p>تا</p>
-                                                    پایان: {{ case.end_time|date:'Y/n/j G:i:s' }}<p></p>
-                                                    مکان: {{ case.location }}
+                                                    {% endif %}
+                                                {% if 'time' in event.type %}
+                                                     {{ case.start_time|date:'Y/n/j G:i:s' }}<p>تا</p>
+                                                     {{ case.end_time|date:'Y/n/j G:i:s' }}<p></p>
+                                                {% endif %}
+                                                {% if 'location' in event.type %}
+                                                     {{ case.location }}<p></p>
+                                                {% endif %}
+                                                <p>{{ case.users_event_cases.count }}&#10004;</p>
                                                 </div>
                                             </td>
                                         {% endfor %}
@@ -48,7 +66,11 @@
                                         <td>
                                             <div id='table-users'>
                                                 <p>سازنده رویداد:</p>
+                                                {% if event.user.first_name %}
+                                                {{ event.user.first_name }}
+                                                {% else %}
                                                 {{ event.user.username }}
+                                                {% endif %}
                                             </div>
                                         </td>
                                         {% for case in event.event_cases.all %}

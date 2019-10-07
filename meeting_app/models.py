@@ -4,6 +4,14 @@ from django.db import models
 # Create your models here.
 
 
+class UserProfileInfo(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userProfileInfo")
+    profile_pic = models.ImageField(upload_to='profile_users', default="images/profile_image.png", blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+
 class UserToken(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_token")
     token = models.CharField(max_length=100)
@@ -16,6 +24,7 @@ class Event(models.Model):
     note = models.CharField(max_length=50)
     # This user is creator user
     user = models.ForeignKey(User, related_name='event', on_delete=models.CASCADE, unique=False)
+    type = models.CharField(max_length=20, default='case_time_location')
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

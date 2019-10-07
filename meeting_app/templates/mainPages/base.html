@@ -4,10 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Sergey Pozhilov (GetTemplate.com)">
 
-    <title>Progressus - Free business bootstrap template by GetTemplate</title>
+    <title>وعده</title>
 
     <link rel="shortcut icon" href='{% static 'images/gt_favicon.png' %}'>
 
@@ -24,66 +22,97 @@
 
 <body class="home">
 <!-- Fixed navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top headroom">
+<div class="navbar navbar-inverse headroom">
     <div class="container">
         <div class="navbar-header">
             <ul class="nav navbar-nav pull-right">
                 {% if user.is_authenticated %}
+                    <li style="margin-right: 10px" class="active welcome"><a style="color: darkred;" href="{% url 'access_to_google_calendar' %}">وعده
+                        جدید</a></li>
                     {% if user.first_name %}
-                        <li class="active welcome"><a href="#" style="color: darkred;"><b>{{ user.first_name }}</b></a>
-                        </li>
+                        <div class="dropdown">
+                            <button class="dropbtn">{{ user.first_name }} &#8681;</button>
+                            <div class="dropdown-content">
+                                <a href="{% url 'dashboard' %}">صفحه شخصی</a>
+                                <a class="new-event" style="color: darkred;"
+                                   href="{% url 'access_to_google_calendar' %}">وعده جدید</a>
+                                <a href="#">هنوز رای ندادم</a>
+                                <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
+                            </div>
+                        </div>
                     {% else %}
-                        <li class="active welcome"><a href="#" style="color: darkred;"><b>{{ user.username }}</b></a>
-                        </li>
-
+                        <div class="dropdown">
+                            <button class="dropbtn">{{ user.username }} &#8681;</button>
+                            <div class="dropdown-content">
+                                <a href="{% url 'dashboard' %}">صفحه شخصی</a>
+                                <a class="new-event" style="color: darkred;"
+                                   href="{% url 'access_to_google_calendar' %}">وعده جدید</a>
+                                <a href="#">هنوز رای ندادم</a>
+                                <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
+                            </div>
+                        </div>
                     {% endif %}
+                    <img src="{{ user.userProfileInfo.profile_pic.url }}" width="50" height="50"
+                             style="border-radius: 50%;" alt="profile">
+                {% else %}
+                    <li class=""><a class="btn" href="{% url "login" %}">ورود / عضویت</a></li>
                 {% endif %}
             </ul>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav pull-right">
-                <li class="active"><a href="{% url 'home' %}">صفحه اصلی</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'access_to_google_calendar' %}">رویداد جدید</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">رویداد جدید</a></li>
+                <li class=""><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                {% if not user.is_authenticated %}
+                    <li class=""><a href="{% url 'login' %}">ثبت وعده</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'user_events' pk=user.pk %}">رویدادهای من</a></li>
+                    <li class=""><a href="{% url 'dashboard' %}">صفحه شخصی</a></li>
                 {% endif %}
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'dashboard' %}">صفحه شخصی</a></li>
-                {% endif %}
-                <li><a href="{% url 'contact_us' %}">تماس با ما</a></li>
-                {% if user.is_authenticated %}
-                    <li><a class="btn" href="{% url "logout" %}">خروج</a></li>
-                {% else %}
-                    <li><a class="btn" href="{% url "login" %}">ورود / عضویت</a></li>
+                <li class=""><a href="{% url 'contact_us' %}">تماس با ما</a></li>
 
+
+                {% if user.is_authenticated %}
+                    <li class=""><a href="#">مورد علاقه ها</a></li>
                 {% endif %}
+                {% if user.is_authenticated %}
+                    <li class=""><a href="#">هنوز رای ندادم
+                        &#9913;</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <li class=""><a href="{% url 'user_events' pk=user.pk %}">وعده های من</a></li>
+                {% endif %}
+                <li class="" id="site-name-icon"><a href="{% url 'home' %}">وعده</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>
 <!-- /.navbar -->
 
+{#<div class="hover_choose">#}
+{#        <span class="helper"></span>#}
+{#        <div>#}
+{#            <h3>زمان این گزینه را انتخاب کنید:</h3>#}
+{#            <div id="calendar"></div>#}
+{#            <div class="popupCloseButton"><b>&#10004;</b></div>#}
+{#        </div>#}
+{#    </div>#}
 
 <!-- Header -->
-<header id="head">
-    <div class="container">
-        <div class="row">
-            <h1 class="lead"><b>تنظیم راحت قرارهای ملاقات</b></h1>
-            <h3 class="tagline" style="">قرارهای ملاقات رسمی و غیر رسمی خود را به راحتی تعیین و تنظیم کنید...</h3>
-            <p><a class="btn btn-default btn-lg" role="button">اطلاعات بیشتر</a>
-                {% if user.is_authenticated %}
-                    <a class="btn btn-action btn-lg" href="{% url 'new_event' %}" role="button">شروع</a>
-                {% else %}
-                    <a class="btn btn-action btn-lg" href="{% url 'login' %}" role="button">شروع</a>
-                {% endif %}
-            </p>
-        </div>
-    </div>
-</header>
+{#<header id="head">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <h1 class="lead"><b>تنظیم راحت قرارهای ملاقات</b></h1>#}
+{#            <h3 class="tagline" style="">قرارهای ملاقات رسمی و غیر رسمی خود را به راحتی تعیین و تنظیم کنید...</h3>#}
+{#            <p><a class="btn btn-default btn-lg" role="button">اطلاعات بیشتر</a>#}
+{#                {% if user.is_authenticated %}#}
+{#                    <a class="btn btn-action btn-lg" href="{% url 'new_event' %}" role="button">شروع</a>#}
+{#                {% else %}#}
+{#                    <a class="btn btn-action btn-lg" href="{% url 'login' %}" role="button">شروع</a>#}
+{#                {% endif %}#}
+{#            </p>#}
+{#        </div>#}
+{#    </div>#}
+{#</header>#}
 <!-- /Header -->
 
 
@@ -132,7 +161,17 @@
 <script src='{% static 'js/jQuery.headroom.min.js' %}'></script>
 <script src='{% static 'js/template.js' %}'></script>
 
-
+{#<script>#}
+{#    $(document).ready(function () {#}
+{# following codes are for popup fullcalendar #}
+{#        $(".new-event").click(function () {#}
+{#            $('.hover_choose').show();#}
+{#        });#}
+{#        $('.popupCloseButton').click(function () {#}
+{#            $('.hover_choose').hide();#}
+{#        });#}
+{#    });#}
+{#</script>#}
 {#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>#}
 
 

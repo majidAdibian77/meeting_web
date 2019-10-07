@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js/lang/fa.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -27,6 +28,8 @@
 
             {# Following codes are for select time in full callendar #}
             var calendar = $('#calendar').fullCalendar({
+                lang: 'fa',
+                isJalaali : true,
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -61,8 +64,6 @@
             <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
             <li class="active">رویداد جدید</li>
         </ol>
-    <h1>{{ test1 }}</h1>
-    <h1>{{ test2 }}</h1>
         <div class="row">
 
             <!-- Article main content -->
