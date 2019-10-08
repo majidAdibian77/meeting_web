@@ -40,9 +40,16 @@ class OAuth2CallBack(View):
         credentials_js = json.loads(credentials.to_json())
         access_token = credentials_js['access_token']
         # Store the access token in case we need it again!
-        user_token = UserToken(user=request.user, token=access_token, refresh_token=credentials.refresh_token)
-        user_token.save()
-        return redirect('new_event')
+        try:
+            user_token = UserToken.objects.get(user=request.user)
+            user_token.token = access_token
+            user_token.refresh_token = credentials.refresh_token
+            user_token.save()
+            return redirect('new_event')
+        except:
+            user_token = UserToken(user=request.user, token=access_token, refresh_token=credentials.refresh_token)
+            user_token.save()
+            return redirect('new_event')
 
     def post(self, request, *args, **kwargs):
         return HttpResponseNotAllowed('Only GET requests!')
@@ -327,8 +334,9 @@ def event_cases(request, pk):
 
     test1 = True
     test2 = True
+    test3 = True
 
-    token = ''
+    error = ''
     try:
         token = request.user.user_token.token
         credentials = client.AccessTokenCredentials(token, 'USER_AGENT')
@@ -350,16 +358,20 @@ def event_cases(request, pk):
         try:
             credentials = client.GoogleCredentials(
                 # technically access token could be an empty string
-                token,
+                None,
                 settings.CLIENT_ID_CALENDAR,
                 settings.CLIENT_SECRET_CALENDAR,
                 request.user.user_token.refresh_token,
                 None,  # this is token_expiry, we can leave it None
-                settings.REDIRECT_URI_CALENDAR,
+                "https://accounts.google.com/o/oauth2/token",
                 'USER_AGENT'
             )
-            credentials.refresh(httplib2.Http())
-            credentials = client.AccessTokenCredentials(credentials.access_token, 'USER_AGENT')
+            http = credentials.authorize(httplib2.Http())
+            credentials.refresh(http)
+
+            # credentials.refresh(httplib2.Http())
+            # credentials = client.AccessTokenCredentials(credentials.access_token, 'USER_AGENT')
+
             service = build('calendar', 'v3', credentials=credentials)
             google_calendar_events = service.events().list(calendarId='primary', singleEvents=True,
                                                            orderBy='startTime').execute()
@@ -374,18 +386,34 @@ def event_cases(request, pk):
                     test1 = False
                     continue
         except:
+            # token = request.user.user_token.token
+            # credentials = client.GoogleCredentials(
+            #     # technically access token could be an empty string
+            #     None,
+            #     settings.CLIENT_ID_CALENDAR,
+            #     settings.CLIENT_SECRET_CALENDAR,
+            #     request.user.user_token.refresh_token,
+            #     None,  # this is token_expiry, we can leave it None
+            #     "https://accounts.google.com/o/oauth2/token",
+            #     'USER_AGENT'
+            # )
+            # http = credentials.authorize(httplib2.Http())
+            # credentials.refresh(http)
+            # google_events_list = []
+            # test3 = False
             flow = OAuth2WebServerFlow(settings.CLIENT_ID_CALENDAR, settings.CLIENT_SECRET_CALENDAR,
                                        scope='https://www.googleapis.com/auth/calendar',
                                        redirect_uri=settings.REDIRECT_URI_CALENDAR)
             generated_url = flow.step1_get_authorize_url()
             return HttpResponseRedirect(generated_url)
 
+    google_events_list = []
     event = Event.objects.get(pk=pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
     return render(request, 'mainPages/event_cases.html',
                   {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list,
-                   'test1': test1, 'test2': test2})
+                   'test1': test1, 'test2': test2, 'test3': test3})
 
 
 def add_case(request):
