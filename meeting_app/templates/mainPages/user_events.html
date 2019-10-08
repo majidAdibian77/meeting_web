@@ -2,6 +2,7 @@
 {% extends 'mainPages/base.html' %}
 
 {% block body_block %}
+    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
     {% load my_filters %}
@@ -24,6 +25,13 @@
                     <div class="panel panel-default">
                         <div class="panel-body" id="my-events">
                             {% for event in events.all %}
+                                {% if user|is_in_favorite:event.favorite_events.all %}
+                                    <button class="btn btn-primary" onclick="remove_favorite_events({{ event.pk }});">&#9733;
+                                    </button>
+                                {% else %}
+                                    <button class="btn" onclick="add_to_favorite_events({{ event.pk }});">&#9733;
+                                    </button>
+                                {% endif %}
                                 <h2>{{ event.title }}</h2>
                                 <h4>{{ event.note }}</h4>
                                 {% if not 'case' in event.type %}
@@ -37,6 +45,16 @@
                                     <h4>مکان وعدد: {{ event.cases.location }}
                                         تا{{ event.cases.first.end_time }} </h4>
                                 {% endif %}
+
+                                <p class="far"><i class="material-icons" style="font-size:small">&#xe22b;</i> سازنده
+                                    وعده:
+                                    {% if event.user.first_name %}
+                                        {{ event.user.first_name }}
+                                    {% else %}
+                                        {{ event.user.username }}
+                                    {% endif %}
+
+                                </p>
                                 <hr>
                                 <table id="table">
                                     <thead>
@@ -46,16 +64,16 @@
                                             <td>
                                                 <div id='cases-header'>
                                                     {% if 'case' in event.type %}
-                                                    {{ case.case_name }}<p></p>
+                                                        {{ case.case_name }}<p></p>
                                                     {% endif %}
-                                                {% if 'time' in event.type %}
-                                                     {{ case.start_time|date:'Y/n/j G:i:s' }}<p>تا</p>
-                                                     {{ case.end_time|date:'Y/n/j G:i:s' }}<p></p>
-                                                {% endif %}
-                                                {% if 'location' in event.type %}
-                                                     {{ case.location }}<p></p>
-                                                {% endif %}
-                                                <p>{{ case.users_event_cases.count }}&#10004;</p>
+                                                    {% if 'time' in event.type %}
+                                                        {{ case.start_time|date:'Y/n/j G:i:s' }}<p>تا</p>
+                                                        {{ case.end_time|date:'Y/n/j G:i:s' }}<p></p>
+                                                    {% endif %}
+                                                    {% if 'location' in event.type %}
+                                                        {{ case.location }}<p></p>
+                                                    {% endif %}
+                                                    <p>{{ case.users_event_cases.count }}&#10004;</p>
                                                 </div>
                                             </td>
                                         {% endfor %}
@@ -64,12 +82,11 @@
 
                                     <tr>
                                         <td>
-                                            <div id='table-users'>
-                                                <p>سازنده رویداد:</p>
+                                            <div id='table-user-creator'>
                                                 {% if event.user.first_name %}
-                                                {{ event.user.first_name }}
+                                                    {{ event.user.first_name }}
                                                 {% else %}
-                                                {{ event.user.username }}
+                                                    {{ event.user.username }}
                                                 {% endif %}
                                             </div>
                                         </td>
@@ -84,7 +101,9 @@
                                                 {% else %}
                                                     <button class="table-button button-variant"
                                                             onclick="add_vote({{ case.pk }}, {{ event.user.pk }}, 'not_voted');"
-                                                            id='user-vote-{{ case.pk }}-{{ event.user.pk }}'></button>
+                                                            id='user-vote-{{ case.pk }}-{{ event.user.pk }}'>&#10008;
+
+                                                    </button>
                                                 {% endif %}
                                             </td>
                                         {% endfor %}
@@ -113,7 +132,10 @@
                                                         {% else %}
                                                             <button class="table-button button-variant"
                                                                     onclick="add_vote({{ case.pk }}, {{ user_event.user.pk }}, 'not_voted');"
-                                                                    id='user-vote-{{ case.pk }}-{{ user_event.user.pk }}'></button>
+                                                                    id='user-vote-{{ case.pk }}-{{ user_event.user.pk }}'>
+                                                                &#10008;
+
+                                                            </button>
                                                         {% endif %}
                                                     </td>
                                                 {% endfor %}
@@ -125,7 +147,8 @@
                                 <h4>بهترین مورد: {{ event|best_case:event.user_event.all }}</h4>
                                 {% if event.is_active %}
                                     {% if user == event.user %}
-                                        <button onclick="add_to_google_calendar({{ event.pk }});">پایان نظرسنجی و افزودن
+                                        <button class="btn btn-success"
+                                                onclick="add_to_google_calendar({{ event.pk }});">پایان نظرسنجی و افزودن
                                             رویداد به تقویم گوگل افراد
                                         </button>
                                     {% endif %}

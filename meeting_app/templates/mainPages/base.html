@@ -10,6 +10,8 @@
     <link rel="shortcut icon" href='{% static 'images/gt_favicon.png' %}'>
 
     <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+
     <link rel="stylesheet" href='{% static 'css/bootstrap.min.css' %}'>
     <link rel="stylesheet" href='{% static 'css/font-awesome.min.css' %}'>
     <link rel="stylesheet" href='{% static 'css/popup.css' %}'>
@@ -17,6 +19,9 @@
     <!-- Custom styles for our template -->
     <link rel="stylesheet" href='{% static 'css/bootstrap-theme.css' %}' media="screen">
     <link rel="stylesheet" href='{% static 'css/main.css' %}'>
+
+    {#    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">#}
+
 
 </head>
 
@@ -27,7 +32,8 @@
         <div class="navbar-header">
             <ul class="nav navbar-nav pull-right">
                 {% if user.is_authenticated %}
-                    <li style="margin-right: 10px" class="active welcome"><a style="color: darkred;" href="{% url 'access_to_google_calendar' %}">وعده
+                    <li style="margin-right: 10px" class="active welcome"><a style="color: darkred;"
+                                                                             href="{% url 'access_to_google_calendar' %}">وعده
                         جدید</a></li>
                     {% if user.first_name %}
                         <div class="dropdown">
@@ -53,35 +59,46 @@
                         </div>
                     {% endif %}
                     <img src="{{ user.userProfileInfo.profile_pic.url }}" width="50" height="50"
-                             style="border-radius: 50%;" alt="profile">
+                         style="border-radius: 50%;" alt="profile">
                 {% else %}
                     <li class=""><a class="btn" href="{% url "login" %}">ورود / عضویت</a></li>
                 {% endif %}
             </ul>
         </div>
-        <div class="navbar-collapse collapse">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="bs-nav-demo">
             <ul class="nav navbar-nav pull-right">
-                <li class=""><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                <li ><a href="{% url 'home' %}">صفحه اصلی</a></li>
                 {% if not user.is_authenticated %}
-                    <li class=""><a href="{% url 'login' %}">ثبت وعده</a></li>
+                    <li ><a href="{% url 'login' %}">ثبت وعده</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li class=""><a href="{% url 'dashboard' %}">صفحه شخصی</a></li>
+                    <li ><a href="{% url 'dashboard' %}">صفحه شخصی</a></li>
                 {% endif %}
-                <li class=""><a href="{% url 'contact_us' %}">تماس با ما</a></li>
+                <li ><a href="{% url 'contact_us' %}">تماس با ما</a></li>
 
 
                 {% if user.is_authenticated %}
-                    <li class=""><a href="#">مورد علاقه ها</a></li>
+                    <li ><a href="#">مورد علاقه ها</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li class=""><a href="#">هنوز رای ندادم
+                    <li ><a href="#">هنوز رای ندادم
                         &#9913;</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li class=""><a href="{% url 'user_events' pk=user.pk %}">وعده های من</a></li>
+                    <li ><a href="{% url 'user_events' pk=user.pk %}">وعده های من</a></li>
                 {% endif %}
                 <li class="" id="site-name-icon"><a href="{% url 'home' %}">وعده</a></li>
+                {#                <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>#}
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -153,6 +170,20 @@
         </div>
     </div>
 </footer>
+
+<!-- These lines are for responsibility -->
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "nav navbar-nav pull-right topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "nav navbar-nav pull-right topnav";
+        }
+    }
+</script>
+{#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>#}
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 
 
 <!-- JavaScript libs are placed at the end of the document so the pages load faster -->

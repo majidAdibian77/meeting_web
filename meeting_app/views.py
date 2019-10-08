@@ -13,7 +13,7 @@ from oauth2client import client
 from oauth2client.client import OAuth2WebServerFlow
 from meeting import settings
 from meeting_app.forms import UserForm, EventForm, ContactUsForm, UserInfoForm, UserProfileInfoForm
-from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases, UserToken, UserProfileInfo
+from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases, UserToken, UserProfileInfo, FavoriteEvents
 
 """
     This class is called when user want to add new event for first time and
@@ -694,7 +694,6 @@ def add_to_google_calendar(request):
             }).execute()
         event.is_active = False
         event.save()
-
         co += 1
     except:
         pass
@@ -720,3 +719,36 @@ def add_to_google_calendar(request):
 
     data = {}
     return JsonResponse(data)
+
+
+
+
+def add_to_favorite_events(request):
+    event_pk = request.GET.get('event_pk', None)
+    event = Event.objects.get(pk=event_pk)
+    try:
+        favorite_events = FavoriteEvents(event=event, user=request.user)
+        favorite_events.save()
+        test = True
+    except:
+        test = False
+    data = {
+        'test': test
+    }
+    return JsonResponse(data)
+
+
+def remove_favorite_events(request):
+    event_pk = request.GET.get('event_pk', None)
+    event = Event.objects.get(pk=event_pk)
+    try:
+        favorite_events = FavoriteEvents.objects.get(event=event, user=request.user)
+        favorite_events.delete()
+        test = True
+    except:
+        test = False
+    data = {
+        'test': test
+    }
+    return JsonResponse(data)
+

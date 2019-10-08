@@ -62,6 +62,11 @@ class UserEvent(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_event')
 
 
+class FavoriteEvents(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='favorite_events')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favorite_events')
+
+
 class ContactUs(models.Model):
     name = models.CharField(max_length=20)
     email = models.EmailField()

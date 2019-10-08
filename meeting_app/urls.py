@@ -21,6 +21,8 @@ urlpatterns = [
 
     url(r'^oauth2_callback', OAuth2CallBack.as_view(), name='oauth2_callback'),
     url(r'^add_to_google_calendar$', views.add_to_google_calendar, name='add_to_google_calendar'),
+    url(r'^add_to_favorite_events$', views.add_to_favorite_events, name='add_to_favorite_events'),
+    url(r'^remove_favorite_events$', views.remove_favorite_events, name='remove_favorite_events'),
 
     url(r'^change_user_info/$', views.change_user_info, name='change_user_info'),
     ]

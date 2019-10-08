@@ -10,7 +10,7 @@ function remove_email(email_pk) {
             $("#emails").load(location.href + " #emails");
         },
         failure: function () {
-            alert('There is a problem!!!');
+            alert('مشکلی به وجود آمده است!');
         }
     });
 }
@@ -27,15 +27,15 @@ function add_email(event_pk) {
         dataType: "json",
         success: function (data) {
             if (!data['non_repetitious']) {
-                alert('Email is repetitious!');
+                alert('ایمیل تکراری است!');
             } else if (!data['valid']) {
-                alert('Email is not valid');
+                alert('ایمیل نا معتبر است!');
             } else {
                 $("#emails").load(location.href + " #emails");
             }
         },
         failure: function () {
-            alert('There is a problem!!!');
+            alert('مشکلی به وجود آمده است!');
         }
     });
 }
@@ -53,7 +53,7 @@ function remove_case(case_pk) {
             $("#cases").load(location.href + " #cases");
         },
         failure: function () {
-            alert('There is a problem!!!');
+            alert('مشکلی به وجود آمده است!');
         }
     });
 }
@@ -78,7 +78,7 @@ function add_case(event_pk) {
             }
         },
         failure: function () {
-            alert('There is a problem!!!');
+            alert('مشکلی به وجود آمده است!');
         }
     });
 }
@@ -94,18 +94,18 @@ function send_email(event_pk, user_pk) {
         success: function (data) {
             if (data['check_cases']) {
                 if (data['test']) {
-                    alert('emails are sent!');
+                    alert('رویداد شما ثبت شد و ایمیل به افراد ارسال گردید.');
                     // document.location.href = 'dashboard' + "/" + user_pk;
                 } else {
-                    alert('There is a problem in sending emails!')
+                    alert('مشکلی در ارسال ایمیل ها به وجود آمده است!')
                 }
             } else {
-                alert('number of cases is invalid!')
+                alert('تعداد گذینه ها نا معتبر است!')
             }
 
         },
         failure: function () {
-            alert('There is a problem!!!');
+            alert('مشکلی به وجود آمده است!');
         }
     });
 }
@@ -124,7 +124,7 @@ function add_vote(case_pk, user_pk, str) {
         success: function (data) {
             if (data['event_is_active']) {
                 if (data['test_user']) {
-                    alert("your vote is added");
+                    alert("رای شما ثبت شد.");
                     id = "#user-vote-" + case_pk + "-" + user_pk;
                     btn = $(id);
                     if (!data['voted']) {
@@ -133,7 +133,7 @@ function add_vote(case_pk, user_pk, str) {
                         btn.html(' ');
                     }
                 } else {
-                    alert("You can't to vote for other users!")
+                    alert("شما تنها برای خود می توانید رای دهید!")
                 }
             }
             else {
@@ -142,14 +142,13 @@ function add_vote(case_pk, user_pk, str) {
 
         },
         failure: function () {
-            alert('There is a problem!!!');
+            alert('مشکلی به وجود آمده است!');
         }
     });
 }
 
 
 function add_to_google_calendar(event_pk) {
-    alert(event_pk);
     $.ajax({
         type: "GET",
         url: '/add_to_google_calendar',
@@ -162,9 +161,55 @@ function add_to_google_calendar(event_pk) {
             $("#my-events").load(location.href + " #my-events");
         },
         failure: function () {
-            alert('There is a problem!!!');
+            alert('مشکلی به وجود آمده است!');
         }
     });
 }
 
+function add_to_favorite_events(event_pk) {
+    alert(event_pk);
+    $.ajax({
+        type: "GET",
+        url: '/add_to_favorite_events',
+        data: {
+            "event_pk": event_pk,
+        },
+        dataType: "json",
+        success: function (data) {
+            if(data['test']){
+                alert('yes');
+                $("#my-events").load(location.href + " #my-events");
+            }
+            else {
+                alert('no');
+            }
+        },
+        failure: function () {
+            alert('مشکلی به وجود آمده است!');
+        }
+    });
+}
 
+function remove_favorite_events(event_pk) {
+    alert(event_pk);
+    $.ajax({
+        type: "GET",
+        url: '/remove_favorite_events',
+        data: {
+            "event_pk": event_pk,
+        },
+        dataType: "json",
+        success: function (data) {
+            if(data['test']){
+                alert('yes');
+                $("#my-events").load(location.href + " #my-events");
+            }
+            else {
+                alert('no');
+            }
+        },
+        failure: function () {
+            alert('مشکلی به وجود آمده است!');
+        }
+    });
+}

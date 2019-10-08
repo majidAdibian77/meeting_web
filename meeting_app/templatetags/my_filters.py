@@ -27,6 +27,17 @@ def is_in_case(case, list):
 
 register.filter(is_in_case)
 
+
+def is_in_favorite(user, list):
+    if list:
+        for element in list:
+            if element.user == user:
+                return True
+    return False
+
+
+register.filter(is_in_favorite)
+
 #
 # def is_in_option(case, list):
 #     if list:
