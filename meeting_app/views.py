@@ -40,16 +40,20 @@ class OAuth2CallBack(View):
         credentials_js = json.loads(credentials.to_json())
         access_token = credentials_js['access_token']
         # Store the access token in case we need it again!
-        try:
+        if UserToken.objects.filter(user=request.user).count() != 0:
             user_token = UserToken.objects.get(user=request.user)
             user_token.token = access_token
             user_token.refresh_token = credentials.refresh_token
             user_token.save()
             return redirect('new_event')
-        except:
-            user_token = UserToken(user=request.user, token=access_token, refresh_token=credentials.refresh_token)
-            user_token.save()
-            return redirect('new_event')
+        else:
+            try:
+                user_token = UserToken(user=request.user, token=access_token, refresh_token=credentials.refresh_token)
+                user_token.save()
+                return redirect('new_event')
+            except:
+                return JsonResponse(
+                    {'status': 'error, مشکلی در گرفتن اطلاعات کاربر از گوگل رخ داده است!'})
 
     def post(self, request, *args, **kwargs):
         return HttpResponseNotAllowed('Only GET requests!')
@@ -95,21 +99,21 @@ def home(request):
 
 
 """
-This method renders dashboard page
+This method renders other page
 """
 
 
 def dashboard(request):
-    if request.method == 'Post':
-        user = request.user
-        profile = UserProfileInfo.objects.get(user=user)
-        if 'profile_pic' in request.FILES:
-            delete_image_profile(user)
-            profile.profile_pic = request.FILES['profile_pic']
-        profile.save()
-        return redirect('dashboard', pk=user.pk)
-    profile_form = UserProfileInfoForm()
-    return render(request, "mainPages/dashboard_page.html", {'user': request.user, 'profile_form': profile_form})
+    # if request.method == 'Post':
+    #     user = request.user
+    #     profile = UserProfileInfo.objects.get(user=user)
+    #     if 'profile_pic' in request.FILES:
+    #         delete_image_profile(user)
+    #         profile.profile_pic = request.FILES['profile_pic']
+    #     profile.save()
+    #     return redirect('dashboard')
+    # profile_form = UserProfileInfoForm()
+    return render(request, "mainPages/dashboard_page.html", {'user': request.user,})
 
 
 """
@@ -146,7 +150,7 @@ def change_user_info(request):
             auth_user = authenticate(username=user_form.cleaned_data.get('username'),
                                      password=user_form.cleaned_data.get('password1'))
             login(request, auth_user)
-            return redirect('dashboard', pk=user.pk)
+            return redirect('dashboard')
     else:
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
@@ -183,7 +187,7 @@ def delete_image_profile(user):
     #         user.last_name = form.cleaned_data.get("last_name")
     #         user.email = form.cleaned_data.get("email")
     #         user.save()
-    #         return redirect("dashboard")
+    #         return redirect("other")
     # else:
     #     form = UserInfoForm()
     # if user_exist:
@@ -203,7 +207,7 @@ def delete_image_profile(user):
         # user.first_name = first_name
         # user.last_name = last_name
         # user.save()
-        # return redirect('dashboard')
+        # return redirect('other')
     # else:
     #     return render(request, 'mainPages/change_user_info.html', {'user': request.user, 'form': })
 
@@ -245,30 +249,6 @@ def register(request):
     return render(request, "registration/register.html",
                   {'user_form': user_form,
                    'profile_form': profile_form})
-
-    # if request.method == 'POST':
-    #     user_form = UserForm(data=request.POST)
-    #     if user_form.is_valid():
-    #         user = user_form.save()
-    #         user.save()
-    #
-    #         auth_user = authenticate(username=user_form.cleaned_data.get('username'),
-    #                                  password=user_form.cleaned_data.get('password1'))
-    #         login(request, auth_user)
-    #
-    #         # adding event about this user
-    #         emails = Email.objects.all()
-    #         for email in emails:
-    #             if email.email == user.email:
-    #                 user_event = UserEvent(user=user, event=email.event)
-    #                 user_event.save()
-    #
-    #         return redirect("home")
-    # else:
-    #     user_form = UserForm()
-
-    # return render(request, "registration/register.html",
-    #               {'user_form': user_form, })
 
 
 """ 
@@ -335,43 +315,10 @@ def event_cases(request, pk):
     test1 = True
     test2 = True
     test3 = True
-
-    error = ''
-    try:
-        token = request.user.user_token.token
-        credentials = client.AccessTokenCredentials(token, 'USER_AGENT')
-        service = build('calendar', 'v3', credentials=credentials)
-        google_calendar_events = service.events().list(calendarId='primary', singleEvents=True,
-                                                       orderBy='startTime').execute()
-        google_calendar_events = google_calendar_events.get('items', [])
-        google_events_list = []
-        for event in google_calendar_events:
-            try:
-                event = {'title': event['summary'], 'start': event['start']['dateTime'],
-                         'end': event['end']['dateTime']}
-                google_events_list.append(event)
-            except:
-                test1 = False
-                continue
-    except:
-        test2 = False
+    if request.user.userProfileInfo.use_google_calendar:
         try:
-            credentials = client.GoogleCredentials(
-                # technically access token could be an empty string
-                None,
-                settings.CLIENT_ID_CALENDAR,
-                settings.CLIENT_SECRET_CALENDAR,
-                request.user.user_token.refresh_token,
-                None,  # this is token_expiry, we can leave it None
-                "https://accounts.google.com/o/oauth2/token",
-                'USER_AGENT'
-            )
-            http = credentials.authorize(httplib2.Http())
-            credentials.refresh(http)
-
-            # credentials.refresh(httplib2.Http())
-            # credentials = client.AccessTokenCredentials(credentials.access_token, 'USER_AGENT')
-
+            token = request.user.user_token.token
+            credentials = client.AccessTokenCredentials(token, 'USER_AGENT')
             service = build('calendar', 'v3', credentials=credentials)
             google_calendar_events = service.events().list(calendarId='primary', singleEvents=True,
                                                            orderBy='startTime').execute()
@@ -386,34 +333,66 @@ def event_cases(request, pk):
                     test1 = False
                     continue
         except:
-            # token = request.user.user_token.token
-            # credentials = client.GoogleCredentials(
-            #     # technically access token could be an empty string
-            #     None,
-            #     settings.CLIENT_ID_CALENDAR,
-            #     settings.CLIENT_SECRET_CALENDAR,
-            #     request.user.user_token.refresh_token,
-            #     None,  # this is token_expiry, we can leave it None
-            #     "https://accounts.google.com/o/oauth2/token",
-            #     'USER_AGENT'
-            # )
-            # http = credentials.authorize(httplib2.Http())
-            # credentials.refresh(http)
-            # google_events_list = []
-            # test3 = False
-            flow = OAuth2WebServerFlow(settings.CLIENT_ID_CALENDAR, settings.CLIENT_SECRET_CALENDAR,
-                                       scope='https://www.googleapis.com/auth/calendar',
-                                       redirect_uri=settings.REDIRECT_URI_CALENDAR)
-            generated_url = flow.step1_get_authorize_url()
-            return HttpResponseRedirect(generated_url)
+            test2 = False
+            try:
+                credentials = client.GoogleCredentials(
+                    # technically access token could be an empty string
+                    None,
+                    settings.CLIENT_ID_CALENDAR,
+                    settings.CLIENT_SECRET_CALENDAR,
+                    request.user.user_token.refresh_token,
+                    None,  # this is token_expiry, we can leave it None
+                    "https://accounts.google.com/o/oauth2/token",
+                    'USER_AGENT'
+                )
+                http = credentials.authorize(httplib2.Http())
+                credentials.refresh(http)
 
-    google_events_list = []
+                # credentials.refresh(httplib2.Http())
+                # credentials = client.AccessTokenCredentials(credentials.access_token, 'USER_AGENT')
+
+                service = build('calendar', 'v3', credentials=credentials)
+                google_calendar_events = service.events().list(calendarId='primary', singleEvents=True,
+                                                               orderBy='startTime').execute()
+                google_calendar_events = google_calendar_events.get('items', [])
+                google_events_list = []
+                for event in google_calendar_events:
+                    try:
+                        event = {'title': event['summary'], 'start': event['start']['dateTime'],
+                                 'end': event['end']['dateTime']}
+                        google_events_list.append(event)
+                    except:
+                        test1 = False
+                        continue
+            except:
+                flow = OAuth2WebServerFlow(settings.CLIENT_ID_CALENDAR, settings.CLIENT_SECRET_CALENDAR,
+                                           scope='https://www.googleapis.com/auth/calendar',
+                                           redirect_uri=settings.REDIRECT_URI_CALENDAR)
+                generated_url = flow.step1_get_authorize_url()
+                return HttpResponseRedirect(generated_url)
+    else:
+        google_events_list = []
     event = Event.objects.get(pk=pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
     return render(request, 'mainPages/event_cases.html',
                   {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list,
                    'test1': test1, 'test2': test2, 'test3': test3})
+
+
+def add_google_calendar(request):
+    use = request.GET.get("use", None)
+    if use == 'yes':
+        use = True
+    else:
+        use = False
+    profile_user = UserProfileInfo.objects.get(user=request.user)
+    profile_user.use_google_calendar = use
+    profile_user.save()
+    data = {
+        'use': use,
+    }
+    return JsonResponse(data)
 
 
 def add_case(request):
@@ -474,6 +453,22 @@ def user_events(request, pk):
             id_list.append(e.event.pk)
     events = Event.objects.filter(id__in=id_list).all()
     return render(request, 'mainPages/user_events.html', {'user': user, 'events': events, })
+
+
+
+def user_favorite_events(request):
+    user = request.user
+    favorite_events = user.favorite_events.all()
+    user_favorite_events = []
+    for f_e in favorite_events:
+        user_favorite_events.append(f_e.event)
+    # # remove events that have no case to vote
+    # all_events = Event.objects.all()
+    # for event in all_events:
+    #     if event.event_cases.count() == 0:
+    #         event.delete()
+
+    return render(request, 'mainPages/user_events.html', {'user': user, 'events': favorite_events, })
 
 
 """

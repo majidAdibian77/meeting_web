@@ -7,6 +7,7 @@ from django.db import models
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userProfileInfo")
     profile_pic = models.ImageField(upload_to='profile_users', default="images/profile_image.png", blank=True)
+    use_google_calendar = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

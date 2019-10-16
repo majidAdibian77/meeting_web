@@ -28,6 +28,7 @@
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="moment" level="application" />
     <orderEntry type="library" name="jquery-2.1.4" level="application" />
+    <orderEntry type="library" name="fa" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

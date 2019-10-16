@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% extends 'mainPages/base.html' %}
+{#{% load staticfiles %}#}
 {% block body_block %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
@@ -7,8 +8,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+{#    <script src="{% static 'js/jalaali-calendar/moment-jalaali.js' %}"></script>#}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js/lang/fa.js"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.6/lang/fa.js"></script>#}
+    {#            <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/lang-all.js"></script>#}
 
     <script>
         $(document).ready(function () {
@@ -29,7 +34,8 @@
             {# Following codes are for select time in full callendar #}
             var calendar = $('#calendar').fullCalendar({
                 {#lang: 'fa',#}
-                {#isJalaali : true,#}
+                {#isRTL: true,#}
+                {#isJalaali: true,#}
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -78,9 +84,12 @@
                             <h3 class="thin text-center">اطلاعات رویداد</h3>
                             <hr>
                             <p>ایمیل دوستان خود را وارد کنید:</p>
-                            <input class="form-control" type="email" id="email" placeholder="example@gmail.com"><p></p>
-                            <button onclick="add_email({{ event_pk }});" class="btn btn-success" id="add-case-btn">اضافه کن</button>
-                        <p></p>
+                            <input class="form-control" type="email" id="email" placeholder="example@gmail.com">
+                            <p></p>
+                            <button onclick="add_email({{ event_pk }});" class="btn btn-success" id="add-case-btn">اضافه
+                                کن
+                            </button>
+                            <p></p>
                             <div id="emails">
                                 <ul>
                                     {% for email in emails %}
@@ -99,7 +108,8 @@
                                 <label for="name-case">نام مورد</label>
                                 <input type="text" id="name-case" class="form-control">
                                 <label for="location">مکان</label>
-                                <input type="text" id="location" class="form-control"><p></p>
+                                <input type="text" id="location" class="form-control">
+                                <p></p>
                                 <label for="start-time">زمان شروع</label>
                                 <button class="btn-show-calendar btn-info">(تقویم)</button>
                                 <input type="datetime-local" id="start-time" class="form-control"
@@ -111,7 +121,9 @@
 
 
                                 <p></p>
-                                <button onclick="add_case({{ event_pk }});" class="btn btn-block btn-success" id="add-case-btn">اضافه کردن مورد</button>
+                                <button onclick="add_case({{ event_pk }});" class="btn btn-block btn-success"
+                                        id="add-case-btn">اضافه کردن مورد
+                                </button>
                             </div>
                             <hr>
 
@@ -132,7 +144,8 @@
                                 </ul>
                             </div>
                             <a>
-                                <button onclick="send_email({{ event_pk }}, {{ user.pk }})" class="btn btn-primary" style="margin: 1%">ثبت
+                                <button onclick="send_email({{ event_pk }}, {{ user.pk }})" class="btn btn-primary"
+                                        style="margin: 1%">ثبت
                                     رویداد
                                 </button>
                                 <a href="{% url 'new_event' %}" class="btn btn-primary" style="margin: 1%">بازگشت

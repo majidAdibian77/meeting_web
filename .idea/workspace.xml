@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="solve som problems in access to google calendar...">
+    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="solve som problems in access to google calendar and make better view of event cases...">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_users/photo_2019-10-14_22-35-40.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meeting_app/migrations/0002_userprofileinfo_use_google_calendar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/jalaali-calendar/moment-jalaali.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/other/other.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/meeting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/meeting.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/migrations/0002_userprofileinfo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/migrations/0003_event_type.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/migrations/0004_favoriteevents.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/dashboard/dashboard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/change_user_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/change_user_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,26 +54,30 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1PGXMJkxOMXsvjGYMIKAiMbbKK4" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Bot Project/getConrent.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/meeting_app/static/js/jalaali-calendar" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\google_calendar" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\js\jalaali-calendar" />
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app" />
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\google_calendar" />
       <recent name="E:\programming\pyCharm\meeting\media\images" />
       <recent name="E:\programming\pyCharm\meeting\meeting_app\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\google_calendar" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -68,8 +93,76 @@
     </option>
   </component>
   <component name="RunManager" selected="Django server.meeting">
+    <configuration default="true" type="DjangoTestsConfigurationType">
+      <module name="Vade" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <module name="Vade" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <module name="Vade" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="Vade" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="getConrent" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="meeting" />
+      <module name="Vade" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -91,7 +184,7 @@
       <method v="2" />
     </configuration>
     <configuration name="meeting" type="Python.DjangoServer" factoryName="Django server">
-      <module name="meeting" />
+      <module name="Vade" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -111,6 +204,65 @@
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="Vade" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="Vade" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="Vade" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="Vade" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -180,7 +332,21 @@
       <workItem from="1570389978126" duration="6546000" />
       <workItem from="1570447874974" duration="13757000" />
       <workItem from="1570471968842" duration="9972000" />
-      <workItem from="1570544124609" duration="9676000" />
+      <workItem from="1570544124609" duration="11088000" />
+      <workItem from="1570802436632" duration="6444000" />
+      <workItem from="1570880526852" duration="1957000" />
+      <workItem from="1570908831749" duration="1713000" />
+      <workItem from="1570988769560" duration="1151000" />
+      <workItem from="1570990794962" duration="1162000" />
+      <workItem from="1570991979342" duration="2224000" />
+      <workItem from="1570999562711" duration="1003000" />
+      <workItem from="1571004123829" duration="175000" />
+      <workItem from="1571052734972" duration="5048000" />
+      <workItem from="1571081119133" duration="3331000" />
+      <workItem from="1571133223774" duration="6926000" />
+      <workItem from="1571175618031" duration="3983000" />
+      <workItem from="1571213780255" duration="30000" />
+      <workItem from="1571230796520" duration="10371000" />
     </task>
     <task id="LOCAL-00001" summary="second commit...">
       <created>1563049152840</created>
@@ -350,7 +516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570544331144</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="solve som problems in access to google calendar and make better view of event cases...">
+      <created>1570560655007</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1570560655007</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,6 +543,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="second commit..." />
     <MESSAGE value="sending email and better event..." />
     <MESSAGE value="showing table to user can vote..." />
@@ -387,7 +561,19 @@
     <MESSAGE value="Adding edit user info (first version)..." />
     <MESSAGE value="Adding edit user info (second version)..." />
     <MESSAGE value="Add responsiveness to navbar..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add responsiveness to navbar..." />
+    <MESSAGE value="solve som problems in access to google calendar and make better view of event cases..." />
+    <option name="LAST_COMMIT_MESSAGE" value="solve som problems in access to google calendar and make better view of event cases..." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/meeting_app/views.py</url>
+          <line>334</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/meeting_web$getConrent.coverage" NAME="getConrent Coverage Results" MODIFIED="1569158190222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../Bot Project" />

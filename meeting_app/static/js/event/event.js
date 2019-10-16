@@ -95,7 +95,8 @@ function send_email(event_pk, user_pk) {
             if (data['check_cases']) {
                 if (data['test']) {
                     alert('رویداد شما ثبت شد و ایمیل به افراد ارسال گردید.');
-                    // document.location.href = 'dashboard' + "/" + user_pk;
+                    document.location.href = 'other' + "/" + user_pk;
+
                 } else {
                     alert('مشکلی در ارسال ایمیل ها به وجود آمده است!')
                 }
@@ -191,7 +192,6 @@ function add_to_favorite_events(event_pk) {
 }
 
 function remove_favorite_events(event_pk) {
-    alert(event_pk);
     $.ajax({
         type: "GET",
         url: '/remove_favorite_events',
@@ -201,7 +201,6 @@ function remove_favorite_events(event_pk) {
         dataType: "json",
         success: function (data) {
             if(data['test']){
-                alert('yes');
                 $("#my-events").load(location.href + " #my-events");
             }
             else {

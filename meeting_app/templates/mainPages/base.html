@@ -32,17 +32,17 @@
         <div class="navbar-header">
             <ul class="nav navbar-nav pull-right">
                 {% if user.is_authenticated %}
-                    <li style="margin-right: 10px" class="active welcome"><a style="color: darkred;"
-                                                                             href="{% url 'access_to_google_calendar' %}">وعده
-                        جدید</a></li>
+                    <button class="btn-show-access btn welcome" style="color: darkred;">وعده
+                        جدید
+                    </button>
+
                     {% if user.first_name %}
                         <div class="dropdown">
                             <button class="dropbtn">{{ user.first_name }} &#8681;</button>
                             <div class="dropdown-content">
-                                <a href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <a class="new-event" style="color: darkred;"
-                                   href="{% url 'access_to_google_calendar' %}">وعده جدید</a>
-                                <a href="#">هنوز رای ندادم</a>
+                                <a class="btn" href="{% url 'dashboard' %}">صفحه شخصی</a>
+                                <a class="btn-show-access btn" style="color: darkred;">وعده جدید</a>
+                                <a class="btn" href="#">هنوز رای ندادم</a>
                                 <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
                             </div>
                         </div>
@@ -51,8 +51,7 @@
                             <button class="dropbtn">{{ user.username }} &#8681;</button>
                             <div class="dropdown-content">
                                 <a href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <a class="new-event" style="color: darkred;"
-                                   href="{% url 'access_to_google_calendar' %}">وعده جدید</a>
+                                <button class="btn-show-access" style="color: darkred;">وعده جدید</button>
                                 <a href="#">هنوز رای ندادم</a>
                                 <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
                             </div>
@@ -77,25 +76,25 @@
         </div>
         <div class="navbar-collapse collapse" id="bs-nav-demo">
             <ul class="nav navbar-nav pull-right">
-                <li ><a href="{% url 'home' %}">صفحه اصلی</a></li>
+                <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
                 {% if not user.is_authenticated %}
-                    <li ><a href="{% url 'login' %}">ثبت وعده</a></li>
+                    <li><a href="{% url 'login' %}">ثبت وعده</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li ><a href="{% url 'dashboard' %}">صفحه شخصی</a></li>
+                    <li><a href="{% url 'dashboard' %}">صفحه شخصی</a></li>
                 {% endif %}
-                <li ><a href="{% url 'contact_us' %}">تماس با ما</a></li>
+                <li><a href="{% url 'contact_us' %}">تماس با ما</a></li>
 
 
                 {% if user.is_authenticated %}
-                    <li ><a href="#">مورد علاقه ها</a></li>
+                    <li><a href="{% url 'user_favorite_events' %}">مورد علاقه ها</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li ><a href="#">هنوز رای ندادم
+                    <li><a href="#">هنوز رای ندادم
                         &#9913;</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li ><a href="{% url 'user_events' pk=user.pk %}">وعده های من</a></li>
+                    <li><a href="{% url 'user_events' pk=user.pk %}">وعده های من</a></li>
                 {% endif %}
                 <li class="" id="site-name-icon"><a href="{% url 'home' %}">وعده</a></li>
                 {#                <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>#}
@@ -172,6 +171,22 @@
     </div>
 </footer>
 
+<div class="hover_access_google">
+    <span class="helper"></span>
+    <div>
+        <h3>با اتصال به تقویم گوگل خود از ویژگی های زیر برخوردار شوید:</h3>
+        <hr>
+        <ul>
+            <li>هنگام تعیین موارد مورد نظر در وعده ای که می خواهید بسازید رویدادهای موجود در تقویم گوگل خود را ببینید.
+            </li>
+            <li>در پایان رای گیری های هر وعده آو رویداد را به تقویم گوگل خود اضافه کنید.</li>
+        </ul>
+        <h5>آیا می خواهید از تقویم گوگل خود استفده کنید:</h5>
+        <button class="btn btn-success" onclick="add_google_calendar('yes');">بله</button>
+        <button class="btn btn-success" onclick="add_google_calendar('no');">خیر</button>
+        <div class="popupCloseButton"><b>&#10008;</b></div>
+    </div>
+</div>
 
 
 <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
@@ -180,21 +195,19 @@
 <script src='{% static 'js/jQuery.headroom.min.js' %}'></script>
 <script src='{% static 'js/template.js' %}'></script>
 
-{#<script>#}
-{#    $(document).ready(function () {#}
-{# following codes are for popup fullcalendar #}
-{#        $(".new-event").click(function () {#}
-{#            $('.hover_choose').show();#}
-{#        });#}
-{#        $('.popupCloseButton').click(function () {#}
-{#            $('.hover_choose').hide();#}
-{#        });#}
-{#    });#}
-{#</script>#}
-{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>#}
-
 
 <!-- my js-->
 <script src='{% static 'js/event/event.js' %}'></script>
+<script src='{% static 'js/other/other.js' %}'></script>
+<script>$(document).ready(function () {
+    {# following codes are for popup access to google calendar #}
+    $('.btn-show-access').click(function () {
+        $('.hover_access_google').show();
+    });
+    $('.popupCloseButton').click(function () {
+        $('.hover_access_google').hide();
+    });
+})</script>
+
 </body>
 </html>

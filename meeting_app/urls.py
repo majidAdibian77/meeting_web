@@ -25,4 +25,7 @@ urlpatterns = [
     url(r'^remove_favorite_events$', views.remove_favorite_events, name='remove_favorite_events'),
 
     url(r'^change_user_info/$', views.change_user_info, name='change_user_info'),
+    url(r'^user_favorite_events/$', views.user_favorite_events, name='user_favorite_events'),
+
+    url(r'^add_google_calendar/$', views.add_google_calendar, name='add_google_calendar'),
     ]

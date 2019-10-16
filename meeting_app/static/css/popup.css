@@ -1,4 +1,4 @@
-.hover_calendar, .hover_location_map{
+.hover_calendar, .hover_access_google{
     background:rgba(0,0,0,.4);
     cursor:pointer;
     display:none;
@@ -9,12 +9,12 @@
     width:100%;
     z-index:10000;
 }
-.hover_calendar .helper,.hover_location_map .helper{
+.hover_calendar .helper,.hover_access_google .helper{
     display:inline-block;
     height:100%;
     vertical-align:middle;
 }
-.hover_location_map > div, .hover_calendar > div {
+.hover_access_google > div, .hover_calendar > div {
     background-color: #fff;
     box-shadow: 10px 10px 60px #555;
     display: inline-block;
