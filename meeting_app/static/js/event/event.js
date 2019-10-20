@@ -138,7 +138,6 @@ function add_vote(case_pk, user_pk, str) {
                         btn.css("background-color", "#a94442");
                     }
                     table_id = "table-" + data['event_pk'];
-                    alert($(table_id));
                     $(table_id).load(location.href + table_id);
                 } else {
                     alert("شما تنها برای خود می توانید رای دهید!")
