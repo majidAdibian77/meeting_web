@@ -30,6 +30,8 @@ function add_email(event_pk) {
                 alert('ایمیل تکراری است!');
             } else if (!data['valid']) {
                 alert('ایمیل نا معتبر است!');
+            } else if (data['user_email']) {
+                alert('ایمیل خود را نمی توانید وارد کنید!');
             } else {
                 $("#emails").load(location.href + " #emails");
             }
@@ -130,9 +132,14 @@ function add_vote(case_pk, user_pk, str) {
                     btn = $(id);
                     if (!data['voted']) {
                         btn.html('&#10004;');
+                        btn.css("background-color", "#4cae4c");
                     } else {
-                        btn.html(' ');
+                        btn.html('&#10008;');
+                        btn.css("background-color", "#a94442");
                     }
+                    table_id = "table-" + data['event_pk'];
+                    alert($(table_id));
+                    $(table_id).load(location.href + table_id);
                 } else {
                     alert("شما تنها برای خود می توانید رای دهید!")
                 }

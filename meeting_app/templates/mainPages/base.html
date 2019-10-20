@@ -32,7 +32,7 @@
         <div class="navbar-header">
             <ul class="nav navbar-nav pull-right">
                 {% if user.is_authenticated %}
-                    <button class="btn-show-access btn welcome" style="color: darkred;">وعده
+                    <button class="btn welcome" style="color: darkred;">وعده
                         جدید
                     </button>
 
@@ -41,7 +41,7 @@
                             <button class="dropbtn">{{ user.first_name }} &#8681;</button>
                             <div class="dropdown-content">
                                 <a class="btn" href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <a class="btn-show-access btn" style="color: darkred;">وعده جدید</a>
+                                <button class="btn btn-default" style="color: darkred; width: 100%">وعده جدید</button>
                                 <a class="btn" href="#">هنوز رای ندادم</a>
                                 <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
                             </div>
@@ -51,7 +51,7 @@
                             <button class="dropbtn">{{ user.username }} &#8681;</button>
                             <div class="dropdown-content">
                                 <a href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <button class="btn-show-access" style="color: darkred;">وعده جدید</button>
+                                <button class="btn btn-default" style="color: darkred; width: 100%">وعده جدید</button>
                                 <a href="#">هنوز رای ندادم</a>
                                 <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
                             </div>

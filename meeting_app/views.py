@@ -70,12 +70,17 @@ def google_register_call_back(request):
         is_invited_and_registered_before = True
 
     if not User.objects.filter(username=request.user.username).count():
+        # create profile for this user (necessary in image of user and google access user)
+        profile = UserProfileInfo(user=request.user)
+        profile.save()
+        
         emails = Email.objects.all()
         for email in emails:
             if email.email == request.user.email:
                 if not is_invited_and_registered_before:
                     user_event = UserEvent(user=request.user, event=email.event)
                     user_event.save()
+
 
     return redirect("home")
 
@@ -221,6 +226,10 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
+        # This line is for when user wrote repetitious email
+        if User.objects.filter(email=request.POST.get("email")).count():
+            user_form.add_error('email', "ایمیل وارد شده قبلا ثبت نام کرده است!")
+
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.save()
@@ -510,12 +519,18 @@ def add_email(request):
         if str(em.email) == str(email):
             non_repetitious = False
 
-    if non_repetitious and valid:
+    if email == event.user.email:
+        user_email = True
+    else:
+        user_email = False
+    if non_repetitious and valid and not user_email:
         email = Email(email=email, event=event)
         email.save()
 
     data = {
-        'valid': valid, 'non_repetitious': non_repetitious,
+        'valid': valid,
+        'non_repetitious': non_repetitious,
+        'user_email': user_email,
     }
     return JsonResponse(data)
 
@@ -642,15 +657,18 @@ def add_vote(request):
     user_pk = request.GET.get('user_pk', None)
     user = User.objects.get(pk=user_pk)
     voted = False
-    event_is_active = False
+    event_is_not_active = True
     # This 'if' is for checking this user that click on button is user in that row of table or not
-    if user == request.user:
-        test_user = True
-        case_pk = request.GET.get('case_pk', None)
-        case = EventCases.objects.get(pk=case_pk)
-        event = case.event
-        if event.is_active:
-            event_is_active = True
+    case_pk = request.GET.get('case_pk', None)
+    case = EventCases.objects.get(pk=case_pk)
+    event = case.event
+    event_pk = event.pk
+
+    test_user = False
+    if event.is_active:
+        event_is_active = True
+        if user == request.user:
+            test_user = True
             if UsersEventCases.objects.filter(user=user, event_cases=case).exists():
                 voted = True
                 user_case = UsersEventCases.objects.get(user=user, event_cases=case)
@@ -658,14 +676,14 @@ def add_vote(request):
             else:
                 user_case = UsersEventCases(user=user, event_cases=case)
                 user_case.save()
-
     else:
-        test_user = False
+        event_is_active = True
 
     data = {
         'test_user': test_user,
         'voted': voted,
         'event_is_active': event_is_active,
+        'event_pk': event_pk,
     }
     return JsonResponse(data)
 
