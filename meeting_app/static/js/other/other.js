@@ -8,9 +8,9 @@ function add_google_calendar(use) {
         dataType: "json",
         success: function (data) {
             if (data['use']) {
-                document.location.href = 'access_to_google_calendar'
+                document.location.href = '/access_to_google_calendar'
             } else {
-                document.location.href = 'new_event'
+                document.location.href = '/new_event'
             }
         },
         failure: function () {

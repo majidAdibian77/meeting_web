@@ -32,7 +32,7 @@
         <div class="navbar-header">
             <ul class="nav navbar-nav pull-right">
                 {% if user.is_authenticated %}
-                    <button class="btn welcome" style="color: darkred;">وعده
+                    <button class="btn-show-access btn welcome" style="color: darkred;">وعده
                         جدید
                     </button>
 
@@ -41,8 +41,8 @@
                             <button class="dropbtn">{{ user.first_name }} &#8681;</button>
                             <div class="dropdown-content">
                                 <a class="btn" href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <button class="btn btn-default" style="color: darkred; width: 100%">وعده جدید</button>
-                                <a class="btn" href="#">هنوز رای ندادم</a>
+                                <button class="btn-show-access btn btn-default" style="color: darkred; width: 100%">وعده جدید</button>
+                                <a class="btn" href="{% url "user_not_voted_events" %}">هنوز رای نداده ام</a>
                                 <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
                             </div>
                         </div>
@@ -51,8 +51,8 @@
                             <button class="dropbtn">{{ user.username }} &#8681;</button>
                             <div class="dropdown-content">
                                 <a href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <button class="btn btn-default" style="color: darkred; width: 100%">وعده جدید</button>
-                                <a href="#">هنوز رای ندادم</a>
+                                <button class="btn-show-access btn btn-default" style="color: darkred; width: 100%">وعده جدید</button>
+                                <a href="{% url "user_not_voted_events" %}">هنوز رای نداده ام</a>
                                 <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                     <li><a href="{% url 'user_favorite_events' %}">مورد علاقه ها</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li><a href="#">هنوز رای ندادم
+                    <li><a href="{% url "user_not_voted_events" %}">هنوز رای نداده اام
                         &#9913;</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
@@ -182,8 +182,8 @@
             <li>در پایان رای گیری های هر وعده آو رویداد را به تقویم گوگل خود اضافه کنید.</li>
         </ul>
         <h5>آیا می خواهید از تقویم گوگل خود استفده کنید:</h5>
-        <button class="btn btn-success" onclick="add_google_calendar('yes');">بله</button>
-        <button class="btn btn-success" onclick="add_google_calendar('no');">خیر</button>
+        <button class="btn btn-success" onclick="add_google_calendar('yes');" style="margin: auto">بله</button>
+        <button class="btn btn-success" onclick="add_google_calendar('no');" style="margin: auto">خیر</button>
         <div class="popupCloseButton"><b>&#10008;</b></div>
     </div>
 </div>

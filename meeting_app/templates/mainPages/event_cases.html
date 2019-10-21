@@ -187,9 +187,10 @@
         function activatePlacesSearch() {
             var input = document.getElementById('location');
             var autocomplete = new google.maps.places.Autocomplete(input);
+            alert(autocomplete.toString());
         }
     </script>
     <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8Yw2fzEoQigZDsmHDlYsoUODELEJleJA&libraries=places&callback=activatePlacesSearch"></script>
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGRXmsMhCxoU5Q0i7TGry1IKlTuqk7oSk&libraries=places&callback=activatePlacesSearch"></script>
 
 {% endblock %}

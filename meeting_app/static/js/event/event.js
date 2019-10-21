@@ -137,8 +137,10 @@ function add_vote(case_pk, user_pk, str) {
                         btn.html('&#10008;');
                         btn.css("background-color", "#a94442");
                     }
-                    table_id = "table-" + data['event_pk'];
+                    table_id = " #table-" + data['event_pk'];
+                    best_case_id = " #best-case-id-"+ data['event_pk'];
                     $(table_id).load(location.href + table_id);
+                    $(best_case_id).load(location.href + best_case_id);
                 } else {
                     alert("شما تنها برای خود می توانید رای دهید!")
                 }
@@ -165,7 +167,8 @@ function add_to_google_calendar(event_pk) {
         dataType: "json",
         success: function (data) {
             alert('رویداد به تقویم گوگل افراد اضافه شد.');
-            $("#my-events").load(location.href + " #my-events");
+            is_active = " #is-active-event-" + event_pk;
+            $(is_active).load(location.href + is_active);
         },
         failure: function () {
             alert('مشکلی به وجود آمده است!');

@@ -10,7 +10,7 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
-            <li class="active">وعده های من</li>
+            <li class="active">رای نداده شده</li>
         </ol>
 
         <div class="row">
@@ -18,13 +18,13 @@
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
                 <header class="page-header">
-                    <h1 class="page-title">وعده های من</h1>
+                    <h1 class="page-title">وعده های رای نداده شده</h1>
                 </header>
 
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body" id="my-events">
-                            {% for event in events.all %}
+                            {% for event in events %}
                                 {% if user|is_in_favorite:event.favorite_events.all %}
                                     <button class="btn btn-primary" onclick="remove_favorite_events({{ event.pk }});">
                                         &#9733;
@@ -57,7 +57,7 @@
 
                                 </p>
                                 <hr>
-                                <table class="table table-striped" class="table" id="table-{{ event.pk }}">
+                                <table class="table table-striped" id="table-{{ event.pk }}">
                                     <thead>
                                     <tr>
                                         <td>گزینه ها</td>
@@ -151,9 +151,9 @@
                                     {% if event.is_active %}
                                         {% if user == event.user %}
                                             <button class="btn btn-success"
-                                                    onclick="add_to_google_calendar({{ event.pk }});" style="width: 100%" content="پایان نظرسنجی و
+                                                    onclick="add_to_google_calendar({{ event.pk }});">پایان نظرسنجی و
                                                 افزودن
-                                                رویداد به تقویم گوگل افراد">
+                                                رویداد به تقویم گوگل افراد
                                             </button>
                                         {% endif %}
                                     {% else %}

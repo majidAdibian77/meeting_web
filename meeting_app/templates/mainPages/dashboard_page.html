@@ -30,20 +30,20 @@
                             {#                            {% endif %}#}
                             {#                            <h2>نام کاربری: {{ user.username }}</h2>#}
                             <h3>تصویر پروفایل:</h3>
-                            <img src="{{ user.userProfileInfo.profile_pic.url }}" alt="UserImage" style="width:100%">
+                            <img src="{{ user.userProfileInfo.profile_pic.url }}" alt="UserImage" style="width:50%">
 
-                            <h2>نام کاربری: {{ user.username }}</h2>
-                            <h2>ایمیل: {{ user.email }}</h2>
+                            <h3>نام کاربری: {{ user.username }}</h3>
+                            <h3>ایمیل: {{ user.email }}</h3>
                             {% if user.first_name %}
-                                <h2>نام: {{ user.first_name }}</h2>
+                                <h3>نام: {{ user.first_name }}</h3>
                             {% else %}
-                                <h2>نام: --</h2>
+                                <h3>نام: --</h3>
                             {% endif %}
 
                             {% if user.last_name %}
-                                <h2>نام خانوادگی: {{ user.last_name }}</h2>
+                                <h3>نام خانوادگی: {{ user.last_name }}</h3>
                             {% else %}
-                                <h2>نام خانوادگی: --</h2>
+                                <h3>نام خانوادگی: --</h3>
                             {% endif %}
                             {#                            <div style="margin: 24px 0;">#}
                             {#                                {% if user.user == user_info.user.user %}#}
@@ -52,7 +52,9 @@
                             {#                                    </a>#}
                             {#                                {% endif %}#}
                             {#                            </div>#}
-                            <a href="{% url 'change_user_info' %}"><button class="btn btn-default">تغییر اطلاعات</button></a>
+                            <a href="{% url 'change_user_info' %}">
+                                <button class="btn btn-default">تغییر اطلاعات</button>
+                            </a>
                         </div>
                     </div>
 

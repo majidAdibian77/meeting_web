@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="add popup for add google calendar...">
+    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="solving some problems...">
+      <change afterPath="$PROJECT_DIR$/media/images/profile_image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_users/profile.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_Tvfb8U2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_jsdFSIg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_wGT5fd1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_favorite_events.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_not_voted_events.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/other/other.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/other/other.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,9 +35,9 @@
       <list>
         <option value="Python Script" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="Setup Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -42,22 +53,22 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/meeting_app/static/js/jalaali-calendar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/media/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\google_calendar" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\media\images" />
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\js\jalaali-calendar" />
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app" />
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\google_calendar" />
       <recent name="E:\programming\pyCharm\meeting\media\images" />
-      <recent name="E:\programming\pyCharm\meeting\meeting_app\templates" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\google_calendar" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -329,7 +340,9 @@
       <workItem from="1571230796520" duration="13291000" />
       <workItem from="1571255662299" duration="213000" />
       <workItem from="1571506699007" duration="3427000" />
-      <workItem from="1571571228105" duration="3094000" />
+      <workItem from="1571571228105" duration="3344000" />
+      <workItem from="1571591344178" duration="6049000" />
+      <workItem from="1571658357147" duration="16702000" />
     </task>
     <task id="LOCAL-00001" summary="second commit...">
       <created>1563049152840</created>
@@ -513,7 +526,21 @@
       <option name="project" value="LOCAL" />
       <updated>1571247824896</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="solving some problems...">
+      <created>1571574521601</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1571574521601</updated>
+    </task>
+    <task id="LOCAL-00028" summary="solving some problems...">
+      <created>1571574564572</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1571574564572</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,14 +580,15 @@
     <MESSAGE value="Add responsiveness to navbar..." />
     <MESSAGE value="solve som problems in access to google calendar and make better view of event cases..." />
     <MESSAGE value="add popup for add google calendar..." />
-    <option name="LAST_COMMIT_MESSAGE" value="add popup for add google calendar..." />
+    <MESSAGE value="solving some problems..." />
+    <option name="LAST_COMMIT_MESSAGE" value="solving some problems..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/meeting_app/views.py</url>
-          <line>343</line>
+          <line>355</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

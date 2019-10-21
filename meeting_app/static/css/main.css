@@ -75,6 +75,12 @@ td{
     border-radius: 50%;
 }
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
 /*#add-case-btn {*/
 /*    padding: 1%;*/
 /*    background: #38d513;*/

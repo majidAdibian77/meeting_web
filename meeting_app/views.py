@@ -13,7 +13,8 @@ from oauth2client import client
 from oauth2client.client import OAuth2WebServerFlow
 from meeting import settings
 from meeting_app.forms import UserForm, EventForm, ContactUsForm, UserInfoForm, UserProfileInfoForm
-from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases, UserToken, UserProfileInfo, FavoriteEvents
+from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases, UserToken, UserProfileInfo, \
+    FavoriteEvents
 
 """
     This class is called when user want to add new event for first time and
@@ -53,10 +54,15 @@ class OAuth2CallBack(View):
                 return redirect('new_event')
             except:
                 return JsonResponse(
-                    {'status': 'error, مشکلی در گرفتن اطلاعات کاربر از گوگل رخ داده است!'})
+                    {'status': credentials.refresh_token})
 
     def post(self, request, *args, **kwargs):
         return HttpResponseNotAllowed('Only GET requests!')
+
+
+"""
+    This def is called when user return after register or login with google account
+"""
 
 
 def google_register_call_back(request):
@@ -73,14 +79,13 @@ def google_register_call_back(request):
         # create profile for this user (necessary in image of user and google access user)
         profile = UserProfileInfo(user=request.user)
         profile.save()
-        
+
         emails = Email.objects.all()
         for email in emails:
             if email.email == request.user.email:
                 if not is_invited_and_registered_before:
                     user_event = UserEvent(user=request.user, event=email.event)
                     user_event.save()
-
 
     return redirect("home")
 
@@ -118,7 +123,7 @@ def dashboard(request):
     #     profile.save()
     #     return redirect('dashboard')
     # profile_form = UserProfileInfoForm()
-    return render(request, "mainPages/dashboard_page.html", {'user': request.user,})
+    return render(request, "mainPages/dashboard_page.html", {'user': request.user, })
 
 
 """
@@ -127,22 +132,27 @@ def dashboard(request):
 
 
 def change_user_info(request):
-
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        user_form.username = request.user.username
+        # user_form.username = request.user.username
+        username = request.POST.get("username")
         profile_form = UserProfileInfoForm(data=request.POST)
 
         # These lines are used when user write old username in changing user info form
-        if request.user.username == request.POST.get("username"):
+        if request.user.username == username:
             del user_form.errors['username']
+        email = request.POST.get("email")
+        if User.objects.filter(email=email).count():
+            if request.user.email != email:
+                user_form.add_error('email', "ایمیل وارد شده قبلا ثبت نام کرده است!")
 
         if user_form.is_valid() and profile_form.is_valid():
             user = User.objects.get(pk=request.user.id)
-            user.username = user_form.cleaned_data.get("username")
+            user.username = username
             user.set_password = user_form.cleaned_data.get("password1")
             user.first_name = user_form.cleaned_data.get("first_name")
             user.last_name = user_form.cleaned_data.get("last_name")
+            user.email = email
             user.save()
 
             profile = UserProfileInfo.objects.get(user=user)
@@ -152,9 +162,9 @@ def change_user_info(request):
                 delete_image_profile(user)
                 profile.profile_pic = request.FILES['profile_pic']
             profile.save()
-            auth_user = authenticate(username=user_form.cleaned_data.get('username'),
-                                     password=user_form.cleaned_data.get('password1'))
-            login(request, auth_user)
+            auth_user = authenticate(username=user.username,
+                                     password=user.password)
+            login(request, auth_user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('dashboard')
     else:
         user_form = UserForm()
@@ -168,12 +178,14 @@ def change_user_info(request):
 This method is for delete image of profile that user remove it from database
 """
 
+
 def delete_image_profile(user):
     img = UserProfileInfo.objects.get(user=user)
     path = img.profile_pic.url[1:]
-    if os.path.exists(path):
-        os.remove(path)
-    img.delete()
+    if path != 'media/images/profile_image.png':
+        if os.path.exists(path):
+            os.remove(path)
+        img.delete()
 
     # user_exist = False
     # if request.method == 'POST':
@@ -204,15 +216,15 @@ def delete_image_profile(user):
     # if request.method == 'POST':
     #     return render(request, 'mainPages/change_user_info.html', {'user': request.POST})
 
-        # username = request.POST['username']
-        # first_name = request.POST['first_name']
-        # last_name = request.POST['last_name']
-        # user = User.objects.get(pk=request.pk)
-        # user.username = username
-        # user.first_name = first_name
-        # user.last_name = last_name
-        # user.save()
-        # return redirect('other')
+    # username = request.POST['username']
+    # first_name = request.POST['first_name']
+    # last_name = request.POST['last_name']
+    # user = User.objects.get(pk=request.pk)
+    # user.username = username
+    # user.first_name = first_name
+    # user.last_name = last_name
+    # user.save()
+    # return redirect('other')
     # else:
     #     return render(request, 'mainPages/change_user_info.html', {'user': request.user, 'form': })
 
@@ -389,6 +401,11 @@ def event_cases(request, pk):
                    'test1': test1, 'test2': test2, 'test3': test3})
 
 
+"""
+    This def is to ask user to use his google calendar or not
+"""
+
+
 def add_google_calendar(request):
     use = request.GET.get("use", None)
     if use == 'yes':
@@ -464,6 +481,10 @@ def user_events(request, pk):
     return render(request, 'mainPages/user_events.html', {'user': user, 'events': events, })
 
 
+"""
+    This def is for return favorite events of user
+"""
+
 
 def user_favorite_events(request):
     user = request.user
@@ -476,8 +497,36 @@ def user_favorite_events(request):
     # for event in all_events:
     #     if event.event_cases.count() == 0:
     #         event.delete()
+    return render(request, 'mainPages/user_favorite_events.html', {'user': user, 'events': user_favorite_events, })
 
-    return render(request, 'mainPages/user_events.html', {'user': user, 'events': favorite_events, })
+"""
+    This def is for return events of user that doesn't vote
+"""
+
+
+def user_not_voted_events(request):
+    user = request.user
+    events = list(user.event.all())
+    for u_e in user.user_event.all():
+        events.append(u_e.event)
+    not_voted = []
+    for event in events:
+        voted = False
+        for event_case in event.event_cases.all():
+            for u_c in event_case.users_event_cases.all():
+                if u_c.user == user:
+                    voted = True
+                    break
+        if not voted:
+            not_voted.append(event)
+
+    # # remove events that have no case to vote
+    # all_events = Event.objects.all()
+    # for event in all_events:
+    #     if event.event_cases.count() == 0:
+    #         event.delete()
+
+    return render(request, 'mainPages/user_favorite_events.html', {'user': user, 'events': not_voted, })
 
 
 """
@@ -656,14 +705,14 @@ This method is called from js file to to approve comments
 def add_vote(request):
     user_pk = request.GET.get('user_pk', None)
     user = User.objects.get(pk=user_pk)
-    voted = False
-    event_is_not_active = True
+
     # This 'if' is for checking this user that click on button is user in that row of table or not
     case_pk = request.GET.get('case_pk', None)
     case = EventCases.objects.get(pk=case_pk)
     event = case.event
     event_pk = event.pk
 
+    voted = False
     test_user = False
     if event.is_active:
         event_is_active = True
@@ -677,7 +726,7 @@ def add_vote(request):
                 user_case = UsersEventCases(user=user, event_cases=case)
                 user_case.save()
     else:
-        event_is_active = True
+        event_is_active = False
 
     data = {
         'test_user': test_user,
@@ -737,7 +786,37 @@ def add_to_google_calendar(request):
         event.save()
         co += 1
     except:
-        pass
+        try:
+            credentials = client.GoogleCredentials(
+                # technically access token could be an empty string
+                None,
+                settings.CLIENT_ID_CALENDAR,
+                settings.CLIENT_SECRET_CALENDAR,
+                event.user.user_token.refresh_token,
+                None,  # this is token_expiry, we can leave it None
+                "https://accounts.google.com/o/oauth2/token",
+                'USER_AGENT'
+            )
+            http = credentials.authorize(httplib2.Http())
+            credentials.refresh(http)
+
+            # credentials.refresh(httplib2.Http())
+            # credentials = client.AccessTokenCredentials(credentials.access_token, 'USER_AGENT')
+
+            service = build('calendar', 'v3', credentials=credentials)
+            new_event = service.events().insert(calendarId='primary',
+                                                sendNotifications=True, body={
+                    'summary': event.title,
+                    'description': event.note,
+                    'start': {'dateTime': best_case.start_time.isoformat()},
+                    'end': {'dateTime': best_case.end_time.isoformat()},
+                    'attendees': user_email
+                }).execute()
+            event.is_active = False
+            event.save()
+        except:
+            event.is_active = False
+            event.save()
 
     user_event = event.user_event.all()
     for u_e in user_event:
@@ -756,12 +835,37 @@ def add_to_google_calendar(request):
                 }).execute()
 
         except:
-            continue
+            try:
+                credentials = client.GoogleCredentials(
+                    # technically access token could be an empty string
+                    None,
+                    settings.CLIENT_ID_CALENDAR,
+                    settings.CLIENT_SECRET_CALENDAR,
+                    user.user_token.refresh_token,
+                    None,  # this is token_expiry, we can leave it None
+                    "https://accounts.google.com/o/oauth2/token",
+                    'USER_AGENT'
+                )
+                http = credentials.authorize(httplib2.Http())
+                credentials.refresh(http)
+
+                # credentials.refresh(httplib2.Http())
+                # credentials = client.AccessTokenCredentials(credentials.access_token, 'USER_AGENT')
+
+                service = build('calendar', 'v3', credentials=credentials)
+                new_event = service.events().insert(calendarId='primary',
+                                                    sendNotifications=True, body={
+                        'summary': event.title,
+                        'description': event.note,
+                        'start': {'dateTime': best_case.start_time.isoformat()},
+                        'end': {'dateTime': best_case.end_time.isoformat()},
+                        'attendees': user_email
+                    }).execute()
+            except:
+                pass
 
     data = {}
     return JsonResponse(data)
-
-
 
 
 def add_to_favorite_events(request):
@@ -792,4 +896,3 @@ def remove_favorite_events(request):
         'test': test
     }
     return JsonResponse(data)
-
