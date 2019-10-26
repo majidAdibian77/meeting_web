@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="solving some problems...">
-      <change afterPath="$PROJECT_DIR$/media/images/profile_image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/profile_users/profile.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_Tvfb8U2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_jsdFSIg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_wGT5fd1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_favorite_events.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_not_voted_events.html" afterDir="false" />
+    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="solving some problems2...">
+      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_GQM66Ot.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_aKRzyzH.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_c0UyLGm.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/profile_users/profile_zWYYFut.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/other/other.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/other/other.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/dashboard_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/registration/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/registration/register.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -342,7 +336,10 @@
       <workItem from="1571506699007" duration="3427000" />
       <workItem from="1571571228105" duration="3344000" />
       <workItem from="1571591344178" duration="6049000" />
-      <workItem from="1571658357147" duration="16702000" />
+      <workItem from="1571658357147" duration="16746000" />
+      <workItem from="1571826877882" duration="948000" />
+      <workItem from="1572093143368" duration="4604000" />
+      <workItem from="1572115534151" duration="1375000" />
     </task>
     <task id="LOCAL-00001" summary="second commit...">
       <created>1563049152840</created>
@@ -540,7 +537,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571574564572</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="solving some problems2...">
+      <created>1571678149070</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1571678149070</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,7 +585,8 @@
     <MESSAGE value="solve som problems in access to google calendar and make better view of event cases..." />
     <MESSAGE value="add popup for add google calendar..." />
     <MESSAGE value="solving some problems..." />
-    <option name="LAST_COMMIT_MESSAGE" value="solving some problems..." />
+    <MESSAGE value="solving some problems2..." />
+    <option name="LAST_COMMIT_MESSAGE" value="solving some problems2..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

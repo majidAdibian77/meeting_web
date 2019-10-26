@@ -57,7 +57,8 @@
 
                                 </p>
                                 <hr>
-                                <table class="table table-striped" class="table" id="table-{{ event.pk }}">
+                                <div  style="overflow-x:auto;">
+                                    <table class="table table-striped" id="table-{{ event.pk }}">
                                     <thead>
                                     <tr>
                                         <td>گزینه ها</td>
@@ -72,7 +73,7 @@
                                                         {{ case.end_time|date:'Y/n/j G:i:s' }}<p></p>
                                                     {% endif %}
                                                     {% if 'location' in event.type %}
-                                                        {{ case.location }}<p></p>
+                                                        {{ case.location }}<p>مکان:</p>
                                                     {% endif %}
                                                     <p>{{ case.users_event_cases.count }}&#10004;</p>
                                                 </div>
@@ -89,6 +90,8 @@
                                                 {% else %}
                                                     {{ event.user.username }}
                                                 {% endif %}
+                                                <img src="{{ event.user.userProfileInfo.profile_pic.url }}" alt="pro"
+                                                     width="20" height="20">
                                             </div>
                                         </td>
                                         {% for case in event.event_cases.all %}
@@ -119,6 +122,8 @@
                                                         {% else %}
                                                             {{ user_event.user.username }}
                                                         {% endif %}
+                                                        <img src="{{ user_event.user.userProfileInfo.profile_pic.url }}"
+                                                             alt="pro" width="30" height="30" style="border-radius: 30%">
                                                     </div>
                                                 </td>
                                                 {% for case in event.event_cases.all %}
@@ -144,16 +149,17 @@
                                         {% endfor %}
                                     {% endif %}
                                 </table>
+                                </div>
                                 <hr>
                                 <h4 id="best-case-id-{{ event.pk }}">بهترین
                                     مورد: {{ event|best_case:event.user_event.all }}</h4>
                                 <div id="is-active-event-{{ event.pk }}">
                                     {% if event.is_active %}
                                         {% if user == event.user %}
-                                            <button class="btn btn-success"
-                                                    onclick="add_to_google_calendar({{ event.pk }});" style="width: 100%" content="پایان نظرسنجی و
+                                            <button id="finish-event-btn" class="btn btn-success"
+                                                    onclick="add_to_google_calendar({{ event.pk }});">پایان نظرسنجی و
                                                 افزودن
-                                                رویداد به تقویم گوگل افراد">
+                                                رویداد به تقویم گوگل افراد
                                             </button>
                                         {% endif %}
                                     {% else %}
@@ -171,5 +177,11 @@
 
         </div>
     </div>    <!-- /container -->
-
+    <!--<script>-->
+    <!--    $(document).ready(function () {-->
+    <!--    $('.table').DataTable({-->
+    <!--    "scrollX": true,-->
+    <!--    "scrollY": 200,-->
+    <!--    });-->
+    <!--</script>-->
 {% endblock %}

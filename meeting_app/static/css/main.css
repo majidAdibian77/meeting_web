@@ -46,14 +46,14 @@ td{
 }
 #table-users {
     /*background: #9bfaed;*/
-    border: 2px solid darkred;
+    border: 1px solid darkred;
     padding: 5%;
     border-radius: 10%;
 }
 
 #table-user-creator {
     background: #69fafa;
-    border: 2px solid darkred;
+    border: 1px solid darkred;
     padding: 5%;
     border-radius: 10%;
 }
@@ -75,10 +75,15 @@ td{
     border-radius: 50%;
 }
 
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
+}
+
+#finish-event-btn{
+     width: 100%;
 }
 
 /*#add-case-btn {*/
@@ -103,7 +108,7 @@ table {
 .dropdown-content {
   display: none;
   position: absolute;
-  margin-top: 50px;
+  margin-top: 55%;
   background-color: #f1f1f1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -118,7 +123,19 @@ table {
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+@media screen and (max-width: 600px) {
+  .dropdown-content{
+      margin-top: 0;
+  }
+  #finish-event-btn{
+      white-space: normal;
+      width:100%;
+  }
+}
 /*end drop down */
+
+
 
 /*end my css*/
 

@@ -12,9 +12,9 @@ class UserForm(UserCreationForm):
                                 required=True)
     password2 = forms.CharField(label='تایید رمز عبور', widget=forms.PasswordInput(attrs={'class': 'form-control'}),
                                 required=True)
-    first_name = forms.CharField(label='نام', max_length=15, required=False,
+    first_name = forms.CharField(label='نام (اختیاری)', max_length=15, required=False,
                                  widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(label='نام خانوادگی', max_length=15, required=False,
+    last_name = forms.CharField(label='نام خانوادگی (اختیاری)', max_length=15, required=False,
                                 widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(label='ایمیل', max_length=254, required=True,
                              widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -29,9 +29,9 @@ class UserInfoForm(UserCreationForm):
                                 required=True)
     password2 = forms.CharField(label='تایید رمز عبور', widget=forms.PasswordInput(attrs={'class': 'form-control'}),
                                 required=True)
-    first_name = forms.CharField(label='نام', max_length=15, required=False,
+    first_name = forms.CharField(label='نام (اختیاری)', max_length=15, required=False,
                                  widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(label='نام خانوادگی', max_length=15, required=False,
+    last_name = forms.CharField(label='نام خانوادگی (اختیاری)', max_length=15, required=False,
                                 widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(label='ایمیل', max_length=254, required=True,
                              widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -47,16 +47,13 @@ class UserInfoForm(UserCreationForm):
 
 
 class UserProfileInfoForm(forms.ModelForm):
-    # profile_pic = forms.ImageField(label='عکس خود را آپلود کنید', widget=forms.FileInput(attrs={'class': 'form-control'}))
-
-    # bio = forms.TextInput(widget=forms.TextInput(attrs={'class' :'btn btn-primary' 'btn-sm' 'float-left'}))
     class Meta:
         model = UserProfileInfo
         fields = ('profile_pic',)
     def __init__(self, *args, **kwargs):
         super(forms.ModelForm, self).__init__(*args, **kwargs)
         self.fields['profile_pic'].widget.attrs['class'] = 'form-control'
-        self.fields['profile_pic'].label = 'عکس خود را آپلود کنید'
+        self.fields['profile_pic'].label = 'عکس خود را آپلود کنید (اختیاری)'
 
 
 # class UserForm(UserCreationForm):
