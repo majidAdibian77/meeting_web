@@ -29,7 +29,7 @@ urlpatterns = [
                   url(r'^register/$', views.register, name='register'),
                   url(r'^google_register_call_back/$', views.google_register_call_back, name='google_register_call_back'),
                   url(r'^contact_us/$', views.contact_us, name='contact_us'),
-                  url(r'^options_times/user_events/(?P<pk>\d+)$', views.user_events, name='user_events'),
+                  url(r'^user_events/(?P<pk>\d+)$', views.user_events, name='user_events'),
                   url(r'^dashboard/$', views.dashboard, name='dashboard'),
                   # url(r'^contact_us/$', views.contact_us, name='contact_us'),
                   url(r'', include("meeting_app.urls")),

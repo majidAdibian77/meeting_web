@@ -94,16 +94,17 @@ function send_email(event_pk, user_pk) {
         },
         dataType: "json",
         success: function (data) {
+
             if (data['check_cases']) {
                 if (data['test']) {
                     alert('رویداد شما ثبت شد و ایمیل به افراد ارسال گردید.');
-                    document.location.href = 'other' + "/" + user_pk;
+                    document.location.href = '/single_event_user/' + event_pk;
 
                 } else {
                     alert('مشکلی در ارسال ایمیل ها به وجود آمده است!')
                 }
             } else {
-                alert('تعداد گذینه ها نا معتبر است!')
+                alert('تعداد گزینه ها نا معتبر است!')
             }
 
         },

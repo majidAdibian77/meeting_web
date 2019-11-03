@@ -75,7 +75,7 @@ def google_register_call_back(request):
     if UserEvent.objects.filter(user=request.user).count():
         is_invited_and_registered_before = True
 
-    if not User.objects.filter(username=request.user.username).count():
+    if not UserProfileInfo.objects.filter(user=request.user).count():
         # create profile for this user (necessary in image of user and google access user)
         profile = UserProfileInfo(user=request.user)
         profile.save()
@@ -393,7 +393,7 @@ def event_cases(request, pk):
                 return HttpResponseRedirect(generated_url)
     else:
         google_events_list = []
-    event = Event.objects.get(pk=pk)
+    event = Event.objects.get(pk=   pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
     return render(request, 'mainPages/event_cases.html',
@@ -488,7 +488,7 @@ def user_events(request, pk):
 
 def user_favorite_events(request):
     user = request.user
-    favorite_events = user.favorite_events.all()
+    favorite_events = user.favorite_events.all().order_by()
     user_favorite_events = []
     for f_e in favorite_events:
         user_favorite_events.append(f_e.event)
@@ -506,8 +506,8 @@ def user_favorite_events(request):
 
 def user_not_voted_events(request):
     user = request.user
-    events = list(user.event.all())
-    for u_e in user.user_event.all():
+    events = []
+    for u_e in user.user_event.all().reverse():
         events.append(u_e.event)
     not_voted = []
     for event in events:
@@ -526,7 +526,7 @@ def user_not_voted_events(request):
     #     if event.event_cases.count() == 0:
     #         event.delete()
 
-    return render(request, 'mainPages/user_favorite_events.html', {'user': user, 'events': not_voted, })
+    return render(request, 'mainPages/user_not_voted_events.html', {'user': user, 'events': not_voted, })
 
 
 """
@@ -672,19 +672,19 @@ def send_email(request):
             شما به یک رویداد دعوت شده اید.
             از طریق لینک زیر وارد وب سایت شده و در بخش داشبورد رویداد را ببینید.    
             روی لینک زیر کلیک کنید:
-            http://127.0.0.1:8000
-        """
+            http://127.0.0.1:8000/single_event_user/{}
+        """.format(event_pk)
         try:
             send_mail(
                 'رویداد جدید',
                 text2,
-                'majidad09@gmail.com',
+                'ivade@ivade.ir',
                 user_registered_emails
             )
             send_mail(
                 'رویداد جدید',
                 text1,
-                'majidad09@gmail.com',
+                'ivade@ivade.ir',
                 user_not_registered_emails
             )
         except:
@@ -896,3 +896,9 @@ def remove_favorite_events(request):
         'test': test
     }
     return JsonResponse(data)
+
+
+def single_event_user(request, pk):
+    event = Event.objects.get(pk=pk)
+    return render(request, 'mainPages/user_favorite_events.html', {'user': request.user, 'event': event, })
+

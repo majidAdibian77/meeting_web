@@ -19,10 +19,10 @@
         $(document).ready(function () {
             {# following codes are for popup fullcalendar #}
             $(".btn-show-calendar").click(function () {
-                $('.hover_calendar').show();
+                $('.hover_popup').show();
             });
             $('.popupCloseButton').click(function () {
-                $('.hover_calendar').hide();
+                $('.hover_popup').hide();
             });
 
             {# following codes are for popup map #}
@@ -161,7 +161,7 @@
     </div>    <!-- /container -->
 
     {# This 'div' is for popup for calendar #}
-    <div class="hover_calendar">
+    <div class="hover_popup">
         <span class="helper"></span>
         <div>
             <h3>زمان این گزینه را انتخاب کنید:</h3>
@@ -183,14 +183,14 @@
     {#    </div>#}
 
     {# script for autocomplite location #}
-    <script>
-        function activatePlacesSearch() {
-            var input = document.getElementById('location');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            alert(autocomplete.toString());
-        }
-    </script>
-    <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGRXmsMhCxoU5Q0i7TGry1IKlTuqk7oSk&libraries=places&callback=activatePlacesSearch"></script>
+{#    <script>#}
+{#        function activatePlacesSearch() {#}
+{#            var input = document.getElementById('location');#}
+{#            var autocomplete = new google.maps.places.Autocomplete(input);#}
+{#            alert(autocomplete.toString());#}
+{#        }#}
+{#    </script>#}
+{#    <script type="text/javascript"#}
+{#            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGRXmsMhCxoU5Q0i7TGry1IKlTuqk7oSk&libraries=places&callback=activatePlacesSearch"></script>#}
 
 {% endblock %}

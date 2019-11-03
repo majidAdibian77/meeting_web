@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% extends 'mainPages/base.html' %}
+
+{% block body_block %}
+    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    {% load my_filters %}
+    <!-- container -->
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
+            <li class="active">وعده های من</li>
+        </ol>
+
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+                <header class="page-header">
+                    <h1 class="page-title">وعده های من</h1>
+                </header>
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="my-events">
+                            {% if user|is_in_favorite:event.favorite_events.all %}
+                                <button class="btn btn-primary" onclick="remove_favorite_events({{ event.pk }});">
+                                    &#9733;
+                                </button>
+                            {% else %}
+                                <button class="btn" onclick="add_to_favorite_events({{ event.pk }});">&#9733;
+                                </button>
+                            {% endif %}
+                            <p style="float: left"><i class="material-icons" style="font-size:small">&#xe22b;</i> سازنده
+                                وعده:
+                                {% if event.user.first_name %}
+                                    {{ event.user.first_name }}
+                                {% else %}
+                                    {{ event.user.username }}
+                                {% endif %}
+                            </p>
+                            <h2>{{ event.title }}</h2>
+                            <h4>{{ event.note }}</h4>
+                            {% if not 'case' in event.type %}
+                                <h4>نام گذینه ها:{{ event.event_cases.first.case_name }}</h4>
+                            {% endif %}
+                            {% if not 'time' in event.type %}
+                                <h4>زمان وعدد: {{ event.event_cases.first.start_time }}
+                                    تا{{ event.event_cases.first.end_time }} </h4>
+                            {% endif %}
+                            {% if not 'location' in event.type %}
+                                <h4>مکان وعدد: {{ event.event_cases.first.location }} </h4>
+                            {% endif %}
+
+                            <hr>
+                            <div style="overflow-x:auto;">
+                                <table class="table table-striped" id="table-{{ event.pk }}">
+                                    <thead>
+                                    <tr>
+                                        <td>گزینه ها</td>
+                                        {% for case in event.event_cases.all %}
+                                            <td>
+                                                <div id='cases-header'>
+                                                    {% if 'case' in event.type %}
+                                                        {{ case.case_name }}<p></p>
+                                                    {% endif %}
+                                                    {% if 'time' in event.type %}
+                                                        {{ case.start_time|date:'Y/n/j G:i:s' }}<p>تا</p>
+                                                        {{ case.end_time|date:'Y/n/j G:i:s' }}<p></p>
+                                                    {% endif %}
+                                                    {% if 'location' in event.type %}
+                                                        {{ case.location }}<p>مکان:</p>
+                                                    {% endif %}
+                                                    <p>{{ case.users_event_cases.count }}&#10004;</p>
+                                                </div>
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                    </thead>
+
+                                    <tr>
+                                        <td>
+                                            <div id='table-user-creator'>
+                                                {% if event.user.first_name %}
+                                                    {{ event.user.first_name }}
+                                                {% else %}
+                                                    {{ event.user.username }}
+                                                {% endif %}
+                                                <img src="{{ event.user.userProfileInfo.profile_pic.url }}"
+                                                     alt="pro"
+                                                     width="30" height="30"
+                                                     style="border-radius: 30%; background: transparent">
+                                            </div>
+                                        </td>
+                                        {% for case in event.event_cases.all %}
+                                            <td>
+                                                {% if case|is_in_case:event.user.users_event_cases.all %}
+                                                    <button class="table-button-voted"
+                                                            name="table-button-voted"
+                                                            onclick="add_vote({{ case.pk }}, {{ event.user.pk }}, 'voted');"
+                                                            id='user-vote-{{ case.pk }}-{{ event.user.pk }}'>
+                                                        &#10004;
+                                                    </button>
+                                                {% else %}
+                                                    <button class="table-button button-variant"
+                                                            onclick="add_vote({{ case.pk }}, {{ event.user.pk }}, 'not_voted');"
+                                                            id='user-vote-{{ case.pk }}-{{ event.user.pk }}'>
+                                                        &#10008;
+
+                                                    </button>
+                                                {% endif %}
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% if event.user_event.count > 0 %}
+                                        {% for user_event in event.user_event.all %}
+                                            <tr>
+                                                <td>
+                                                    <div id='table-users'>
+                                                        {% if user_event.user.first_name %}
+                                                            {{ user_event.user.first_name }}
+                                                        {% else %}
+                                                            {{ user_event.user.username }}
+                                                        {% endif %}
+                                                        <img src="{{ user_event.user.userProfileInfo.profile_pic.url }}"
+                                                             alt="pro" width="30" height="30"
+                                                             style="border-radius: 30%; background: transparent">
+                                                    </div>
+                                                </td>
+                                                {% for case in event.event_cases.all %}
+                                                    <td>
+                                                        {% if case|is_in_case:user_event.user.users_event_cases.all %}
+                                                            <button class="table-button-voted"
+                                                                    name="table-button-voted"
+                                                                    onclick="add_vote({{ case.pk }}, {{ user_event.user.pk }}, 'voted');"
+                                                                    id='user-vote-{{ case.pk }}-{{ user_event.user.pk }}'>
+                                                                &#10004;
+                                                            </button>
+                                                        {% else %}
+                                                            <button class="table-button button-variant"
+                                                                    onclick="add_vote({{ case.pk }}, {{ user_event.user.pk }}, 'not_voted');"
+                                                                    id='user-vote-{{ case.pk }}-{{ user_event.user.pk }}'>
+                                                                &#10008;
+
+                                                            </button>
+                                                        {% endif %}
+                                                    </td>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                            </div>
+                            <hr>
+                            <h4 id="best-case-id-{{ event.pk }}">بهترین
+                                مورد: {{ event|best_case:event.user_event.all }}</h4>
+                            <div id="is-active-event-{{ event.pk }}">
+                                {% if event.is_active %}
+                                    {% if user == event.user %}
+                                        <button id="finish-event-btn" class="btn btn-success"
+                                                onclick="add_to_google_calendar({{ event.pk }});">پایان نظرسنجی و
+                                            افزودن
+                                            رویداد به تقویم گوگل افراد
+                                        </button>
+                                    {% endif %}
+                                {% else %}
+                                    <h2>این رویداد پایان یافته است!</h2>
+                                {% endif %}
+                                <hr style="border: 1px inset black;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+            <!-- /Article -->
+
+        </div>
+    </div>    <!-- /container -->
+    <!--<script>-->
+    <!--    $(document).ready(function () {-->
+    <!--    $('.table').DataTable({-->
+    <!--    "scrollX": true,-->
+    <!--    "scrollY": 200,-->
+    <!--    });-->
+    <!--</script>-->
+{% endblock %}

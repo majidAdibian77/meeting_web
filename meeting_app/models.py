@@ -1,8 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
+# from django.contrib.auth.models import AbstractUser
+
 
 # Create your models here.
 
+# class CustomUser(AbstractUser):
+#     email = models.EmailField(unique=True)
 
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userProfileInfo")
@@ -61,6 +65,9 @@ class UsersEventCases(models.Model):
 class UserEvent(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='user_event')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_event')
+
+    def __str__(self):
+        return str(self.event.title + " _ " + self.user.username)
 
 
 class FavoriteEvents(models.Model):

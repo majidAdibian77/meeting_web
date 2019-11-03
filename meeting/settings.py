@@ -133,8 +133,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "meeting_app/static")
@@ -145,10 +144,10 @@ MEDIA_URL = '/media/'
 
 
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'mail.ivade.ir'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tempM1377@gmail.com'
-EMAIL_HOST_PASSWORD = 'majid1377'
+EMAIL_HOST_USER = 'ivade@ivade.ir'
+EMAIL_HOST_PASSWORD = '2bld3xt47cZq'
 
 CLIENT_ID_CALENDAR = '1018686187808-vcperokvkl2pcuegakc5aupq6vdv2cp8.apps.googleusercontent.com'
 CLIENT_SECRET_CALENDAR = 'Cf1z04fzgNK2mDfkqAvf9plw'
