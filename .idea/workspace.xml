@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="add edit event button...">
+    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="add edit event button(complete)...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/other/other.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/other/other.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/single.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/single.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/single.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/single_event.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_favorite_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_favorite_events.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_not_voted_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_not_voted_events.html" afterDir="false" />
@@ -346,6 +350,7 @@
       <workItem from="1572867947219" duration="10292000" />
       <workItem from="1573128358980" duration="926000" />
       <workItem from="1573144377639" duration="4655000" />
+      <workItem from="1573299476397" duration="16461000" />
     </task>
     <task id="LOCAL-00001" summary="second commit...">
       <created>1563049152840</created>
@@ -564,7 +569,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572813599431</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="add edit event button(complete)...">
+      <created>1573299522012</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1573299522012</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,14 +620,15 @@
     <MESSAGE value="solving some problems2..." />
     <MESSAGE value="solving some problems3..." />
     <MESSAGE value="add edit event button..." />
-    <option name="LAST_COMMIT_MESSAGE" value="add edit event button..." />
+    <MESSAGE value="add edit event button(complete)..." />
+    <option name="LAST_COMMIT_MESSAGE" value="add edit event button(complete)..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/meeting_app/views.py</url>
-          <line>355</line>
+          <line>383</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

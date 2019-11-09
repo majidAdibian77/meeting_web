@@ -18,7 +18,7 @@
             <!-- Article main content -->
             <article class="col-xs-12 maincontent">
                 <header class="page-header">
-                    <h1 class="page-title">وعده های من</h1>
+                    <h1 class="page-title">وعده ی من</h1>
                 </header>
 
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -40,7 +40,9 @@
                                     {{ event.user.username }}
                                 {% endif %}
                             </p>
-                            <h2>{{ event.title }}</h2>
+                            <a href="{% url 'single_event_user' pk=event.pk %}" style="color: black">
+                                <h2 style="border: 2px rgb(177,164,154) solid; padding: 1%;">{{ event.title }}</h2>
+                            </a>
                             <h4>{{ event.note }}</h4>
                             {% if not 'case' in event.type %}
                                 <h4>نام گذینه ها:{{ event.event_cases.first.case_name }}</h4>
@@ -152,10 +154,24 @@
                                     {% endif %}
                                 </table>
                             </div>
-                            {% if user == event.user and event.is_active %}
-                                <a href="{% url 'event_cases' pk=event.pk create_or_edit='edit' %}">
-                                    <button class="btn btn-info">ویرایش وعده</button>
-                                </a>
+                            {% if event.is_active %}
+                                {% if user == event.user %}
+                                    <a href="{% url 'event_cases' pk=event.pk create_or_edit='edit' %}">
+                                        <button class="btn btn-info">ویرایش وعده</button>
+                                    </a>
+                                    <button class="btn btn-danger"
+                                            onclick="delete_event_confirm({{ event.pk }})">حذف وعده
+                                    </button>
+                                {% endif %}
+                            {% else %}
+                                <button class="btn btn-danger"
+                                        onclick="delete_event_confirm({{ event.pk }})">حذف از لیست وعده های من
+                                </button>
+                            {% endif %}
+                            {% if user != event.user %}
+                                <button class="btn btn-danger"
+                                        onclick="exit_user_confirm({{ event.pk }})">خروج از وعده
+                                </button>
                             {% endif %}
                             <hr>
                             <h4 id="best-case-id-{{ event.pk }}">بهترین

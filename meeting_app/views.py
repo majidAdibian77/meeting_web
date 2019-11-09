@@ -326,6 +326,34 @@ def new_event(request):
 
 
 """
+ This method is for delete event by creator
+"""
+
+
+def delete_event(request):
+    event_pk = request.GET.get("event_pk", None)
+    event = Event.objects.get(pk=event_pk)
+    event.delete()
+    data = {'user_pk': request.user.pk}
+    return JsonResponse(data)
+
+
+"""
+ This method is for exiting user from event
+"""
+
+
+def exit_user_event(request):
+    event_pk = request.GET.get("event_pk", None)
+    user_event = UserEvent.objects.get(event__id=event_pk, user=request.user)
+    user_event.delete()
+    email = Email.objects.get(email=request.user.email, event__id=event_pk)
+    email.delete()
+    data = {'user_pk': request.user.pk}
+    return JsonResponse(data)
+
+
+"""
     In this function cases of event and emails of event is created
 """
 
@@ -509,16 +537,16 @@ def user_favorite_events(request):
 def user_not_voted_events(request):
     user = request.user
     user_events1 = user.user_event.all()
-    user_events2 = UserEvent.objects.filter(user=user).all()
+    user_events2 = Event.objects.filter(user=user).all()
     id_list = []
     # This 'for' is for events that this user is creator
-    if user_events1:
-        for e in user_events1:
+    if user_events2:
+        for e in user_events2:
             id_list.append(e.pk)
 
     # This 'for' is for events that this user is invited
-    if user_events2:
-        for e in user_events2:
+    if user_events1:
+        for e in user_events1:
             id_list.append(e.event.pk)
     user_events = Event.objects.filter(id__in=id_list).all().order_by("id").reverse()
     # events = []
@@ -922,4 +950,4 @@ def remove_favorite_events(request):
 
 def single_event_user(request, pk):
     event = Event.objects.get(pk=pk)
-    return render(request, 'mainPages/user_favorite_events.html', {'user': request.user, 'event': event, })
+    return render(request, 'mainPages/single_event.html', {'user': request.user, 'event': event, })

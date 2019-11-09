@@ -4,8 +4,11 @@ from meeting_app.views import OAuth2CallBack
 
 urlpatterns = [
     url(r'^new_event$', views.new_event, name="new_event"),
+    url(r'^delete_event$', views.delete_event, name="delete_event"),
+    url(r'^exit_user_event$', views.exit_user_event, name="exit_user_event"),
     url(r'^event_cases/(?P<pk>\d+)/(?P<create_or_edit>[\w]+)$', views.event_cases, name="event_cases"),
     url(r'^access_to_google_calendar$', views.access_to_google_calendar, name="access_to_google_calendar"),
+
     # url(r'^options_times/(?P<pk>\d+)$', views.options_times, name="options_times"),
     # url(r'^options_times/survey_event/(?P<pk>\d+)$', views.survey_event, name="survey_event"),
     # url(r'^add_time$', vie`ws.add_time, name="add_time"),

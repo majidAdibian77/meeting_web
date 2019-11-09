@@ -21,7 +21,7 @@
                     <h1 class="page-title">وعده های من</h1>
                 </header>
 
-                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body" id="my-events">
                             {% for event in events.all %}
@@ -42,7 +42,9 @@
                                         {{ event.user.username }}
                                     {% endif %}
                                 </p>
-                                <h2>{{ event.title }}</h2>
+                                <a href="{% url 'single_event_user' pk=event.pk %}" style="color: black">
+                                    <h2 style="border: 2px rgb(177,164,154) solid; padding: 1%;">{{ event.title }}</h2>
+                                </a>
                                 <h4>{{ event.note }}</h4>
                                 {% if not 'case' in event.type %}
                                     <h4>نام گذینه ها:{{ event.event_cases.first.case_name }}</h4>
@@ -72,7 +74,7 @@
                                                             {{ case.end_time|date:'Y/n/j G:i:s' }}<p></p>
                                                         {% endif %}
                                                         {% if 'location' in event.type %}
-                                                            {{ case.location }}<p>مکان:</p>
+                                                            <p>مکان: {{ case.location }}</p>
                                                         {% endif %}
                                                         <p>{{ case.users_event_cases.count }}&#10004;</p>
                                                     </div>
@@ -154,8 +156,26 @@
                                         {% endif %}
                                     </table>
                                 </div>
-                                {% if user == event.user and event.is_active %}
-                                    <a href="{% url 'event_cases' pk=event.pk create_or_edit='edit' %}"><button class="btn btn-info">ویرایش وعده</button></a>
+                                {% if event.is_active %}
+                                    {% if user == event.user %}
+                                        <a href="{% url 'event_cases' pk=event.pk create_or_edit='edit' %}">
+                                            <button class="btn btn-info" style="margin: 1%">ویرایش وعده</button>
+                                        </a>
+                                        <button class="btn btn-danger"
+                                                onclick="delete_event_confirm({{ event.pk }})" style="margin: 1%">حذف
+                                            وعده
+                                        </button>
+                                    {% endif %}
+                                {% else %}
+                                    <button class="btn btn-danger"
+                                            onclick="delete_event_confirm({{ event.pk }})" style="margin: 1%">حذف از
+                                        لیست وعده های من
+                                    </button>
+                                {% endif %}
+                                {% if user != event.user %}
+                                    <button class="btn btn-danger"
+                                            onclick="exit_user_confirm({{ event.pk }})" style="margin: 1%">خروج از وعده
+                                    </button>
                                 {% endif %}
                                 <hr>
                                 <h4 id="best-case-id-{{ event.pk }}">بهترین
@@ -172,7 +192,7 @@
                                     {% else %}
                                         <h2>این رویداد پایان یافته است!</h2>
                                     {% endif %}
-                                    <hr style="border: 1px inset black;">
+                                    <hr style="border: 7px inset;">
                                 </div>
                             {% endfor %}
                         </div>
@@ -186,22 +206,33 @@
     </div>    <!-- /container -->
 
     {# This 'div' is for popup for change user events #}
-{#    <div class="hover_popup">#}
-{#        <span class="helper"></span>#}
-{#        <div>#}
-{#            <h3>زمان این گزینه را انتخاب کنید:</h3>#}
-{#            <div id="calendar"></div>#}
-{#            <div class="popupCloseButton"><b>&#10004;</b></div>#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#    <script>$(document).ready(function () {#}
-        {# following codes are for popup access to google calendar #}
-{#        $('.btn-show-change').click(function () {#}
-{#            $('.hover_popup').show();#}
-{#        });#}
-{#        $('.popupCloseButton').click(function () {#}
-{#            $('.hover_popup').hide();#}
-{#        });#}
-{#    })</script>#}
+    {#    <div class="hover_popup">#}
+    {#        <span class="helper"></span>#}
+    {#        <div>#}
+    {#            <h3>مطمئن هستید که می خواهید این رویداد را حذف کنید؟</h3>#}
+    {#            <p>با حذف رویداد همه اطلاعات مربوط به آن حذف خواهد شد و دیگر در دستر نخواد بود.</p>#}
+    {#            <a href="{% url 'delete_event' pk=event.pk %}">#}
+    {#                <button class="btn btn-danger" style="margin: 2%">بله</button>#}
+    {#            </a>#}
+    {#            <a href="{% url 'delete_event' pk=event.pk %}">#}
+    {#                <button class="btn btn-success" style="margin: 2%">خیر</button>#}
+    {#            </a>#}
+    {#            <div class="popupCloseButton"><b>&#10004;</b></div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
+    {#    <script>$(document).ready(function () {#}
+    {#following codes are for popup access to google calendar #}
+    {#        $('.btn-show-confirm').click(function () {#}
+    {#            $('.hover_popup').show();#}
+    {#        });#}
+    {#        $('.popupCloseButton').click(function () {#}
+    {#            $('.hover_popup').hide();#}
+    {#        });#}
+    {##}
+    {#following codes are for popup access to google calendar #}
+    {#        $('.btn-show-confirm-delete').click(function () {#}
+    {#            $('.hover_popup').show();#}
+    {#        });#}
+    {#    })</script>#}
 {% endblock %}

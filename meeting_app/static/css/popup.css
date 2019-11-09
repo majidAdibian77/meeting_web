@@ -1,4 +1,4 @@
-.hover_popup{
+.hover_popup_calendar, .hover_popup_access_google{
     background:rgba(0,0,0,.4);
     cursor:pointer;
     display:none;
@@ -9,12 +9,12 @@
     width:100%;
     z-index:10000;
 }
-.hover_popup .helper{
+.hover_popup_calendar .helper, .hover_popup_access_google .helper{
     display:inline-block;
     height:100%;
     vertical-align:middle;
 }
-.hover_popup > div {
+.hover_popup_calendar > div, .hover_popup_access_google > div{
     background-color: #fff;
     box-shadow: 10px 10px 60px #555;
     display: inline-block;

@@ -31,10 +31,10 @@ body {
 }
 
 #cases-header {
-    border-radius: 10%;
-    border: 1px solid black;
-    padding: 5px;
-    background: #f7ffc6;
+    /*border-radius: 10%;*/
+    /*border: 1px solid black;*/
+    /*padding: 5px;*/
+    /*background: #f7ffc6;*/
 }
 
 tr{
@@ -42,20 +42,20 @@ tr{
 }
 td{
     border: black dashed 2px;
-    text-align: center
+    text-align: center;
 }
 #table-users {
     /*background: #9bfaed;*/
-    border: 1px solid darkred;
+    /*border: 1px solid darkred;*/
     padding: 5px;
-    border-radius: 10%;
+    /*border-radius: 10%;*/
 }
 
 #table-user-creator {
-    background: #69fafa;
-    border: 1px solid darkred;
+    background: #acfac6;
+    /*border: 1px solid darkred;*/
     padding: 5px;
-    border-radius: 10%;
+    /*border-radius: 10%;*/
 }
 
 .table-button {
@@ -128,10 +128,12 @@ table {
   .dropdown-content{
       margin-top: 0;
   }
+
   #finish-event-btn{
       white-space: normal;
       width:100%;
   }
+
   .hover_calendar > div {
       width: 95%;
       height: 70%;
@@ -410,7 +412,6 @@ img.pull-left {
     padding: 2px 0;
     color: #888888;
     font-size: 12px;
-    font-size: 0.75rem;
 }
 
 .footer1 .entry-meta a {
