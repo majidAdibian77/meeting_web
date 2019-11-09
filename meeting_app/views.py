@@ -318,7 +318,7 @@ def new_event(request):
             title = event_form.cleaned_data['title']
             event = Event(title=title, note=note, user=request.user, is_active=True)
             event.save()
-            return redirect('event_cases', pk=event.pk)
+            return redirect('event_cases', pk=event.pk, create_or_edit='create')
     else:
         event_form = EventForm()
 
@@ -330,7 +330,7 @@ def new_event(request):
 """
 
 
-def event_cases(request, pk):
+def event_cases(request, pk, create_or_edit):
     # Following line is for getting google calendar events of user to show him
 
     test1 = True
@@ -393,11 +393,12 @@ def event_cases(request, pk):
                 return HttpResponseRedirect(generated_url)
     else:
         google_events_list = []
-    event = Event.objects.get(pk=   pk)
+    event = Event.objects.get(pk=pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
     return render(request, 'mainPages/event_cases.html',
                   {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list,
+                   'create_or_edit': create_or_edit,
                    'test1': test1, 'test2': test2, 'test3': test3})
 
 
@@ -462,10 +463,10 @@ def user_events(request, pk):
     event_user = UserEvent.objects.filter(user=user).all()
 
     # remove events that have no case to vote
-    all_events = Event.objects.all()
-    for event in all_events:
-        if event.event_cases.count() == 0:
-            event.delete()
+    # all_events = Event.objects.all()
+    # for event in all_events:
+    #     if event.event_cases.count() == 0:
+    #         event.delete()
 
     id_list = []
     # This 'for' is for events that this user is creator
@@ -477,7 +478,7 @@ def user_events(request, pk):
     if event_user:
         for e in event_user:
             id_list.append(e.event.pk)
-    events = Event.objects.filter(id__in=id_list).all()
+    events = Event.objects.filter(id__in=id_list).all().order_by("id").reverse()
     return render(request, 'mainPages/user_events.html', {'user': user, 'events': events, })
 
 
@@ -488,7 +489,7 @@ def user_events(request, pk):
 
 def user_favorite_events(request):
     user = request.user
-    favorite_events = user.favorite_events.all().order_by()
+    favorite_events = user.favorite_events.all()
     user_favorite_events = []
     for f_e in favorite_events:
         user_favorite_events.append(f_e.event)
@@ -499,6 +500,7 @@ def user_favorite_events(request):
     #         event.delete()
     return render(request, 'mainPages/user_favorite_events.html', {'user': user, 'events': user_favorite_events, })
 
+
 """
     This def is for return events of user that doesn't vote
 """
@@ -506,11 +508,24 @@ def user_favorite_events(request):
 
 def user_not_voted_events(request):
     user = request.user
-    events = []
-    for u_e in user.user_event.all().reverse():
-        events.append(u_e.event)
+    user_events1 = user.user_event.all()
+    user_events2 = UserEvent.objects.filter(user=user).all()
+    id_list = []
+    # This 'for' is for events that this user is creator
+    if user_events1:
+        for e in user_events1:
+            id_list.append(e.pk)
+
+    # This 'for' is for events that this user is invited
+    if user_events2:
+        for e in user_events2:
+            id_list.append(e.event.pk)
+    user_events = Event.objects.filter(id__in=id_list).all().order_by("id").reverse()
+    # events = []
+    # for event in user_events:
+    #     events.append(event)
     not_voted = []
-    for event in events:
+    for event in user_events:
         voted = False
         for event_case in event.event_cases.all():
             for u_c in event_case.users_event_cases.all():
@@ -537,6 +552,11 @@ This method is called from js file to to remove email of event
 def remove_email(request):
     email_pk = request.GET.get('email_pk', None)
     email = Email.objects.get(pk=email_pk)
+    if User.objects.filter(email=email.email).count() != 0:
+        user = User.objects.get(email=email.email)
+        if UserEvent.objects.filter(event=email.event, user=user).count() != 0:
+            user_event = UserEvent.objects.get(event=email.event, user=user)
+            user_event.delete()
     email.delete()
     data = {
     }
@@ -591,6 +611,7 @@ This method is called from js file to to approve comments
 
 def send_email(request):
     event_pk = request.GET.get('event_pk', None)
+    create_or_edit = request.GET.get('create_or_edit', None)
     event = Event.objects.get(pk=event_pk)
     # These lines are for setting type of event
 
@@ -655,11 +676,12 @@ def send_email(request):
                     registered = True
                     break
             if registered:
-                user_registered_emails.append(email.email)
                 user = User.objects.get(email=email.email)
-                user_event = UserEvent(event=event, user=user)
-                user_event.save()
-            else:
+                if UserEvent.objects.filter(event=event, user=user).count() == 0:
+                    user_event = UserEvent(event=event, user=user)
+                    user_event.save()
+                    user_registered_emails.append(email.email)
+            elif create_or_edit == 'create':
                 user_not_registered_emails.append(email.email)
 
         text1 = """\
@@ -901,4 +923,3 @@ def remove_favorite_events(request):
 def single_event_user(request, pk):
     event = Event.objects.get(pk=pk)
     return render(request, 'mainPages/user_favorite_events.html', {'user': request.user, 'event': event, })
-

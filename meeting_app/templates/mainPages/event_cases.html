@@ -9,10 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
-{#    <script src="{% static 'js/jalaali-calendar/moment-jalaali.js' %}"></script>#}
+    {#    <script src="{% static 'js/jalaali-calendar/moment-jalaali.js' %}"></script>#}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.6/lang/fa.js"></script>#}
+    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.6/lang/fa.js"></script>#}
     {#            <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/lang-all.js"></script>#}
 
     <script>
@@ -68,7 +68,11 @@
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
-            <li class="active">رویداد جدید</li>
+            {% if create_or_edit == 'create' %}
+                <li class="active">رویداد جدید</li>
+            {% else %}
+                <li class="active">ویرایش وعده</li>
+            {% endif %}
         </ol>
         <div class="row">
 
@@ -144,7 +148,7 @@
                                 </ul>
                             </div>
                             <a>
-                                <button onclick="send_email({{ event_pk }}, {{ user.pk }})" class="btn btn-primary"
+                                <button onclick="send_email({{ event_pk }}, {{ create_or_edit }})" class="btn btn-primary"
                                         style="margin: 1%">ثبت
                                     رویداد
                                 </button>
@@ -183,14 +187,14 @@
     {#    </div>#}
 
     {# script for autocomplite location #}
-{#    <script>#}
-{#        function activatePlacesSearch() {#}
-{#            var input = document.getElementById('location');#}
-{#            var autocomplete = new google.maps.places.Autocomplete(input);#}
-{#            alert(autocomplete.toString());#}
-{#        }#}
-{#    </script>#}
-{#    <script type="text/javascript"#}
-{#            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGRXmsMhCxoU5Q0i7TGry1IKlTuqk7oSk&libraries=places&callback=activatePlacesSearch"></script>#}
+    {#    <script>#}
+    {#        function activatePlacesSearch() {#}
+    {#            var input = document.getElementById('location');#}
+    {#            var autocomplete = new google.maps.places.Autocomplete(input);#}
+    {#            alert(autocomplete.toString());#}
+    {#        }#}
+    {#    </script>#}
+    {#    <script type="text/javascript"#}
+    {#            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGRXmsMhCxoU5Q0i7TGry1IKlTuqk7oSk&libraries=places&callback=activatePlacesSearch"></script>#}
 
 {% endblock %}

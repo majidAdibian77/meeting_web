@@ -152,6 +152,9 @@
                                         {% endif %}
                                     </table>
                                 </div>
+                                {% if user == event.user and event.is_active %}
+                                    <a href="{% url 'event_cases' pk=event.pk create_or_edit='edit' %}"><button class="btn btn-info">ویرایش وعده</button></a>
+                                {% endif %}
                                 <hr>
                                 <h4 id="best-case-id-{{ event.pk }}">بهترین
                                     مورد: {{ event|best_case:event.user_event.all }}</h4>

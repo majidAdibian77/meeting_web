@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="solving some problems3...">
-      <change afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/single.html" afterDir="false" />
+    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="add edit event button...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/popup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/single.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/single.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_favorite_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_favorite_events.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_not_voted_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_not_voted_events.html" afterDir="false" />
@@ -51,7 +45,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/media/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -348,7 +342,10 @@
       <workItem from="1572520766639" duration="1905000" />
       <workItem from="1572695452973" duration="9818000" />
       <workItem from="1572782371132" duration="2968000" />
-      <workItem from="1572801163223" duration="3676000" />
+      <workItem from="1572801163223" duration="3786000" />
+      <workItem from="1572867947219" duration="10292000" />
+      <workItem from="1573128358980" duration="926000" />
+      <workItem from="1573144377639" duration="4655000" />
     </task>
     <task id="LOCAL-00001" summary="second commit...">
       <created>1563049152840</created>
@@ -560,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572117327816</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="add edit event button...">
+      <created>1572813599431</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1572813599431</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,7 +607,8 @@
     <MESSAGE value="solving some problems..." />
     <MESSAGE value="solving some problems2..." />
     <MESSAGE value="solving some problems3..." />
-    <option name="LAST_COMMIT_MESSAGE" value="solving some problems3..." />
+    <MESSAGE value="add edit event button..." />
+    <option name="LAST_COMMIT_MESSAGE" value="add edit event button..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

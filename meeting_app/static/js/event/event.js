@@ -85,19 +85,25 @@ function add_case(event_pk) {
     });
 }
 
-function send_email(event_pk, user_pk) {
+function send_email(event_pk, create_or_edit) {
     $.ajax({
         type: "GET",
         url: '/send_email',
         data: {
             "event_pk": event_pk,
+            "create_or_edit": create_or_edit,
         },
         dataType: "json",
         success: function (data) {
 
             if (data['check_cases']) {
                 if (data['test']) {
-                    alert('رویداد شما ثبت شد و ایمیل به افراد ارسال گردید.');
+                    if (create_or_edit === 'create') {
+                        alert('رویداد شما ثبت شد و ایمیل به افراد ارسال گردید.');
+                    }
+                    else {
+                        alert('رویداد شما تغییر یافت و ایمیل به افراد جدیدی که ثبت نام کرده اند ارسال گردید.');
+                    }
                     document.location.href = '/single_event_user/' + event_pk;
 
                 } else {
@@ -139,14 +145,13 @@ function add_vote(case_pk, user_pk, str) {
                         btn.css("background-color", "#a94442");
                     }
                     table_id = " #table-" + data['event_pk'];
-                    best_case_id = " #best-case-id-"+ data['event_pk'];
+                    best_case_id = " #best-case-id-" + data['event_pk'];
                     $(table_id).load(location.href + table_id);
                     $(best_case_id).load(location.href + best_case_id);
                 } else {
                     alert("شما تنها برای خود می توانید رای دهید!")
                 }
-            }
-            else {
+            } else {
                 alert('این رویداد به پایان رسیده است!')
             }
 
@@ -187,11 +192,10 @@ function add_to_favorite_events(event_pk) {
         },
         dataType: "json",
         success: function (data) {
-            if(data['test']){
+            if (data['test']) {
                 alert('yes');
                 $("#my-events").load(location.href + " #my-events");
-            }
-            else {
+            } else {
                 alert('no');
             }
         },
@@ -210,10 +214,9 @@ function remove_favorite_events(event_pk) {
         },
         dataType: "json",
         success: function (data) {
-            if(data['test']){
+            if (data['test']) {
                 $("#my-events").load(location.href + " #my-events");
-            }
-            else {
+            } else {
                 alert('no');
             }
         },
