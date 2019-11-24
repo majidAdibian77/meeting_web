@@ -38,16 +38,15 @@ def is_in_favorite(user, list):
 
 register.filter(is_in_favorite)
 
-#
-# def is_in_option(case, list):
-#     if list:
-#         for element in list:
-#             if element.option == case:
-#                 return True
-#     return False
-#
-#
-# register.filter(is_in_option)
+
+def not_registered_emails(email, event):
+    for user_event in event.user_event.all():
+        temp_email = user_event.user.email
+        if temp_email == email:
+            return False
+    return True
+
+register.filter(not_registered_emails)
 
 
 def best_case(event, event_users):

@@ -142,12 +142,16 @@ LOGOUT_REDIRECT_URL = 'home'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'mail.ivade.ir'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'inviteVade@gmail.com'
+EMAIL_HOST_PASSWORD = 'vade1398'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ivade@ivade.ir'
-EMAIL_HOST_PASSWORD = '2bld3xt47cZq'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'mail.ivade.ir'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'ivade@ivade.ir'
+# EMAIL_HOST_PASSWORD = '37TkGQRSFMvb'
 
 CLIENT_ID_CALENDAR = '1018686187808-vcperokvkl2pcuegakc5aupq6vdv2cp8.apps.googleusercontent.com'
 CLIENT_SECRET_CALENDAR = 'Cf1z04fzgNK2mDfkqAvf9plw'

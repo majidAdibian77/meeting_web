@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--################# -->
 
     <link rel="stylesheet" href='{% static 'css/bootstrap.min.css' %}'>
     <link rel="stylesheet" href='{% static 'css/font-awesome.min.css' %}'>
@@ -41,7 +42,9 @@
                             <button class="dropbtn">{{ user.first_name }} &#8681;</button>
                             <div class="dropdown-content">
                                 <a class="btn" href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <button class="btn-show-access btn btn-default" style="color: darkred; width: 100%">وعده جدید</button>
+                                <button class="btn-show-access btn btn-default" style="color: darkred; width: 100%">وعده
+                                    جدید
+                                </button>
                                 <a class="btn" href="{% url "user_not_voted_events" %}">هنوز رای نداده ام</a>
                                 <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
                             </div>
@@ -51,7 +54,9 @@
                             <button class="dropbtn">{{ user.username }} &#8681;</button>
                             <div class="dropdown-content">
                                 <a href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <button class="btn-show-access btn btn-default" style="color: darkred; width: 100%">وعده جدید</button>
+                                <button class="btn-show-access btn btn-default" style="color: darkred; width: 100%">وعده
+                                    جدید
+                                </button>
                                 <a href="{% url "user_not_voted_events" %}">هنوز رای نداده ام</a>
                                 <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
                             </div>
@@ -178,9 +183,9 @@
         <ul>
             <li>هنگام تعیین موارد مورد نظر در وعده ای که می خواهید بسازید رویدادهای موجود در تقویم گوگل خود را ببینید.
             </li>
-            <li>در پایان رای گیری های هر وعده آو رویداد را به تقویم گوگل خود اضافه کنید.</li>
+            <li>در پایان رای گیری های هر وعده آن رویداد را به تقویم گوگل خود اضافه کنید.</li>
         </ul>
-        <h5>آیا می خواهید از تقویم گوگل خود استفده کنید:</h5>
+        <h5>آیا می خواهید از تقویم گوگل خود استفاده کنید:</h5>
         <button class="btn btn-success" onclick="add_google_calendar('yes');" style="margin: 2%">بله</button>
         <button class="btn btn-success" onclick="add_google_calendar('no');" style="margin: 2%">خیر</button>
         <div class="popupCloseButton"><b>&#10008;</b></div>
@@ -201,7 +206,15 @@
 <script>$(document).ready(function () {
     {# following codes are for popup access to google calendar #}
     $('.btn-show-access').click(function () {
-        $('.hover_popup_access_google').show();
+        alert("yes");
+        use_google_calendar = {{ usre.userProfileInfo.use_google_calendar }};
+        alert(use_google_calendar);
+        if (use_google_calendar){
+            $('.hover_popup_access_google').show();
+        }
+        else {
+            document.location.href = '/new_event';
+        }
     });
     $('.popupCloseButton').click(function () {
         $('.hover_popup_access_google').hide();

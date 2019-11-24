@@ -4,6 +4,8 @@
 {% block body_block %}
     <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     {% load my_filters %}
     <!-- container -->
@@ -21,7 +23,7 @@
                     <h1 class="page-title">رای نداده شده</h1>
                 </header>
 
-                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-body" id="my-events">
                             {% for event in events %}
@@ -70,8 +72,8 @@
                                                             {{ case.case_name }}<p></p>
                                                         {% endif %}
                                                         {% if 'time' in event.type %}
-                                                            {{ case.start_time|date:'Y/n/j G:i:s' }}<p>تا</p>
-                                                            {{ case.end_time|date:'Y/n/j G:i:s' }}<p></p>
+                                                            {{ case.start_time|date:'Y/n/j G:i' }}<p>تا</p>
+                                                            {{ case.end_time|date:'Y/n/j G:i' }}<p></p>
                                                         {% endif %}
                                                         {% if 'location' in event.type %}
                                                             {{ case.location }}<p>مکان:</p>
@@ -154,25 +156,47 @@
                                                 </tr>
                                             {% endfor %}
                                         {% endif %}
+                                        {% for email in event.email.all %}
+                                            {% if email|not_registered_emails:event %}
+                                                <tr>
+                                                    <td>
+                                                        <div id='table-users'>
+                                                            <p>{{ email.email }}</p>(دعوت شده)
+                                                        </div>
+                                                    </td>
+                                                    {% for case in event.event_cases.all %}
+                                                        <td>
+                                                            <button class="table-button button-variant"
+                                                                    onclick="add_vote({{ case.pk }}, {{ user_event.user.pk }}, 'not_voted');"
+                                                                    id='user-vote-{{ case.pk }}-{{ user_event.user.pk }}'>
+                                                                &#10008;
+                                                            </button>
+                                                        </td>
+                                                    {% endfor %}
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
                                     </table>
                                 </div>
                                 {% if event.is_active %}
                                     {% if user == event.user %}
                                         <a href="{% url 'event_cases' pk=event.pk create_or_edit='edit' %}">
-                                            <button class="btn btn-info">ویرایش وعده</button>
+                                            <button class="btn btn-info" style="margin: 1%">ویرایش وعده</button>
                                         </a>
                                         <button class="btn btn-danger"
-                                                onclick="delete_event_confirm({{ event.pk }})">حذف وعده
+                                                onclick="delete_event_confirm({{ event.pk }})" style="margin: 1%">حذف
+                                            وعده
                                         </button>
                                     {% endif %}
                                 {% else %}
                                     <button class="btn btn-danger"
-                                            onclick="delete_event_confirm({{ event.pk }})">حذف از لیست وعده های من
+                                            onclick="delete_event_confirm({{ event.pk }})" style="margin: 1%">حذف از
+                                        لیست وعده های من
                                     </button>
                                 {% endif %}
                                 {% if user != event.user %}
                                     <button class="btn btn-danger"
-                                            onclick="exit_user_confirm({{ event.pk }})">خروج از وعده
+                                            onclick="exit_user_confirm({{ event.pk }})" style="margin: 1%">خروج از وعده
                                     </button>
                                 {% endif %}
                                 <hr>

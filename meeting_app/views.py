@@ -4,9 +4,13 @@ import re
 import httplib2
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
-from django.http import JsonResponse, HttpResponseRedirect, HttpResponseNotAllowed
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import send_mail, EmailMessage
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponseNotAllowed, HttpResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
 from googleapiclient.discovery import build
 from oauth2client import client
@@ -15,6 +19,7 @@ from meeting import settings
 from meeting_app.forms import UserForm, EventForm, ContactUsForm, UserInfoForm, UserProfileInfoForm
 from meeting_app.models import Event, Email, EventCases, UserEvent, UsersEventCases, UserToken, UserProfileInfo, \
     FavoriteEvents
+from meeting_app.token import account_activation_token
 
 """
     This class is called when user want to add new event for first time and
@@ -243,7 +248,8 @@ def register(request):
             user_form.add_error('email', "ایمیل وارد شده قبلا ثبت نام کرده است!")
 
         if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
+            user = user_form.save(commit=False)
+            user.is_active = False
             user.save()
 
             profile = profile_form.save(commit=False)
@@ -251,18 +257,33 @@ def register(request):
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
             profile.save()
-            auth_user = authenticate(username=user_form.cleaned_data.get('username'),
-                                     password=user_form.cleaned_data.get('password1'))
-            login(request, auth_user)
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your blog account.'
+            message = render_to_string('email/activate_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            to_email = user_form.cleaned_data.get('email')
+            email = EmailMessage(
+                mail_subject, message, to=[to_email]
+            )
+            email.send()
+            return HttpResponse('Please confirm your email address to complete the registration')
 
-            # adding event about this user
-            emails = Email.objects.all()
-            for email in emails:
-                if email.email == user.email:
-                    user_event = UserEvent(user=user, event=email.event)
-                    user_event.save()
+            # auth_user = authenticate(username=user_form.cleaned_data.get('username'),
+            #                          password=user_form.cleaned_data.get('password1'))
+            # login(request, auth_user)
+            #
+            # # adding event about this user
+            # emails = Email.objects.all()
+            # for email in emails:
+            #     if email.email == user.email:
+            #         user_event = UserEvent(user=user, event=email.event)
+            #         user_event.save()
 
-            return redirect("home")
+            # return redirect("home")
     else:
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
@@ -270,6 +291,39 @@ def register(request):
     return render(request, "registration/register.html",
                   {'user_form': user_form,
                    'profile_form': profile_form})
+
+
+"""
+    This def is for activation user
+"""
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
+        # auth_user = authenticate(username=user.username,
+        #                          password=user.password)
+        # login(request, auth_user, backend='django.contrib.auth.backends.ModelBackend')
+
+        # adding event about this user
+        emails = Email.objects.all()
+        for email in emails:
+            if email.email == user.email:
+                user_event = UserEvent(user=user, event=email.event)
+                user_event.save()
+
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        # return redirect('home')
+    else:
+        return HttpResponse('Activation link is invalid!')
 
 
 """ 
@@ -426,7 +480,7 @@ def event_cases(request, pk, create_or_edit):
     cases = EventCases.objects.filter(event=event)
     return render(request, 'mainPages/event_cases.html',
                   {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list,
-                   'create_or_edit': create_or_edit,
+                   'create_or_edit': str(create_or_edit),
                    'test1': test1, 'test2': test2, 'test3': test3})
 
 
@@ -507,7 +561,17 @@ def user_events(request, pk):
         for e in event_user:
             id_list.append(e.event.pk)
     events = Event.objects.filter(id__in=id_list).all().order_by("id").reverse()
-    return render(request, 'mainPages/user_events.html', {'user': user, 'events': events, })
+    # not_registered_user = {}
+    # for event in events:
+    #     temp = []
+    #     all_email = event.email.all()
+    #     for user_event in event.user_event.all():
+    #         email = user_event.user.email
+    #         if email not in all_email:
+    #             temp.append(email)
+    #     not_registered_user[event.pk] = temp
+    return render(request, 'mainPages/user_events.html',
+                  {'user': user, 'events': events, })
 
 
 """
@@ -728,12 +792,14 @@ def send_email(request):
             send_mail(
                 'رویداد جدید',
                 text2,
+                # 'inviteVade@gmail.com',
                 'ivade@ivade.ir',
                 user_registered_emails
             )
             send_mail(
                 'رویداد جدید',
                 text1,
+                # 'inviteVade@gmail.com',
                 'ivade@ivade.ir',
                 user_not_registered_emails
             )
@@ -753,6 +819,12 @@ This method is called from js file to to approve comments
 
 
 def add_vote(request):
+    # i=0
+    # while 1==1:
+    #     i = i +1
+    #     if i > 50000000:
+    #         data = {}
+    #         return JsonResponse(data)
     user_pk = request.GET.get('user_pk', None)
     user = User.objects.get(pk=user_pk)
 

@@ -17,6 +17,10 @@ function remove_email(email_pk) {
 
 
 function add_email(event_pk) {
+    btn = $('#add-email-btn');
+    temp = btn.html();
+    // btn.html('<img role="status" src="/media/images/ajax-loader4.gif"></img>').addClass('disabled');
+    btn.html('<span class="fa fa-spinner fa-spin" role="status"></span>');
     $.ajax({
         type: "GET",
         url: '/add_email',
@@ -26,6 +30,7 @@ function add_email(event_pk) {
         },
         dataType: "json",
         success: function (data) {
+            btn.html(temp);
             if (!data['non_repetitious']) {
                 alert('ایمیل تکراری است!');
             } else if (!data['valid']) {
@@ -61,6 +66,10 @@ function remove_case(case_pk) {
 }
 
 function add_case(event_pk) {
+    btn = $('#add-case-btn');
+    temp = btn.html();
+    // btn.html('<img role="status" src="/media/images/ajax-loader4.gif"></img>').addClass('disabled');
+    btn.html('<span class="fa fa-spinner fa-spin" role="status"></span>');
     $.ajax({
         type: "GET",
         url: '/add_case',
@@ -73,8 +82,9 @@ function add_case(event_pk) {
         },
         dataType: "json",
         success: function (data) {
+            btn.html(temp);
             if (data['error'] !== '') {
-                alert('Name of case is empty!');
+                alert('نام مورد خالی است!');
             } else {
                 $("#cases").load(location.href + " #cases");
             }
@@ -86,6 +96,10 @@ function add_case(event_pk) {
 }
 
 function send_email(event_pk, create_or_edit) {
+    btn = $('#send-email-button');
+    temp = btn.html();
+    // btn.html('<img role="status" src="/media/images/ajax-loader4.gif"></img>').addClass('disabled');
+    btn.html('<span class="fa fa-spinner fa-spin" role="status"></span>');
     $.ajax({
         type: "GET",
         url: '/send_email',
@@ -95,13 +109,12 @@ function send_email(event_pk, create_or_edit) {
         },
         dataType: "json",
         success: function (data) {
-
+            btn.html(temp);
             if (data['check_cases']) {
                 if (data['test']) {
                     if (create_or_edit === 'create') {
                         alert('رویداد شما ثبت شد و ایمیل به افراد ارسال گردید.');
-                    }
-                    else {
+                    } else {
                         alert('رویداد شما تغییر یافت و ایمیل به افراد جدیدی که ثبت نام کرده اند ارسال گردید.');
                     }
                     document.location.href = '/single_event_user/' + event_pk;
@@ -122,6 +135,11 @@ function send_email(event_pk, create_or_edit) {
 
 
 function add_vote(case_pk, user_pk, str) {
+    id = "#user-vote-" + case_pk + "-" + user_pk;
+    btn = $(id);
+    temp = btn.html();
+    // btn.html('<img role="status" src="/media/images/ajax-loader4.gif"></img>').addClass('disabled');
+    btn.html('<span class="fa fa-spinner fa-spin" role="status"></span>');
     $.ajax({
         type: "GET",
         url: '/add_vote',
@@ -132,11 +150,11 @@ function add_vote(case_pk, user_pk, str) {
         },
         dataType: "json",
         success: function (data) {
+            btn.html(temp);
+
             if (data['event_is_active']) {
                 if (data['test_user']) {
                     alert("رای شما ثبت شد.");
-                    id = "#user-vote-" + case_pk + "-" + user_pk;
-                    btn = $(id);
                     if (!data['voted']) {
                         btn.html('&#10004;');
                         btn.css("background-color", "#4cae4c");
@@ -160,6 +178,12 @@ function add_vote(case_pk, user_pk, str) {
             alert('مشکلی به وجود آمده است!');
         }
     });
+
+    // $(document).on({
+    //     ajaxStop: function () {
+    //         $body.removeClass("loading");
+    //     },
+    // });
 }
 
 
@@ -183,7 +207,6 @@ function add_to_google_calendar(event_pk) {
 }
 
 function add_to_favorite_events(event_pk) {
-    alert(event_pk);
     $.ajax({
         type: "GET",
         url: '/add_to_favorite_events',
@@ -193,10 +216,7 @@ function add_to_favorite_events(event_pk) {
         dataType: "json",
         success: function (data) {
             if (data['test']) {
-                alert('yes');
                 $("#my-events").load(location.href + " #my-events");
-            } else {
-                alert('no');
             }
         },
         failure: function () {

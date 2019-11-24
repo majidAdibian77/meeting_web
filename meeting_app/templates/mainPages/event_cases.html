@@ -3,6 +3,8 @@
 {#{% load staticfiles %}#}
 {% block body_block %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -90,7 +92,7 @@
                             <p>ایمیل دوستان خود را وارد کنید:</p>
                             <input class="form-control" type="email" id="email" placeholder="example@gmail.com">
                             <p></p>
-                            <button onclick="add_email({{ event_pk }});" class="btn btn-success" id="add-case-btn">اضافه
+                            <button onclick="add_email({{ event_pk }});" class="btn btn-success" id="add-email-btn">اضافه
                                 کن
                             </button>
                             <p></p>
@@ -148,11 +150,13 @@
                                 </ul>
                             </div>
                             <a>
-                                <button onclick="send_email({{ event_pk }}, {{ create_or_edit }})" class="btn btn-primary"
-                                        style="margin: 1%">ثبت
+                                <button id="send-email-button"
+                                        onclick="send_email({{ event_pk }}, '{{ create_or_edit }}');"
+                                        class="btn btn-primary"
+                                        style="margin: 1%;">ثبت
                                     رویداد
                                 </button>
-                                <a href="{% url 'new_event' %}" class="btn btn-primary" style="margin: 1%">بازگشت
+                                <a href="{% url 'new_event' %}" class="btn btn-primary" style="margin: 1%;">بازگشت
                                 </a>
                             </a>
                         </div>
