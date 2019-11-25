@@ -141,6 +141,11 @@ table {
 }
 /*end drop down */
 
+.user_info_field{
+    border: #b1a49a dashed 1px;
+    padding: 5px;
+    background-color: #d6fab5;
+}
 
 
 /*end my css*/

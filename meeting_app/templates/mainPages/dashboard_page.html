@@ -32,19 +32,22 @@
                             <h3>تصویر پروفایل:</h3>
                             <img src="{{ user.userProfileInfo.profile_pic.url }}" alt="UserImage" style="width:50%">
 
-                            <h3>نام کاربری: {{ user.username }}</h3>
-                            <h3>ایمیل: {{ user.email }}</h3>
+                            <h3 class="user_info_field">نام کاربری: {{ user.username }}</h3>
+                            <h3 class="user_info_field">ایمیل: {{ user.email }}</h3>
                             {% if user.first_name %}
-                                <h3>نام: {{ user.first_name }}</h3>
+                                <h3 class="user_info_field">نام: {{ user.first_name }}</h3>
                             {% else %}
-                                <h3>نام: --</h3>
+                                <h3 class="user_info_field">نام: --</h3>
                             {% endif %}
 
                             {% if user.last_name %}
-                                <h3>نام خانوادگی: {{ user.last_name }}</h3>
+                                <h3 class="user_info_field">نام خانوادگی: {{ user.last_name }}</h3>
                             {% else %}
-                                <h3>نام خانوادگی: --</h3>
+                                <h3 class="user_info_field">نام خانوادگی: --</h3>
                             {% endif %}
+                             <h3 class="user_info_field">تعداد وعده های ساخته شده: {{ user_create_events }}</h3>
+                             <h3 class="user_info_field">تعداد وعده های دعوت شده: {{ invite_events }}</h3>
+                             <h3 class="user_info_field">تعداد وعده های مورد علاقه: {{ favorite_events }}</h3>
                             {#                            <div style="margin: 24px 0;">#}
                             {#                                {% if user.user == user_info.user.user %}#}
                             {#                                    <a href="{% url "change_user_info" %}">#}

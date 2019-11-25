@@ -128,7 +128,13 @@ def dashboard(request):
     #     profile.save()
     #     return redirect('dashboard')
     # profile_form = UserProfileInfoForm()
-    return render(request, "mainPages/dashboard_page.html", {'user': request.user, })
+
+    user_create_events = Event.objects.filter(user=request.user).count()
+    invite_events = UserEvent.objects.filter(user=request.user).count()
+    favorite_events = FavoriteEvents.objects.filter(user=request.user).count()
+    return render(request, "mainPages/dashboard_page.html",
+                  {'user': request.user, 'user_create_events': user_create_events, 'invite_events': invite_events,
+                   'favorite_events': favorite_events})
 
 
 """
