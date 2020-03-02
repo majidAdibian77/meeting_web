@@ -36,5 +36,5 @@ urlpatterns = [
                       views.activate, name='activate'),
 
                   # url(r'^contact_us/$', views.contact_us, name='contact_us'),
-                  url(r'', include("meeting_app.urls")),
+                      url(r'', include("meeting_app.urls")),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -134,10 +134,10 @@ table {
       width:100%;
   }
 
-  .hover_calendar > div {
-      width: 95%;
-      height: 70%;
-  }
+  /*.hover_calendar > div {*/
+  /*    width: 95%;*/
+  /*    height: 70%;*/
+  /*}*/
 }
 /*end drop down */
 

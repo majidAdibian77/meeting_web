@@ -38,7 +38,10 @@ function add_email(event_pk) {
             } else if (data['user_email']) {
                 alert('ایمیل خود را نمی توانید وارد کنید!');
             } else {
+                $("#email").val('');
                 $("#emails").load(location.href + " #emails");
+
+
             }
         },
         failure: function () {
@@ -216,7 +219,8 @@ function add_to_favorite_events(event_pk) {
         dataType: "json",
         success: function (data) {
             if (data['test']) {
-                $("#my-events").load(location.href + " #my-events");
+                $("#star-item-" + event_pk).load(location.href + " #star-item-" + event_pk);
+                alert("رویداد به مورد علاقه ها اضافه شد.")
             }
         },
         failure: function () {
@@ -235,9 +239,8 @@ function remove_favorite_events(event_pk) {
         dataType: "json",
         success: function (data) {
             if (data['test']) {
-                $("#my-events").load(location.href + " #my-events");
-            } else {
-                alert('no');
+                $("#star-item-" + event_pk).load(location.href + " #star-item-" + event_pk);
+                alert("رویداد از مورد علاقه ها حذف شد.")
             }
         },
         failure: function () {

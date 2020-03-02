@@ -74,6 +74,9 @@ class FavoriteEvents(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='favorite_events')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favorite_events')
 
+    def __str__(self):
+        return str(self.event.title + " _ " + self.user.username)
+
 
 class ContactUs(models.Model):
     name = models.CharField(max_length=20)

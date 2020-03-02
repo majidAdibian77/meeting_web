@@ -163,6 +163,8 @@ def change_user_info(request):
             user.set_password = user_form.cleaned_data.get("password1")
             user.first_name = user_form.cleaned_data.get("first_name")
             user.last_name = user_form.cleaned_data.get("last_name")
+            user.phone_number = user_form.cleaned_data.get("phone_number")
+            user.date_of_birth = user_form.cleaned_data.get("date_of_birth")
             user.email = email
             user.save()
 
@@ -484,6 +486,9 @@ def event_cases(request, pk, create_or_edit):
     event = Event.objects.get(pk=pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
+
+    # import jdatetime
+    # today = jdatetime.date.today()
     return render(request, 'mainPages/event_cases.html',
                   {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list,
                    'create_or_edit': str(create_or_edit),
@@ -588,15 +593,17 @@ def user_events(request, pk):
 def user_favorite_events(request):
     user = request.user
     favorite_events = user.favorite_events.all()
+    c =0
     user_favorite_events = []
     for f_e in favorite_events:
+        c = c+1
         user_favorite_events.append(f_e.event)
     # # remove events that have no case to vote
     # all_events = Event.objects.all()
     # for event in all_events:
     #     if event.event_cases.count() == 0:
     #         event.delete()
-    return render(request, 'mainPages/user_favorite_events.html', {'user': user, 'events': user_favorite_events, })
+    return render(request, 'mainPages/user_favorite_events.html', {'user': user, 'events': user_favorite_events, 'c':c})
 
 
 """

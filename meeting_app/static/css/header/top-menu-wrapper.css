@@ -1,0 +1,61 @@
+/* for menu show the other information */
+
+#menu-warraper {
+    position: fixed;
+    top: 22px;
+    width: 100%;
+    /* flex */
+    display: flex;
+    justify-content: space-around;
+    flex: 1 1 100px;
+    direction: rtl;
+}
+
+
+/* create the fre space  */
+
+#space-free {
+    min-width: 10%;
+}
+
+
+/* item in top menu  */
+
+.top-menu-item {
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    min-height: 40px;
+    /* flex option */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* new event btn */
+
+.new-event-btn {
+    background-color: rgb(1, 208, 226);
+    color: white;
+    border-radius: 45px;
+    margin-left: 10px;
+    box-shadow: 2px 2px 5px gray;
+    transition: .2s;
+}
+
+.new-event-btn:hover {
+    /* color: white !important; */
+    background-color: white;
+    color: rgb(1, 208, 226);
+    transition: .2s;
+}
+
+
+/* hover the menu item */
+
+.top-menu-item:hover {
+    color: rgb(1, 208, 226);
+}

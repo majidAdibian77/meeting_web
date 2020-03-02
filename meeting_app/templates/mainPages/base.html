@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>وعده</title>
 
@@ -15,127 +16,142 @@
 
     <link rel="stylesheet" href='{% static 'css/bootstrap.min.css' %}'>
     <link rel="stylesheet" href='{% static 'css/font-awesome.min.css' %}'>
-    <link rel="stylesheet" href='{% static 'css/popup.css' %}'>
 
     <!-- Custom styles for our template -->
     <link rel="stylesheet" href='{% static 'css/bootstrap-theme.css' %}' media="screen">
     <link rel="stylesheet" href='{% static 'css/main.css' %}'>
+    <link rel="stylesheet" href='{% static 'css/popup.css' %}'>
+    <link rel="stylesheet" href='{% static 'css/header/menuBurgerStyle.css' %}'>
+    <link rel="stylesheet" href='{% static 'css/header/top-menu-wrapper.css' %}'>
+    <!-- New custom style -->
+    <link rel="stylesheet" href='{% static 'css/home_style.css' %}'>
+    <!-- Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'fonts/new_fonts/fonts' %}">
+
 
     {#    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">#}
 
 
 </head>
 
+
 <body class="home">
-<!-- Fixed navbar -->
-<div class="navbar navbar-inverse headroom">
-    <div class="container">
-        <div class="navbar-header">
-            <ul class="nav navbar-nav pull-right">
-                {% if user.is_authenticated %}
-                    <button class="btn-show-access btn welcome" style="color: darkred;">وعده
-                        جدید
-                    </button>
-
-                    {% if user.first_name %}
-                        <div class="dropdown">
-                            <button class="dropbtn">{{ user.first_name }} &#8681;</button>
-                            <div class="dropdown-content">
-                                <a class="btn" href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <button class="btn-show-access btn btn-default" style="color: darkred; width: 100%">وعده
-                                    جدید
-                                </button>
-                                <a class="btn" href="{% url "user_not_voted_events" %}">هنوز رای نداده ام</a>
-                                <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="dropdown">
-                            <button class="dropbtn">{{ user.username }} &#8681;</button>
-                            <div class="dropdown-content">
-                                <a href="{% url 'dashboard' %}">صفحه شخصی</a>
-                                <button class="btn-show-access btn btn-default" style="color: darkred; width: 100%">وعده
-                                    جدید
-                                </button>
-                                <a href="{% url "user_not_voted_events" %}">هنوز رای نداده ام</a>
-                                <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
-                            </div>
-                        </div>
-                    {% endif %}
-                    <img src="{{ user.userProfileInfo.profile_pic.url }}" width="50" height="50"
-                         style="border-radius: 50%;" alt="profile">
-                {% else %}
-                    <li class=""><a class="btn" href="{% url "login" %}">ورود / عضویت</a></li>
-                {% endif %}
-            </ul>
-        </div>
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo"
-                    aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse" id="bs-nav-demo">
-            <ul class="nav navbar-nav pull-right">
-                <li><a href="{% url 'home' %}">صفحه اصلی</a></li>
-                {% if not user.is_authenticated %}
-                    <li><a href="{% url 'login' %}">ثبت وعده</a></li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'dashboard' %}">صفحه شخصی</a></li>
-                {% endif %}
-                <li><a href="{% url 'contact_us' %}">تماس با ما</a></li>
+{#<div class="navbar headroom">#}
+{#    <nav role='navigation'>#}
+{#        <div id="menuToggle">#}
+<div id="header">
+    <input type="checkbox"/>
+    <span></span>
+    <span></span>
+    <span></span>
 
 
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'user_favorite_events' %}">مورد علاقه ها</a></li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <li><a href="{% url "user_not_voted_events" %}">هنوز رای نداده ام
-                        &#9913;</a></li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'user_events' pk=user.pk %}">وعده های من</a></li>
-                {% endif %}
-                <li class="" id="site-name-icon"><a href="{% url 'home' %}">وعده</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
+    <ul id="menu">
+        <a href="#">
+            <li>Home</li>
+        </a>
+        <a href="#">
+            <li>About</li>
+        </a>
+        <a href="#">
+            <li>Info</li>
+        </a>
+        <a href="#">
+            <li>Contact</li>
+        </a>
+        <a href="https://google.com/" target="_blank">
+            <li>Show me more</li>
+        </a>
+    </ul>
 </div>
+
+<div id="menu-warraper">
+    <div id='space-free'></div>
+
+    {% if user.is_authenticated %}
+        <div class="top-menu-item"><span>
+                       <a href="{% url 'home' %}">صفحه اصلی</a>
+                    </span></div>
+        <div class="top-menu-item"><span>
+                        <a href="{% url 'dashboard' %}">صفحه شخصی</a>
+                    </span></div>
+
+        <div class="top-menu-item"><span>
+                        <a href="{% url 'user_events' pk=user.pk %}">وعده های من</a>
+                    </span></div>
+
+        <div class="top-menu-item"><span>
+                        <a href="{% url "user_not_voted_events" %}">هنوز رای نداده ام</a>
+                    </span></div>
+        <div class="top-menu-item"><span>
+                        <a href="{% url 'user_favorite_events' %}">مورد علاقه ها</a>
+                    </span></div>
+        <div class="top-menu-item"><span>
+                        <a href="{% url 'contact_us' %}">تماس با ما</a>
+                    </span></div>
+
+        <div class="top-menu-item profile-pic"><img src="{{ user.userProfileInfo.profile_pic.url }}"
+                                                    width="50"
+                                                    height="50"/></div>
+        <!-- onmouseout="bigImg()" -->
+        <div class="top-menu-item profile-name" onmouseover="dropDownHeader()"><span>
+                    {% if user.first_name %}
+                        {{ user.first_name }}
+                    {% else %}
+                        {{ user.username }}
+                    {% endif %}
+            <i class="fa fa-sort-down"
+               style="font-size:24px"></i>
+                 </span>
+
+            <div class="dropdown" onmouseover="dropDownHeader()">
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="{% url 'dashboard' %}">صفحه شخصی</a>
+                    <a href="{% url "user_not_voted_events" %}">هنوز رای نداده ام</a>
+                    <a href="{% url 'user_favorite_events' %}">مورد علاقه ها</a>
+                    <a class="btn" href="{% url "logout" %}" style="background-color: #fcb787">خروج</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="btn-show-access top-menu-item new-event-btn"><span>وعده جدید</span></div>
+    {% else %}
+
+        <div id="right-side-header">
+
+            <div class="right-side-info"><a href="{% url 'contact_us' %}">تماس با ما</a></div>
+            <div class="right-side-info">تیم</div>
+            <div class="right-side-info">معرفی</div>
+            <div id="vade-header" class="items-right">وعده</div>
+        </div>
+
+        <div id="left-side-header">
+            <div id="sigin" class="back-blue"><a class="btn" href="{% url "register" %}">ثبت نام</a></div>
+            <div id="login"><a class="btn" href="{% url "login" %}">ورود</a></div>
+        </div>
+
+        {##}
+        {#        <div class="top-menu-item"><span>#}
+        {#                        <a href="{% url 'contact_us' %}">تماس با ما</a>#}
+        {#                    </span></div>#}
+        {#        <div class="top-menu-item"><span>#}
+        {#                       <a class="btn" href="{% url "login" %}">ورود / عضویت</a>#}
+        {#                    </span></div>#}
+        {#        <a href="{% url 'login' %}">#}
+        {#            <div class="top-menu-item new-event-btn"><span>#}
+        {#                 ثبت وعده#}
+        {#                </span></div>#}
+        {#        </a>#}
+    {% endif %}
+</div>
+{#    </nav>#}
+{#    </nav>#}
+{#</div>#}
 <!-- /.navbar -->
+
 <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-
-{#<div class="hover_choose">#}
-{#        <span class="helper"></span>#}
-{#        <div>#}
-{#            <h3>زمان این گزینه را انتخاب کنید:</h3>#}
-{#            <div id="calendar"></div>#}
-{#            <div class="popupCloseButton"><b>&#10004;</b></div>#}
-{#        </div>#}
-{#    </div>#}
-
-<!-- Header -->
-{#<header id="head">#}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <h1 class="lead"><b>تنظیم راحت قرارهای ملاقات</b></h1>#}
-{#            <h3 class="tagline" style="">قرارهای ملاقات رسمی و غیر رسمی خود را به راحتی تعیین و تنظیم کنید...</h3>#}
-{#            <p><a class="btn btn-default btn-lg" role="button">اطلاعات بیشتر</a>#}
-{#                {% if user.is_authenticated %}#}
-{#                    <a class="btn btn-action btn-lg" href="{% url 'new_event' %}" role="button">شروع</a>#}
-{#                {% else %}#}
-{#                    <a class="btn btn-action btn-lg" href="{% url 'login' %}" role="button">شروع</a>#}
-{#                {% endif %}#}
-{#            </p>#}
-{#        </div>#}
-{#    </div>#}
-{#</header>#}
-<!-- /Header -->
-
 
 
 {% block body_block %}
@@ -194,6 +210,8 @@
 
 
 <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src='{% static 'js/header.js' %}'></script>
+
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src='{% static 'js/headroom.min.js' %}'></script>
 <script src='{% static 'js/jQuery.headroom.min.js' %}'></script>
@@ -206,13 +224,10 @@
 <script>$(document).ready(function () {
     {# following codes are for popup access to google calendar #}
     $('.btn-show-access').click(function () {
-        alert("yes");
-        use_google_calendar = {{ usre.userProfileInfo.use_google_calendar }};
-        alert(use_google_calendar);
-        if (use_google_calendar){
+        use_google_calendar = "{{ user.userProfileInfo.use_google_calendar }}";
+        if (use_google_calendar === "False") {
             $('.hover_popup_access_google').show();
-        }
-        else {
+        } else {
             document.location.href = '/new_event';
         }
     });
