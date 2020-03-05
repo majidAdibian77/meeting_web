@@ -2,31 +2,31 @@
     
     @font-face {
         font-family: Shabnam;
-        src: url("../fonts/new_fonts/fonts/shabnam-font-v1/Shabnam-Bold.ttf");
-        src: url(../fonts/new_fonts/fonts/shabnam-font-v1/Shabnam-Bold.woff);
+        src: url("../fonts/shabnam-font-v1/Shabnam-Bold.ttf");
+        src: url(../fonts/shabnam-font-v1/Shabnam-Bold.woff);
     }
-
+    
     * {
         margin: 0;
         padding: 0;
         font-family: Shabnam;
     }
-
+    
     .center {
         margin: 10px auto;
         text-align: center;
     }
-
+    
     .first {
         margin: 15px 0;
         font-size: 1.5em;
     }
-
+    
     .second {
         margin: 15px 0;
         color: gray;
     }
-
+    
     .begin {
         padding: 10px 0;
         background-color: blue;
@@ -37,56 +37,56 @@
         border-radius: 20px;
         cursor: pointer;
     }
-
+    
     .text-under {
         display: flex;
         flex-direction: column;
     }
-
+    
     .op {
         margin-top: 15px;
         margin-bottom: 10px;
         text-align: center;
     }
-
+    
     .blue {
         color: rgb(83, 77, 121);
     }
-
+    
     .back-blue {
         background-color: rgb(1, 208, 226);
     }
-
+    
     .gray {
         color: gray;
     }
-
+    
     .title-op {
         font-size: 1.2em;
     }
-
+    
     .item-in-option {
         max-width: 33%;
     }
-
+    
     .team img {
         max-width: 50px;
         max-height: 50px;
         justify-content: space-around;
         margin: 0 auto;
     }
-
+    
     .right-side-info {
         cursor: pointer;
     }
-
+    
     input:focus,
     textarea:focus,
     select:focus {
         outline: none;
     }
     /* end for all */
-
+    
     #header {
         margin-top: 10px;
         display: flex;
@@ -98,7 +98,7 @@
         flex-grow: 1;
     }
     /* rightside in header */
-
+    
     #right-side-header {
         display: flex;
         flex-direction: row-reverse;
@@ -107,13 +107,13 @@
         justify-content: space-around;
     }
     /* stye the items in rightside header */
-
+    
     #vade-header {
         color: rgb(1, 208, 226);
         font-size: 1.5em;
     }
     /* left side in header */
-
+    
     #left-side-header {
         display: flex;
         flex-direction: row-reverse;
@@ -122,7 +122,7 @@
         width: 35%;
     }
     /* style the items in left side */
-
+    
     #login {
         color: rgb(1, 208, 226);
         width: 150px;
@@ -131,7 +131,7 @@
         border-radius: 20px;
         cursor: pointer;
     }
-
+    
     #sigin {
         color: white;
         width: 150px;
@@ -141,34 +141,34 @@
         cursor: pointer;
     }
     /* style main content */
-
+    
     #main-contianer {
         width: 80%;
         margin: 50px auto;
     }
     /* main header */
-
+    
     #header-main {
         display: flex;
         flex-direction: column;
     }
     /* header-image */
-
+    
     #header-image {
         display: flex;
     }
-
+    
     #image-header {
         width: 80%;
         margin: 30px auto;
     }
     /* information */
-
+    
     #information {
         margin: 40px 0;
     }
     /* option */
-
+    
     #option {
         margin: 30px auto;
         padding: 30px 0;
@@ -177,7 +177,7 @@
         justify-content: space-around;
     }
     /* email */
-
+    
     #email-input {
         display: flex;
         flex-direction: row;
@@ -189,7 +189,7 @@
         direction: rtl;
         padding: 20px 0;
     }
-
+    
     #input-email {
         border: 0;
         display: inline;
@@ -197,11 +197,11 @@
         background-color: rgb(240, 240, 240);
         color: rgb(141, 141, 141);
     }
-
+    
     #input-email::placeholder {
         color: rgb(141, 141, 141);
     }
-
+    
     #send-email {
         /* display: inline; */
         width: 15%;
@@ -213,7 +213,7 @@
         /* margin-right: 20px; */
     }
     /* team */
-
+    
     #team {
         width: 100%;
         background-color: rgb(222, 240, 254);
@@ -225,12 +225,12 @@
         justify-content: space-around;
     }
     /* contact-us */
-
+    
     #contact-us div.blue {
         padding-top: 30px;
         font-size: 1.5em;
     }
-
+    
     #container-message {
         padding-top: 30px;
         /* width: 70%; */
@@ -239,7 +239,7 @@
         justify-content: space-around;
         flex-basis: 50%;
     }
-
+    
     #form {
         direction: rtl;
         display: flex;
@@ -247,7 +247,7 @@
         justify-content: space-around;
         align-items: center;
     }
-
+    
     #form input.item-in-form {
         margin: 15px;
         border: 1px blue solid;
@@ -255,17 +255,17 @@
         min-height: 30px;
         max-width: 500px;
     }
-
+    
     #form input.item-in-form::placeholder {
         padding: 6px;
         color: black;
     }
-
+    
     #form input.big {
         min-height: 100px;
         border-radius: 20px;
     }
-
+    
     .btn-send-form {
         background-color: rgba(85, 57, 204, 1);
         color: white;

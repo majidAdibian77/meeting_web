@@ -486,9 +486,6 @@ def event_cases(request, pk, create_or_edit):
     event = Event.objects.get(pk=pk)
     emails = Email.objects.filter(event=event)
     cases = EventCases.objects.filter(event=event)
-
-    # import jdatetime
-    # today = jdatetime.date.today()
     return render(request, 'mainPages/event_cases.html',
                   {'event_pk': pk, 'cases': cases, 'emails': emails, 'google_events': google_events_list,
                    'create_or_edit': str(create_or_edit),

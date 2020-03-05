@@ -26,7 +26,7 @@
     <!-- New custom style -->
     <link rel="stylesheet" href='{% static 'css/home_style.css' %}'>
     <!-- Font -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
     <link rel="stylesheet" href="{% static 'fonts/new_fonts/fonts' %}">
 
 
@@ -124,7 +124,7 @@
             <div class="right-side-info"><a href="{% url 'contact_us' %}">تماس با ما</a></div>
             <div class="right-side-info">تیم</div>
             <div class="right-side-info">معرفی</div>
-            <div id="vade-header" class="items-right">وعده</div>
+            <a href="{% url 'home' %}"><div id="vade-header" class="items-right">وعده</div></a>
         </div>
 
         <div id="left-side-header">

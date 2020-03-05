@@ -1,319 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="Change dashboard page...">
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/css/header/menuBurgerStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/css/header/top-menu-wrapper.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/css/home_style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/css/user_events/user_events.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/._shabnam-font-v1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._.DS_Store" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Farsi-Digits" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Farsi-Digits-Without-Latin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Bold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Light.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Light.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Shabnam.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Shabnam.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Shabnam.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/._Without-Latin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Bold-FD-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Bold-FD-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Bold-FD-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-FD-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-FD-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-FD-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Light-FD-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Light-FD-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Light-FD-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Bold-FD.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Bold-FD.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Bold-FD.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-FD.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-FD.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-FD.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Light-FD.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Light-FD.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Light-FD.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Bold-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Bold-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Bold-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Light-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Light-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Light-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Bold-FD-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Bold-FD-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Bold-FD-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-FD-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-FD-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-FD-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Light-FD-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Light-FD-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Light-FD-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Bold-FD.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Bold-FD.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Bold-FD.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-FD.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-FD.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-FD.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Light-FD.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Light-FD.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Light-FD.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Shabnam-Bold.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Shabnam-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Shabnam-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Shabnam-Light.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Shabnam-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Shabnam-Light.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Shabnam.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Shabnam.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Shabnam.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Without-Latin/Shabnam-Bold-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Without-Latin/Shabnam-Bold-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Without-Latin/Shabnam-Bold-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Without-Latin/Shabnam-Light-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Without-Latin/Shabnam-Light-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Without-Latin/Shabnam-Light-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Without-Latin/Shabnam-WOL.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Without-Latin/Shabnam-WOL.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts/fonts/shabnam-font-v1/Without-Latin/Shabnam-WOL.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/Burger Button.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/bookmark-star-1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/bookmark-star.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/choice.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/comment.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/confetti-2.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/edit.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/aa.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/hr.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/ma.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/main-header.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/mg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/option1.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/option2.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/option3.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/rm.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/mainTbarSearch.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/meeting.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/tick.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/background-events.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/daygrid-views.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/external-dragging-2cals.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/external-dragging-builtin.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/full-height.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/google-calendar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/js/theme-chooser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/json.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/json/events.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/list-views.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/locales.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/month-view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/php/get-events.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/php/get-time-zones.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/php/utils.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/rrule.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/selectable.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/theming.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/time-zones.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/timegrid-views.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/examples/week-numbers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/fullcalendar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/fullcalendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/jquery.fullcalendar.1.5.4.nupkg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/bootstrap/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/bootstrap/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/bootstrap/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/bootstrap/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/bootstrap/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/bootstrap/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/bootstrap/main.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/bootstrap/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/bootstrap/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales-all.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales-all.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/af.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ar-dz.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ar-kw.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ar-ly.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ar-ma.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ar-sa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ar-tn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/bg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/bs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ca.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/cs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/da.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/de.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/el.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/en-au.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/en-gb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/en-nz.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/es-us.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/es.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/et.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/eu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/fa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/fi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/fr-ca.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/fr-ch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/fr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/gl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/he.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/hi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/hr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/hu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/id.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/is.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/it.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ja.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ka.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/kk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ko.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/lb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/lt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/lv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/mk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/nb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/nl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/nn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/pl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/pt-br.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/pt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/ru.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/sk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/sl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/sq.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/sr-cyrl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/sr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/sv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/th.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/tr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/uk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/vi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/zh-cn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/locales/zh-tw.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/main.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/core/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/daygrid/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/daygrid/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/daygrid/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/daygrid/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/daygrid/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/daygrid/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/daygrid/main.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/daygrid/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/daygrid/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/google-calendar/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/google-calendar/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/google-calendar/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/google-calendar/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/google-calendar/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/google-calendar/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/google-calendar/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/interaction/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/interaction/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/interaction/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/interaction/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/interaction/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/interaction/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/interaction/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/list/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/list/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/list/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/list/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/list/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/list/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/list/main.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/list/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/list/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/luxon/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/luxon/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/luxon/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/luxon/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/luxon/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/luxon/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/luxon/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment-timezone/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment-timezone/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment-timezone/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment-timezone/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment-timezone/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment-timezone/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment-timezone/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/moment/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/rrule/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/rrule/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/rrule/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/rrule/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/rrule/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/rrule/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/rrule/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/timegrid/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/timegrid/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/timegrid/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/timegrid/main.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/timegrid/main.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/timegrid/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/timegrid/main.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/timegrid/main.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/packages/timegrid/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/fullcalendar-4.3.0/vendor/rrule.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meeting_app/static/js/header.js" afterDir="false" />
+    <list default="true" id="6ba130ed-049c-4183-a1fc-a904967d927a" name="Default" comment="changing front-end of home page...">
+      <change afterPath="$PROJECT_DIR$/meeting_app/static/fonts/new_fonts.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meeting_app/static/images/home_images/images/Contact email.svg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vade-master.zip" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vade-master/vade-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/._shabnam-font-v1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._.DS_Store" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Farsi-Digits" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Farsi-Digits-Without-Latin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Bold.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Light.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Shabnam-Light.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Shabnam.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Shabnam.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Shabnam.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/._Without-Latin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Bold-FD-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Bold-FD-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Bold-FD-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-FD-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-FD-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-FD-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Light-FD-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Light-FD-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits-Without-Latin/._Shabnam-Light-FD-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Bold-FD.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Bold-FD.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Bold-FD.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-FD.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-FD.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-FD.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Light-FD.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Light-FD.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Farsi-Digits/._Shabnam-Light-FD.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Bold-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Bold-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Bold-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Light-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Light-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-Light-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/__MACOSX/shabnam-font-v1/Without-Latin/._Shabnam-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Bold-FD-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Bold-FD-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Bold-FD-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-FD-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-FD-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-FD-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Light-FD-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Light-FD-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits-Without-Latin/Shabnam-Light-FD-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Bold-FD.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Bold-FD.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Bold-FD.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-FD.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-FD.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-FD.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Light-FD.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Light-FD.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Farsi-Digits/Shabnam-Light-FD.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Shabnam-Bold.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Shabnam-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Shabnam-Bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Shabnam-Light.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Shabnam-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Shabnam-Light.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Shabnam.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Shabnam.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Shabnam.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Without-Latin/Shabnam-Bold-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Without-Latin/Shabnam-Bold-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Without-Latin/Shabnam-Bold-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Without-Latin/Shabnam-Light-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Without-Latin/Shabnam-Light-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Without-Latin/Shabnam-Light-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Without-Latin/Shabnam-WOL.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Without-Latin/Shabnam-WOL.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/fonts/shabnam-font-v1/Without-Latin/Shabnam-WOL.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/Contact email.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/aa.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/hr.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/ma.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/main-header.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/mg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/option1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/option2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/option3.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/images/rm.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/index.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/prototype/Home – 1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jdatetime-3.6.2-py3.7.egg-info/PKG-INFO" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jdatetime-3.6.2-py3.7.egg-info/SOURCES.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jdatetime-3.6.2-py3.7.egg-info/dependency_links.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jdatetime-3.6.2-py3.7.egg-info/installed-files.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jdatetime-3.6.2-py3.7.egg-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jdatetime/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Lib/site-packages/jdatetime/jalali.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vade-master/vade-master/home/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/popup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/js/event/event.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meeting_app/static/css/home_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/static/css/home_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/event_cases.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_events.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_favorite_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_favorite_events.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_not_voted_events.html" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/templates/mainPages/user_not_voted_events.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/meeting_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/meeting_app/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -348,26 +143,26 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/meeting_app/static/images/home_images/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\images\home_images\images" />
+      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\images" />
+      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\css\event_cases" />
+      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\js" />
+      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\media\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\images" />
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\home_images" />
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\fonts" />
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\new_fonts" />
       <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\css" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\images" />
-      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\css\event_cases" />
-      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\js" />
-      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\media\images" />
-      <recent name="G:\programming\Pycharm\Projects\Django Projects\meeting_web\meeting_app\static\js\jalaali-calendar" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -699,7 +494,9 @@
       <workItem from="1580198592878" duration="621000" />
       <workItem from="1580213407374" duration="1360000" />
       <workItem from="1582545763550" duration="1167000" />
-      <workItem from="1583186348514" duration="2960000" />
+      <workItem from="1583186348514" duration="4723000" />
+      <workItem from="1583242827161" duration="3172000" />
+      <workItem from="1583396388270" duration="2821000" />
     </task>
     <task id="LOCAL-00001" summary="second commit...">
       <created>1563049152840</created>
@@ -946,7 +743,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574687986629</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="changing front-end of home page...">
+      <created>1583189489924</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1583189489924</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -967,7 +771,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="showing table to user can vote..." />
     <MESSAGE value="users can vote and add contact us page..." />
     <MESSAGE value="changing font of site..." />
     <MESSAGE value="showing some details in pages..." />
@@ -992,7 +795,8 @@
     <MESSAGE value="add delete and exit button for events..." />
     <MESSAGE value="sending verification email..." />
     <MESSAGE value="Change dashboard page..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Change dashboard page..." />
+    <MESSAGE value="changing front-end of home page..." />
+    <option name="LAST_COMMIT_MESSAGE" value="changing front-end of home page..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

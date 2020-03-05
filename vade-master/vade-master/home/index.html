@@ -1,20 +1,38 @@
-<!doctype html>
-{% extends 'mainPages/base.html' %}
-{% load staticfiles %}
-{% block body_block %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="header">
+        <div id="right-side-header">
+            <div id="vade-header" class="items-right">وعده</div>
+
+            <div class="right-side-info">معرفی</div>
+            <div class="right-side-info">تیم</div>
+            <div class="right-side-info">تماس با ما</div>
+        </div>
+
+        <div id="left-side-header">
+            <div id="login">ورود</div>
+            <div id="sigin" class="back-blue">ثبت نام</div>
+        </div>
+    </div>
     <!-- main -->
     <div id="main-contianer">
         <div id="header-main">
             <div class="center first">برای تنظیم یک قرار ۳۰ دقیقه ای ,۳۰ پیام ردوبدل نکیند</div>
-            <div class="center second">با ایزار هوشمند وعده,یک قرار کاری,آموزشی و یا دور همی را به سادگی ترتیب دهید.
-            </div>
-            <div class="center begin back-blue"><a class="btn" href="{% url "login" %}">شروع کنید</a></div>
+            <div class="center second">با ایزار هوشمند وعده,یک قرار کاری,آموزشی و یا دور همی را به سادگی ترتیب دهید.</div>
+            <div class="center begin back-blue">شروع کنید</div>
 
         </div>
 
         <div id="header-image">
-            <img src="{% static 'images/home_images/images/main-header.jpg' %}" id="image-header"/>
+            <img src="./images/main-header.jpg" id="image-header" />
         </div>
 
         <div id="information">
@@ -26,20 +44,20 @@
         <div id="option">
 
             <div class="item-in-option text-under">
-                <img src="{% static 'images/home_images/images/option1.svg' %}"/>
+                <img src="./images/option1.svg" />
                 <span class="op blue title-op">نعیین گزینه های مکان</span>
                 <span class="op gray inf-op">نعیین گزینه های مکان</span>
 
             </div>
 
             <div class="item-in-option text-under">
-                <img src="{% static 'images/home_images/images/option2.svg' %}"/>
+                <img src="./images/option2.svg" />
                 <span class="op blue title-op">نعیین گزینه های زمان</span>
                 <span class="op gray inf-op">نعیین گزینه های مکان</span>
             </div>
 
             <div class="item-in-option text-under">
-                <img src="{% static 'images/home_images/images/option3.svg' %}"/>
+                <img src="./images/option3.svg" />
                 <span class="op blue title-op">هم آهنگی رابه فردا نیندازید</span>
                 <span class="op gray inf-op">نعیین گزینه های مکان</span>
             </div>
@@ -50,7 +68,7 @@
             <div class="center second">برای اظلاع از اخباروعده ایمیل خود را وارد کنید</div>
 
             <div id="email-input" class="center">
-                <input type="email" placeholder="example@example.com" class="center" id="input-email"/>
+                <input type="email" placeholder="example@example.com" class="center" id="input-email" />
                 <div id="send-email" class="back-blue">ارسال</div>
             </div>
 
@@ -58,51 +76,53 @@
         <div id="team">
 
             <div class="item-in-option text-under team">
-                <img src="{% static 'images/home_images/images/ma.jpg' %}"/>
+                <img src="./images/ma.jpg" />
                 <span class="op blue title-op">مجید ادیبیان</span>
                 <span class="op gray inf-op">توسعه سمت سرور</span>
             </div>
 
             <div class="item-in-option text-under team">
-                <img src="{% static 'images/home_images/images/rm.jpg' %}"/>
+                <img src="./images/rm.jpg" />
                 <span class="op blue title-op">سید رضا موسویان</span>
                 <span class="op gray inf-op">توسعه دهنده سمت کاربر</span>
             </div>
 
             <div class="item-in-option text-under team">
-                <img src="{% static 'images/home_images/images/mg.jpg' %}"/>
+                <img src="./images/mg.jpg" />
                 <span class="op blue title-op">محمد حسین گمار</span>
                 <span class="op gray inf-op">طراح تجربه کاربری</span>
             </div>
 
             <div class="item-in-option text-under team">
-                <img src="{% static 'images/home_images/images/aa.jpg' %}"/>
+                <img src="./images/aa.jpg" />
                 <span class="op blue title-op">علی الهیاری</span>
                 <span class="op gray inf-op">طراح محصول</span>
             </div>
 
             <div class="item-in-option text-under team">
-                <img src="{% static 'images/home_images/images/hr.jpg' %}"/>
+                <img src="./images/hr.jpg" />
                 <span class="op blue title-op">حامد رومی</span>
                 <span class="op gray inf-op">مشاور</span>
             </div>
 
         </div>
+
         <div id="contact-us">
             <div class="center blue">تماس با ما</div>
             <div class="center second">نظرات خود را با ما در میان بگذارید</div>
             <div id="container-message">
                 <div id="form" class="item-contact">
-                    <input type="text" placeholder="نام" class="item-in-form"/>
-                    <input type="email" placeholder="ایمیل" class="item-in-form"/>
-                    <input type="text" placeholder="پیام" class="item-in-form big"/>
+                    <input type="text" placeholder="نام" class="item-in-form" />
+                    <input type="email" placeholder="ایمیل" class="item-in-form" />
+                    <input type="text" placeholder="پیام" class="item-in-form big" />
                     <div class="item-in-form btn-send-form">ارسال</div>
                 </div>
                 <div id="form-image">
-                    <img src="{% static 'images/home_images/images/Contact email.svg' %}"/>
+                    <img src="./images/Contact email.svg" />
                 </div>
             </div>
         </div>
-    </div>
 
-{% endblock %}
+</body>
+
+</html>
